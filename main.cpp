@@ -7,6 +7,8 @@
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h" 
 #include "grid.h"
+#include "GUI.h"
+
 
 //------------------------------------------------------------------------------'
 

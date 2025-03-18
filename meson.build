@@ -32,6 +32,7 @@ exe = executable(
 'ant.cpp',
 'board.cpp',
 'food.cpp',
+'game.cpp',
 'grid.cpp',
 'main.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
