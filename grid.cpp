@@ -5,6 +5,7 @@
 // Grid 15X15
 void Grid(int grid_width, int grid_height, int WIDTH, int HEIGHT, AnimationWindow& window) 
 { //grid_width and grid_height is the number of squares. WIDTH and HEIGHT is the window sizes
+    
    //Draw checkboard background
    int square_size = 50; //Size of squres on board
    for (int i = 0; i < WIDTH; i+=square_size) {
