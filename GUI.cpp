@@ -13,7 +13,7 @@ Button make_play_button(int posx, int posy, int width, int height) {
 }
 /*
 The make_play_button will create a play button by assigning it to a variable. Should do:
-play_button = make_play_button(x,y,w,h);
+Button play_button = make_play_button(x,y,w,h);
 in main() before the game begins.
 */
 
