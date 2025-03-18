@@ -4,17 +4,18 @@
 
 // Grid 15X15
 void Grid(int grid_width, int grid_height, int WIDTH, int HEIGHT, AnimationWindow& window) 
-{ //width and height is the number of squares. WIDTH and HEIGHT is the window sizes
+{ //grid_width and grid_height is the number of squares. WIDTH and HEIGHT is the window sizes
    //Draw checkboard background
-   for (int i = 0; i < WIDTH; i+=50) {
-    for (int j = 0; j < HEIGHT; j+=50) {
+   int square_size = 50; //Size of squres on board
+   for (int i = 0; i < WIDTH; i+=square_size) {
+    for (int j = 0; j < HEIGHT; j+=square_size) {
 
 
         Point cor1(i,j);
-        Point cor2(i+50,j);
-        Point cor3(i+50,j+50);
-        Point cor4(i,j+50);
-        if((i/50)%2 == (j/50)%2) {
+        Point cor2(i+square_size,j);
+        Point cor3(i+square_size,j+square_size);
+        Point cor4(i,j+square_size);
+        if((i/square_size)%2 == (j/square_size)%2) {
             window.draw_quad(cor1, cor2, cor3, cor4, Color::lawn_green);
         } else {
             window.draw_quad(cor1, cor2, cor3, cor4, Color::lime_green);

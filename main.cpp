@@ -6,6 +6,7 @@
 
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h" 
+#include "grid.h"
 
 //------------------------------------------------------------------------------'
 
@@ -13,6 +14,10 @@
 int main() {
     // Show a nice message in the Terminal window
     cout << "Hello, Ant!" << endl;
+    AnimationWindow win{400, 25, 750, 750, "Ant"};
+    Grid(15, 15, 750, 750, win);
+    
+    win.wait_for_close();
 
     // This lets the operating system (Windows, Mac, Linux, etc.) know that the program
     // did not encounter any errors
