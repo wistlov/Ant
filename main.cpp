@@ -13,7 +13,7 @@
 // C++ programs start by executing the function main
 int main() {
     // Show a nice message in the Terminal window
-    cout << "Hello, Ant!" << endl;
+    cout << "Hello, Ant! Im here for your food." << endl;
     AnimationWindow win{400, 25, 750, 750, "Ant"};
     Grid(15, 15, 750, 750, win);
     
