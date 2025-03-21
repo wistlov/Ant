@@ -8,6 +8,7 @@
 #include "AnimationWindow.h" 
 #include "grid.h"
 #include "GUI.h"
+#include "game.h"
 
 
 //------------------------------------------------------------------------------'
@@ -16,25 +17,15 @@
 int main() {
     // Show a nice message in the Terminal window
     cout << "Hello, Ant! Im here for your food." << endl;
-    AnimationWindow win{400, 25, 750, 750, "Ant"};
-    Grid(15, 15, 750, 750, win);
 
+    AnimationWindow win{400, 25, 750, 750, "Ant"}; // Makes the game window
+    play_game(win); // Starts the game function 
 
-
-    //Button stuff
-    Button play_button = make_play_button(300, 300, 100, 50); //Testing play button
-    //show_button(play_button, win);   //This didnt work but the code below does the same thing
-    win.add(play_button); //This is what makes the button show up
-
-
-
-
-
-    win.wait_for_close();
 
     // This lets the operating system (Windows, Mac, Linux, etc.) know that the program
     // did not encounter any errors
     return 0;
 }
+
 
 //------------------------------------------------------------------------------
