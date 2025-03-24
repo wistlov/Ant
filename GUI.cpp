@@ -33,8 +33,11 @@ Therefore: window.add(button) must be done manually instead of using the functio
 */
 
 //Menu background for the play button and high score before staring the game
-void menu_background(int height, int width, AnimationWindow& window){
-    window.draw_rectangle(TDT4102::Point{0,0}, height, width, Color::deep_skyblue);
+void menu_background(int width, int height, AnimationWindow& window){
+    window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
+    window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
+    window.draw_rectangle(TDT4102::Point{0,600}, width, 20, Color::lawn_green);
+
 }
 void text_background(AnimationWindow& window){
     TDT4102::Point location {250, 0}; //Start point of the text
@@ -43,6 +46,11 @@ void text_background(AnimationWindow& window){
     int fontSize = 120; 
     TDT4102::Font fontFace = TDT4102::Font::times_bold;
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
+}
+void ant_background(AnimationWindow& window){
+    while(!window.should_close()) {
+        TDT4102::Point ant_start_walk
+    }
 }
 
 // Callbacks
