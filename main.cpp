@@ -10,7 +10,6 @@
 #include "GUI.h"
 #include "game.h"
 
-
 //------------------------------------------------------------------------------'
 
 // C++ programs start by executing the function main
