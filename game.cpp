@@ -10,9 +10,10 @@ void play_game(AnimationWindow win) {
         //The game
         while(game_screen == "menu"){
             menu_background(832, 832, win); //Gets the function for the menu design
-            text_background(win);
+            text_background(win); // Makes ANT text in the background
+            //ant_background(win); // Makes the ants
             //Button stuff
-            Button play_button = make_play_button(225, 150, 300, 100);
+            Button play_button = make_play_button(266, 150, 300, 100);
             //show_button(play_button, win);   //This didnt work but the code below does the same thing
             win.add(play_button); //This is what makes the button show up
             

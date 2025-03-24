@@ -40,17 +40,19 @@ void menu_background(int width, int height, AnimationWindow& window){
 
 }
 void text_background(AnimationWindow& window){
-    TDT4102::Point location {250, 0}; //Start point of the text
+    TDT4102::Point location {295, 0}; //Start point of the text
     std::string message = "ANT"; // what the text is
     Color textColor = TDT4102::Color::dark_red;
     int fontSize = 120; 
     TDT4102::Font fontFace = TDT4102::Font::times_bold;
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
 }
+TDT4102::Image Image1("cute_ant.gif");
+
 void ant_background(AnimationWindow& window){
     while(!window.should_close()) {
         TDT4102::Point ant_start_walk {0,(600-48)};
-        window.draw_image(ant_start_walk, &image, 48, 48)
+        window.draw_image(ant_start_walk, Image1, 48, 48);
     }
 }
 
