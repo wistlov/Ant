@@ -27,6 +27,34 @@ Button play_button = make_play_button(x,y,w,h);
 in main() before the game begins.
 */
 
+Button make_highscore_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "HighScore";
+    TDT4102::Button highscore_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    highscore_button.setButtonColor(TDT4102::Color::red);
+    highscore_button.setButtonColorHover(TDT4102::Color::orange_red);
+    highscore_button.setButtonColorActive(TDT4102::Color::dark_red);
+    highscore_button.setLabelColor(TDT4102::Color::white);
+    highscore_button.setCallback(highscore); //This is what happens when the button is clicked.
+    return highscore_button;
+}
+
+Button make_quit_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Quit";
+    TDT4102::Button quit_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    quit_button.setButtonColor(TDT4102::Color::red);
+    quit_button.setButtonColorHover(TDT4102::Color::orange_red);
+    quit_button.setButtonColorActive(TDT4102::Color::dark_red);
+    quit_button.setLabelColor(TDT4102::Color::white);
+    quit_button.setCallback(quit); //This is what happens when the button is clicked.
+    return quit_button;
+}
+
 
 //Menu background for the play button and high score before staring the game
 
@@ -81,6 +109,13 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     
 }
 
+void highscore_menu(){
+
+}
+
+void quit_menu(){
+
+}
 // Callbacks
 
 //Defintion for the diffrent states the gae can be inn
@@ -90,6 +125,14 @@ void play() {
     // Whatever happens when play is called
     std::cout << "Play" << std::endl;
     game_screen = "game";
-    std::cout << game_screen << std::endl;
+}
 
+void highscore() {
+    std::cout << "Highscore" << std::endl;
+    game_screen = "highscore";
+}
+
+void quit() {
+    std::cout << "Quit" << std::endl;
+    game_screen = "quit";
 }

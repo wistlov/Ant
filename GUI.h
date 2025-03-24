@@ -7,7 +7,8 @@
 
 // Buttons
 Button make_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
-
+Button make_highscore_button(int posx, int posy, int width, int height, AnimationWindow& window);
+Button make_quit_button(int posx, int posy, int width, int height, AnimationWindow& window);
 
 
 // Menu "Base"/Background
@@ -16,3 +17,5 @@ void menu_overall_background(int width, int height, AnimationWindow& window);
 // Callbacks
 // (These are functions that buttons can make happen when clicked)
 void play(); 
+void highscore(); 
+void quit();
