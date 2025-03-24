@@ -8,6 +8,8 @@
 // Buttons
 Button make_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
 
+
+
 // Menu "Base"/Background
 void menu_overall_background(int width, int height, AnimationWindow& window);
 
