@@ -2,7 +2,7 @@
 
 // buttons
 
-Button make_play_button(int posx, int posy, int width, int height) {
+Button make_play_button(int posx, int posy, int width, int height, AnimationWindow window) {
     const TDT4102::Point buttonPosition {posx, posy};
     const unsigned int buttonWidth = width;
     const unsigned int buttonHeight = height;
@@ -13,6 +13,7 @@ Button make_play_button(int posx, int posy, int width, int height) {
     play_button.setButtonColorActive(TDT4102::Color::dark_red);
     play_button.setLabelColor(TDT4102::Color::white);
     play_button.setCallback(play); //This is what happens when the button is clicked.
+    window.close();
     return play_button;
 }
 /*
@@ -65,6 +66,7 @@ void play() {
     // Whatever happens when play is called
     std::cout << "Play" << std::endl;
     game_screen = "game";
+    close();
     std::cout << game_screen << std::endl;
 
 }
