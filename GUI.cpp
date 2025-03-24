@@ -49,7 +49,8 @@ void text_background(AnimationWindow& window){
 }
 void ant_background(AnimationWindow& window){
     while(!window.should_close()) {
-        TDT4102::Point ant_start_walk;
+        TDT4102::Point ant_start_walk {0,(600-48)};
+        window.draw_image(ant_start_walk, &image, 48, 48)
     }
 }
 
