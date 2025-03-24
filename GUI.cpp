@@ -1,8 +1,14 @@
 #include "GUI.h"
+#include "game.h"
+
+
+// Linking the global variable
+// extern std::string game_screen;
+
 
 // buttons
 
-Button make_play_button(int posx, int posy, int width, int height, AnimationWindow window) {
+Button make_play_button(int posx, int posy, int width, int height, AnimationWindow& window) {
     const TDT4102::Point buttonPosition {posx, posy};
     const unsigned int buttonWidth = width;
     const unsigned int buttonHeight = height;
@@ -13,7 +19,6 @@ Button make_play_button(int posx, int posy, int width, int height, AnimationWind
     play_button.setButtonColorActive(TDT4102::Color::dark_red);
     play_button.setLabelColor(TDT4102::Color::white);
     play_button.setCallback(play); //This is what happens when the button is clicked.
-    window.close();
     return play_button;
 }
 /*
@@ -22,16 +27,6 @@ Button play_button = make_play_button(x,y,w,h);
 in main() before the game begins.
 */
 
-void show_button(Button button, AnimationWindow window) {
-    window.add(button);
-}
-/*
-If you want the button in question to show up, call this function for that button. 
-It will only show and be accessable while this function is being called. In theory.
-
-Unfortunately, this doesnt work as unless wait_until_window_close() is called inside the function, this closes the window. 
-Therefore: window.add(button) must be done manually instead of using the function
-*/
 
 //Menu background for the play button and high score before staring the game
 void menu_background(int width, int height, AnimationWindow& window){
@@ -66,7 +61,6 @@ void play() {
     // Whatever happens when play is called
     std::cout << "Play" << std::endl;
     game_screen = "game";
-    close();
     std::cout << game_screen << std::endl;
 
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h"
 #include "GUI.h"
@@ -6,4 +8,4 @@
 // Making a global variable
 extern std::string game_screen;
 
-void play_game(AnimationWindow win);
+void play_game(AnimationWindow& win);
