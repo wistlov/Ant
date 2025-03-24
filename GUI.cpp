@@ -29,26 +29,46 @@ in main() before the game begins.
 
 
 //Menu background for the play button and high score before staring the game
-void menu_background(int width, int height, AnimationWindow& window){
+
+TDT4102::Image Image1("Images/cute_ant.gif"); // Defin the image of the ant
+TDT4102::Image Image2("Images/cute_ant_move2.gif");
+
+void menu_overall_background(int width, int height, AnimationWindow& window){
+    int ant_walkning = 768;
+    int frame_step = 0;
+
+    while(!window.should_close()){
+ 
     window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
     window.draw_rectangle(TDT4102::Point{0,600}, width, 20, Color::lawn_green);
 
-}
-void text_background(AnimationWindow& window){
     TDT4102::Point location {295, 0}; //Start point of the text
     std::string message = "ANT"; // what the text is
     Color textColor = TDT4102::Color::dark_red;
     int fontSize = 120; 
     TDT4102::Font fontFace = TDT4102::Font::times_bold;
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
-}
-TDT4102::Image Image1("cute_ant.gif");
 
-void ant_background(AnimationWindow& window){
-    while(!window.should_close()) {
-        TDT4102::Point ant_start_walk {0,(600-48)};
-        window.draw_image(ant_start_walk, Image1, 48, 48);
+    frame_step = frame_step + 1; //To change image
+    ant_walkning = ant_walkning - 8; // Amounts of pixel the ants move each frame
+    TDT4102::Point ant_start_walk1 {ant_walkning,(600-48)}; //Start point for the ant
+    TDT4102::Point ant_start_walk2 {ant_walkning+64,(600-48)};
+    TDT4102::Point ant_start_walk3 {ant_walkning+128,(600-48)};
+
+    if(frame_step % 2 == 0){
+        window.draw_image(ant_start_walk1, Image1, 64, 64); //Draws the first and image
+        window.draw_image(ant_start_walk2, Image1, 64, 64);
+        window.draw_image(ant_start_walk3, Image1, 64, 64);
+    }
+    else {
+        window.draw_image(ant_start_walk1, Image2, 64, 64); //Draws the second ant image
+        window.draw_image(ant_start_walk2, Image2, 64, 64);
+        window.draw_image(ant_start_walk3, Image2, 64, 64);
+    }
+
+    window.wait_for(0.2);
+    window.next_frame();
     }
 }
 
