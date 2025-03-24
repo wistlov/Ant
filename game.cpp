@@ -9,10 +9,10 @@ void play_game(AnimationWindow win) {
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         //The game
         while(game_screen == "menu"){
-            menu_background(750, 750, win); //Gets the function for the menu designe
+            menu_background(832, 832, win); //Gets the function for the menu design
             text_background(win);
             //Button stuff
-            Button play_button = make_play_button(225, 150, 300, 100); //Testing play button
+            Button play_button = make_play_button(225, 150, 300, 100);
             //show_button(play_button, win);   //This didnt work but the code below does the same thing
             win.add(play_button); //This is what makes the button show up
             
@@ -21,7 +21,7 @@ void play_game(AnimationWindow win) {
         }
 
         while(game_screen == "game"){
-            Grid(15, 15, 750, 750, win);
+            Grid(13, 13, 832, 832, win);
 
             win.wait_for_close(); //When just outside of while function it wont close
             win.next_frame();
