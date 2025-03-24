@@ -48,6 +48,7 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
 
     window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
+    window.draw_rectangle(TDT4102::Point{0,700}, width, 80, Color::saddle_brown);
     window.draw_rectangle(TDT4102::Point{0,600}, width, 20, Color::lawn_green);
     
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
