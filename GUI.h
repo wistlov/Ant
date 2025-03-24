@@ -7,7 +7,7 @@
 #include "game.h"
 
 // Buttons
-Button make_play_button(int posx, int posy, int width, int height);
+Button make_play_button(int posx, int posy, int width, int height, AnimationWindow window);
 void show_button(Button button, AnimationWindow window);
 
 // Menu "Base"/Background
