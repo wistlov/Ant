@@ -4,6 +4,7 @@
 #include "AnimationWindow.h"
 #include "widgets/Button.h"
 #include <iostream>
+#include "game.h"
 
 // Buttons
 Button make_play_button(int posx, int posy, int width, int height);

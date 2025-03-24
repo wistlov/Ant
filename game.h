@@ -3,4 +3,7 @@
 #include "GUI.h"
 #include "grid.h"
 
+// Making a global variable
+extern std::string game_screen;
+
 void play_game(AnimationWindow win);

@@ -1,7 +1,10 @@
 #include "game.h"
 
+// Global variables
+string game_screen = "menu";// setts which state the game is in
+
+
 void play_game(AnimationWindow win) {
-    string game_screen = "menu";// setts which state the game is in
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         //The game

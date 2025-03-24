@@ -53,6 +53,7 @@ void text_background(AnimationWindow& window){
 void play() {
     // Whatever happens when play is called
     std::cout << "Play" << std::endl;
-    //game_screen = "game";
+    game_screen = "game";
+    std::cout << game_screen << std::endl;
 
 }
