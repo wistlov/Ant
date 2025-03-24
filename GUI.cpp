@@ -33,21 +33,23 @@ in main() before the game begins.
 TDT4102::Image Image1("Images/cute_ant.gif"); // Defin the image of the ant
 TDT4102::Image Image2("Images/cute_ant_move2.gif");
 
-void menu_overall_background(int width, int height, AnimationWindow& window){
-    int ant_walkning = 768;
-    int frame_step = 0;
+int ant_walkning = 768;
+int frame_step = 0;
 
-    while(!window.should_close()){
- 
+// Makes the ANT text
+TDT4102::Point location {295, 0}; //Start point of the text
+std::string message = "ANT"; // what the text is
+Color textColor = TDT4102::Color::dark_red;
+int fontSize = 120; 
+TDT4102::Font fontFace = TDT4102::Font::times_bold;
+
+// This here is the menu function that runs when the menu is up
+void menu_overall_background(int width, int height, AnimationWindow& window){
+
     window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
     window.draw_rectangle(TDT4102::Point{0,600}, width, 20, Color::lawn_green);
-
-    TDT4102::Point location {295, 0}; //Start point of the text
-    std::string message = "ANT"; // what the text is
-    Color textColor = TDT4102::Color::dark_red;
-    int fontSize = 120; 
-    TDT4102::Font fontFace = TDT4102::Font::times_bold;
+    
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
 
     frame_step = frame_step + 1; //To change image
@@ -68,8 +70,7 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     }
 
     window.wait_for(0.2);
-    window.next_frame();
-    }
+    
 }
 
 // Callbacks
