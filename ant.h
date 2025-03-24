@@ -9,9 +9,14 @@ class Ants {
     int ant_walkning = 768;
     int frame_step = 0;
     // Animation
-    // Image and size
-    TDT4102::Image Image1("Images/cute_ant.gif"); // Defin the image of the ant
-    TDT4102::Image Image2("Images/cute_ant_move2.gif");
+
+    // Constructor
+    Ants (std::string image_path_1, std::string image_path_2) {
+        // Image and size
+        TDT4102::Image Image1(image_path_1); // Defin the image of the ant
+        TDT4102::Image Image2(image_path_2);
+    }
+    
     // Functions to mirror and change directions of the image
 };
 
