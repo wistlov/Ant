@@ -30,10 +30,15 @@ in main() before the game begins.
 
 //Menu background for the play button and high score before staring the game
 
-TDT4102::Image Image1("Images/cute_ant.gif"); // Defin the image of the ant
-TDT4102::Image Image2("Images/cute_ant_move2.gif");
+TDT4102::Image Left_ant1("Images/cute_ant.gif"); // Defin the image of the ant
+TDT4102::Image Left_ant2("Images/cute_ant_move2.gif");
 
-int ant_walkning = 768;
+TDT4102::Image Right_ant1("Images/cute_ant_mirrored.gif"); 
+TDT4102::Image Right_ant2("Images/cute_ant_move2_mirrored.gif");
+
+int ant_walkning_left = 768;
+int ant_walkning_right = 0;
+int ant_walking_speed = 8;
 int frame_step = 0;
 
 // Makes the ANT text
@@ -48,26 +53,28 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
 
     window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
-    window.draw_rectangle(TDT4102::Point{0,700}, width, 80, Color::saddle_brown);
+    window.draw_rectangle(TDT4102::Point{0,700}, width, 60, Color::saddle_brown);
     window.draw_rectangle(TDT4102::Point{0,600}, width, 20, Color::lawn_green);
     
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
 
     frame_step = frame_step + 1; //To change image
-    ant_walkning = ant_walkning - 8; // Amounts of pixel the ants move each frame
-    TDT4102::Point ant_start_walk1 {ant_walkning,(600-48)}; //Start point for the ant
-    TDT4102::Point ant_start_walk2 {ant_walkning+64,(600-48)};
-    TDT4102::Point ant_start_walk3 {ant_walkning+128,(600-48)};
+    ant_walkning_left = ant_walkning_left - ant_walking_speed; // Amounts of pixel the ants move each frame from the left
+    ant_walkning_right = ant_walkning_right + ant_walking_speed; // Amounts of pixel the ants move each frame from the right
+
+    TDT4102::Point ant_start_walk_left {ant_walkning_left,(600-48)}; //Start point for the left walking ant
+
+    TDT4102::Point ant_start_walk_right {ant_walkning_right,(700)}; //Start point for the right walking ant
 
     if(frame_step % 2 == 0){
-        window.draw_image(ant_start_walk1, Image1, 64, 64); //Draws the first and image
-        window.draw_image(ant_start_walk2, Image1, 64, 64);
-        window.draw_image(ant_start_walk3, Image1, 64, 64);
+        window.draw_image(ant_start_walk_left, Left_ant1, 64, 64); //Draws the first and image
+
+        window.draw_image(ant_start_walk_right, Right_ant1, 64, 64);
     }
     else {
-        window.draw_image(ant_start_walk1, Image2, 64, 64); //Draws the second ant image
-        window.draw_image(ant_start_walk2, Image2, 64, 64);
-        window.draw_image(ant_start_walk3, Image2, 64, 64);
+        window.draw_image(ant_start_walk_left, Left_ant2, 64, 64); //Draws the second ant image walking left
+
+        window.draw_image(ant_start_walk_right, Right_ant2, 64, 64); //Draws the second ant image walking right
     }
 
     window.wait_for(0.2);
