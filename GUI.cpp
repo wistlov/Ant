@@ -64,10 +64,14 @@ TDT4102::Image Left_ant2("Images/cute_ant_move2.gif");
 TDT4102::Image Right_ant1("Images/cute_ant_mirrored.gif"); 
 TDT4102::Image Right_ant2("Images/cute_ant_move2_mirrored.gif");
 
+TDT4102::Image Cloud("Images/cloud.png"); //Define the cloud image
+TDT4102::Image Mountain("Images/mountain.png"); //Define the mountain image
+
 int ant_walkning_left = 768;
 int ant_walkning_right = 0;
 int ant_walking_speed = 8;
 int frame_step = 0;
+int cloud_movement = 832; // Start x-postion for the cloud and the movement of it
 
 // Makes the ANT text
 TDT4102::Point location {295, 0}; //Start point of the text
@@ -79,6 +83,7 @@ TDT4102::Font fontFace = TDT4102::Font::times_bold;
 // This here is the menu function that runs when the menu is up
 void menu_overall_background(int width, int height, AnimationWindow& window){
 
+    //Background
     window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,600}, width, height, Color::sandy_brown);
     window.draw_rectangle(TDT4102::Point{0,700}, width, 60, Color::saddle_brown);
@@ -86,6 +91,18 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
 
+    //clouds
+    cloud_movement = cloud_movement - 2;
+    window.draw_image(TDT4102::Point{cloud_movement,50}, Cloud, 200, 100);
+    window.draw_image(TDT4102::Point{(cloud_movement-400),20}, Cloud, 300, 100);
+    window.draw_image(TDT4102::Point{cloud_movement,0}, Cloud, 200, 100);
+    window.draw_image(TDT4102::Point{(cloud_movement-600),100}, Cloud, 200, 100);
+
+    //Mountain background
+    window.draw_image(TDT4102::Point{0,200}, Mountain, 832, 400);
+    
+
+    //Ant stuff
     frame_step = frame_step + 1; //To change image
     ant_walkning_left = ant_walkning_left - ant_walking_speed; // Amounts of pixel the ants move each frame from the left
     ant_walkning_right = ant_walkning_right + ant_walking_speed; // Amounts of pixel the ants move each frame from the right
