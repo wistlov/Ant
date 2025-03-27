@@ -2,7 +2,7 @@
 
 
 
-// Grid 15X15
+// Grid 13X13
 void Grid(int grid_width, int grid_height, int WIDTH, int HEIGHT, AnimationWindow& window) 
 { //grid_width and grid_height is the number of squares. WIDTH and HEIGHT is the window sizes
     
