@@ -3,7 +3,7 @@
 // Here are all the variations of ants
 
 // The main ant class. All other ants inherits from this one.
-class Ants : public TDT4102::AnimationWindow {
+class Ants {
 
     private:
         // Position on the grid
