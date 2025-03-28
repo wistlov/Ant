@@ -17,11 +17,16 @@ void play_game(AnimationWindow& win) {
     Button quit_button = make_quit_button(266, 400, 300, 100, win);
     win.add(quit_button); // This adds the button, naturally
 
+    // Here are the animated ants added
+    Ants ant1(1,0.2,std::vector<int> {13,11});
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
         if(game_screen == "menu") { //This is the code that will be run while the game is in the menu.
             menu_overall_background(832, 832, win);
+
+            // test of the ants
+            ant1.update(win);
 
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);

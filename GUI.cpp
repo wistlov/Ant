@@ -103,6 +103,7 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     
 
     //Ant stuff
+    /*
     frame_step = frame_step + 1; //To change image
     ant_walkning_left = ant_walkning_left - ant_walking_speed; // Amounts of pixel the ants move each frame from the left
     ant_walkning_right = ant_walkning_right + ant_walking_speed; // Amounts of pixel the ants move each frame from the right
@@ -123,7 +124,7 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     }
 
     window.wait_for(0.2);
-    
+    */
 }
 
 void highscore_menu(){
