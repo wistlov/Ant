@@ -62,6 +62,7 @@ void play_game(AnimationWindow& win) {
         //This is what runs if the highscore button has been hit
         else if (game_screen == "highscore"){
             highscore_menu(832, 832, win);
+            background_music();
 
             play_button.setVisible(false);
             highscore_button.setVisible(false);

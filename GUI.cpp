@@ -133,9 +133,7 @@ void Esacpe_menu(AnimationWindow& window) {
         game_screen = "menu";
     }}
 
-void highscore_menu(){
 
-}
 
 void quit_menu(){
 
