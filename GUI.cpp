@@ -1,5 +1,6 @@
 #include "GUI.h"
-#include "game.h"
+#include "ant.h"
+
 
 
 // Linking the global variable
@@ -80,6 +81,16 @@ Color textColor = TDT4102::Color::dark_red;
 int fontSize = 120; 
 TDT4102::Font fontFace = TDT4102::Font::times_bold;
 
+/*
+std::vector<Cloud> cloud_list; // This houses the clouds for the menu
+// This function generates the ants for the main menu
+void make_menu_clouds(std::vector<Cloud>& cloud_list, int num) {
+    for (int i = 0; i < num; i++) {
+        Cloud cloud(1,0.1,std::vector<int> {13+i,11});
+        cloud_list.push_back(cloud);
+    }
+}
+*/
 // This here is the menu function that runs when the menu is up
 void menu_overall_background(int width, int height, AnimationWindow& window){
 
