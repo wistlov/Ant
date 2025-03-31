@@ -126,6 +126,12 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     window.wait_for(0.2);
     */
 }
+//Escape to main menu
+void Esacpe_menu(AnimationWindow& window) {
+    bool Esc_key_is_pressed = window.is_key_down(KeyboardKey::ESCAPE);
+    if(Esc_key_is_pressed) {
+        game_screen = "menu";
+    }}
 
 void highscore_menu(){
 

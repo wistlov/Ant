@@ -43,6 +43,7 @@ void play_game(AnimationWindow& win) {
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
+            Esacpe_menu(win);
         }
 
         //This is what runs if the highscore button has been hit
@@ -52,6 +53,7 @@ void play_game(AnimationWindow& win) {
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
+            Esacpe_menu(win);
         }
 
         else if (game_screen == "quit"){
@@ -60,6 +62,7 @@ void play_game(AnimationWindow& win) {
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
+            Esacpe_menu(win);
         }
 
         win.next_frame(); // Continues to the next frame
