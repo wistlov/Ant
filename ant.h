@@ -70,6 +70,10 @@ class Animated_Ant : Ants {
     public:
         Animated_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
         //void update(); // This function will override the Ants update function so this does what its supposed to instead
+
+        // Needs a function to teleport ants when they get out of the grid
+
+        // Need a function that destroys ants that touches the mouse pointer
 };
 
 // This is the ant class for the main ant that the player controlls

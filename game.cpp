@@ -3,7 +3,16 @@
 // Global variables
 std::string game_screen = "menu";// setts which state the game is in
 
-
+std::vector<Ants> ant_list; // This houses the ants for the menu
+// This function generates the ants for the main menu
+void make_menu_ants(std::vector<Ants>& ant_list, int num) {
+    for (int i = 0; i < num; i++) {
+        Ants ant_right(1,0.2,std::vector<int> {13+i,11});
+        Ants ant_left(2,0.2,std::vector<int> {0-i,9});
+        ant_list.push_back(ant_right);
+        ant_list.push_back(ant_left);
+    }
+}
 
 void play_game(AnimationWindow& win) {
     // The game
@@ -19,17 +28,18 @@ void play_game(AnimationWindow& win) {
     win.add(quit_button); // This adds the button, naturally
 
     // Here are the animated ants added
-    Ants ant1(1,0.2,std::vector<int> {13,11});
-    Ants ant2(2,0.2,std::vector<int> {0,9});
+    make_menu_ants(ant_list, 10);
+
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
         if(game_screen == "menu") { //This is the code that will be run while the game is in the menu.
             menu_overall_background(832, 832, win);
 
-            // test of the ants
-            ant1.update(win);
-            ant2.update(win);
+            // update menu ants
+            for (int i = 0; i < ant_list.size(); i++) {
+                ant_list.at(i).update(win);
+            }
 
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);
