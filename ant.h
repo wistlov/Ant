@@ -65,14 +65,15 @@ class Ants {
 };
 
 // This is the ant class for the ants that are simply animated (Will be used for clouds as well)
-class Animated_Ant : Ants {
-    int start_pos = 768; // Where the ant starts
+class Animated_Ant : public Ants {
+    private:
+        int start_true_pos; // Where the ant starts
     public:
         Animated_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
-        //void update(); // This function will override the Ants update function so this does what its supposed to instead
+        void update(TDT4102::AnimationWindow& window); // This function will override the Ants update function so this does what its supposed to instead
 
-        // Needs a function to teleport ants when they get out of the grid
-
+        // A function to teleport the ant back to its starting position when it exceeds a certain length.
+        void check_for_teleport();
         // Need a function that destroys ants that touches the mouse pointer
 };
 
@@ -84,6 +85,16 @@ class Player_Ant : public Ants {
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 
 class Follower_Ant : public Ants {
 
+};
+
+// This is a class for the clouds. Clouds are Ants, that should be obvious.
+class Cloud : public Animated_Ant {
+    public:
+        int start_true_pos_x;
+        int start_true_pos_y;
+
+        Cloud(int input_direction, double input_speed, std::vector<int> grid_position);
+        void update(TDT4102::AnimationWindow& window);
 };
 
 // images
@@ -102,3 +113,5 @@ extern TDT4102::Image Down1_Left;
 extern TDT4102::Image Down2_Left;
 extern TDT4102::Image Down1_Right;
 extern TDT4102::Image Down2_Right;
+
+extern TDT4102::Image cloud_image;

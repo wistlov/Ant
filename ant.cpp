@@ -218,4 +218,43 @@ TDT4102::Image Down2_Right("Images/cute_ant_down2_right.gif");
 // Constructor for Animated_Ant
 Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector<int> grid_position) : Ants(input_direction, input_speed, grid_position) {
     // Hope all this is covered in Ants. 
+    start_true_pos = grid_position.at(0); // This stores where the ant started for use later
+}
+
+
+void Animated_Ant::check_for_teleport() {
+    if (direction == 1) {
+         if (true_pos.at(0) < 0) {
+            true_pos.at(0) = start_true_pos;
+         }
+    } else {
+        if (true_pos.at(0) > 13) {
+            true_pos.at(0) = start_true_pos;
+        }
+    }
+}
+
+// Animated Ant overrides the update function of Ants for its own purposes
+void Animated_Ant::update(TDT4102::AnimationWindow& window) {
+    update_position();
+    check_for_teleport();
+    update_animation();
+    window.draw_image(drawn_pos, image, size, size);
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
+// Cloud image
+TDT4102::Image cloud_image("Images/cloud.png");
+
+// Constructor for Cloud
+Cloud::Cloud (int input_direction, double input_speed, std::vector<int> grid_position) : Animated_Ant(input_direction, input_speed, grid_position) {
+    start_true_pos_x = grid_position.at(0);
+    start_true_pos_y = grid_position.at(1);
+}
+
+// Cloud functions
+void Cloud::update(TDT4102::AnimationWindow& window) {
+    update_position();
+    check_for_teleport();
+    window.draw_image(drawn_pos, image, size, size);
 }

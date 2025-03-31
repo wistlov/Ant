@@ -1,8 +1,9 @@
-#pragma once
 
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h"
 #include "widgets/Button.h"
+#include "game.h"
+#include "ant.h"
 #include <iostream>
 
 
@@ -23,3 +24,8 @@ void Esacpe_menu(AnimationWindow& window);
 void play(); 
 void highscore(); 
 void quit();
+
+// Function to make clouds
+/*
+void make_menu_clouds(std::vector<Cloud>& cloud_list, int num);
+*/
