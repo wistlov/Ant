@@ -5,6 +5,7 @@
 #include "GUI.h"
 #include "grid.h"
 #include "ant.h"
+#include "highscore.h"
 
 // Making a global variable
 extern std::string game_screen;

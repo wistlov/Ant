@@ -51,7 +51,7 @@ void play_game(AnimationWindow& win) {
 
         //This is what runs if the highscore button has been hit
         else if (game_screen == "highscore"){
-            win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
+            highscore_menu(832, 832, win);
 
             play_button.setVisible(false);
             highscore_button.setVisible(false);
