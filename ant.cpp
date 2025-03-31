@@ -215,26 +215,7 @@ TDT4102::Image Down2_Right("Images/cute_ant_down2_right.gif");
 //----------------------------------------------------------------------------------------------------//
 
 // Animated_ant
-/*
-Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector<int> grid_position) {
-    // Decides which image to be used in the animation given a direction
-   int frame_step = 0;
-
-   // Variables
-   size = 64; // Ant size (x*x), where x is the size. This is also the size of a grid square. If that is not the case, the code will not work.
-   direction = input_direction; // Sets the direction of the Ant
-   speed = input_speed; // Sets the starting speed of the Ant
-   true_pos = grid_position; // Sets the starting grid position
-   distance = 0.0; // Sets the distance for the true_pos the ant is.
-   animation_frame = 0; // Sets which fram the ant's animation starts at
-   // The drawn_pos does not need to be given a number as this should be calculated based on its true_pos, distance and speed.
-
-   // Set initial image
-   if (direction == 1) image = Left1;
-   else if (direction == 2) image = Right1;
-   else if (direction == 3) image = Up1_Left;
-   else if (direction == 4) image = Up1_Right;
-   else if (direction == 5) image = Down1_Left;
-   else if (direction == 6) image = Down1_Right;   
+// Constructor for Animated_Ant
+Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector<int> grid_position) : Ants(input_direction, input_speed, grid_position) {
+    // Hope all this is covered in Ants. 
 }
-*/
