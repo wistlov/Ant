@@ -13,7 +13,7 @@ Ants::Ants (int input_direction, double input_speed, std::vector<int> grid_posit
    true_pos = grid_position; // Sets the starting grid position
    distance = 0.0; // Sets the distance for the true_pos the ant is.
    animation_frame = 0; // Sets which fram the ant's animation starts at
-   // The drawn_pos does not need to be given a number as this should be calculated based on its true_pos and speed.
+   // The drawn_pos does not need to be given a number as this should be calculated based on its true_pos, distance and speed.
 
    // Set initial image
    if (direction == 1) image = Left1;

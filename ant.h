@@ -65,15 +65,15 @@ class Ants {
 };
 
 // This is the ant class for the ants that are simply animated (Will be used for clouds as well)
-class Animated_Ant : public Ants {
+class Animated_Ant : Ants {
     int start_pos = 768; // Where the ant starts
     public:
-        void update();
+        void update(); // This function will override the Ants update function so this does what its supposed to instead
 };
 
 // This is the ant class for the main ant that the player controlls
 class Player_Ant : public Ants {
-
+    void update_position(); 
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 
