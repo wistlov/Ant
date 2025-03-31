@@ -4,6 +4,7 @@
 std::string game_screen = "menu";// setts which state the game is in
 
 
+
 void play_game(AnimationWindow& win) {
     // The game
 
@@ -19,6 +20,7 @@ void play_game(AnimationWindow& win) {
 
     // Here are the animated ants added
     Ants ant1(1,0.2,std::vector<int> {13,11});
+    Ants ant2(2,0.2,std::vector<int> {0,9});
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -27,6 +29,7 @@ void play_game(AnimationWindow& win) {
 
             // test of the ants
             ant1.update(win);
+            ant2.update(win);
 
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);

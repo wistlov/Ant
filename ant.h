@@ -8,7 +8,7 @@
 // The main ant class. All other ants inherits from this one.
 class Ants {
 
-    private:
+    public:
         // Position on the grid
         std::vector<int> true_pos;
 
@@ -41,7 +41,7 @@ class Ants {
         // Size of the image as well as each square
         int size;
         
-    public:
+    
         // Constructor
         Ants(int input_direction, double input_speed, std::vector<int> grid_position);
      
@@ -68,7 +68,8 @@ class Ants {
 class Animated_Ant : Ants {
     int start_pos = 768; // Where the ant starts
     public:
-        void update(); // This function will override the Ants update function so this does what its supposed to instead
+        Animated_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
+        //void update(); // This function will override the Ants update function so this does what its supposed to instead
 };
 
 // This is the ant class for the main ant that the player controlls
