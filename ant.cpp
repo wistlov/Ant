@@ -224,11 +224,11 @@ Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector
 
 void Animated_Ant::check_for_teleport() {
     if (direction == 1) {
-         if (true_pos.at(0) < 0) {
-            true_pos.at(0) = 13;
+         if (true_pos.at(0) < -1) {
+            true_pos.at(0) = 14;
          }
     } else {
-        if (true_pos.at(0) > 13) {
+        if (true_pos.at(0) > 14) {
             true_pos.at(0) = -1;
         }
     }

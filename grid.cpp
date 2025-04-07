@@ -7,7 +7,7 @@ void Grid(int grid_width, int grid_height, int WIDTH, int HEIGHT, AnimationWindo
 { //grid_width and grid_height is the number of squares. WIDTH and HEIGHT is the window sizes
     
    //Draw checkboard background
-   int square_size = 64; //Size of squres on board
+   int square_size = 64; //Size of squares on board
    for (int i = 0; i < WIDTH; i+=square_size) {
     for (int j = 0; j < HEIGHT; j+=square_size) {
 
@@ -36,7 +36,6 @@ void Grid(int grid_width, int grid_height, int WIDTH, int HEIGHT, AnimationWindo
         Point start(i * (WIDTH / grid_width), 0);
         Point end(i * (WIDTH / grid_width), HEIGHT);
         window.draw_line(start, end, Color::black);
-
 
     }
 
