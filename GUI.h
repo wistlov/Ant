@@ -25,7 +25,26 @@ void play();
 void highscore(); 
 void quit();
 
-// Function to make clouds
-/*
-void make_menu_clouds(std::vector<Cloud>& cloud_list, int num);
-*/
+// The class for the graphics window
+class Ant_Window : public TDT4102::AnimationWindow {
+    private:
+        // Constants for the board and window
+        static constexpr int square_size = 64;
+        static constexpr int board_width = 832;
+        static constexpr int board_height = 832;
+        static constexpr int window_start_x = 400;
+        static constexpr int window_start_y = 25;
+        static constexpr std::string window_name = "Ant";
+        static constexpr int button_width = 0;
+        static constexpr int button_height = 0;
+
+        // Makes the ANT text
+        TDT4102::Point location {295, 0}; //Start point of the text
+        std::string message = "ANT"; // what the text is
+        Color textColor = TDT4102::Color::dark_red;
+        static constexpr int fontSize = 120; 
+        TDT4102::Font fontFace = TDT4102::Font::times_bold;
+
+        // Functions 
+        void draw_grid(); // Should have all constants in the class itself
+};

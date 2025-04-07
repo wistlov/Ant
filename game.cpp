@@ -1,7 +1,7 @@
 #include "game.h"
 
 // Global variables
-std::string game_screen = "menu";// setts which state the game is in
+std::string game_screen = "menu";// sets which state the game is in
 
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
 std::vector<Cloud> cloud_list; // This houses the clouds for the menu
@@ -9,8 +9,8 @@ std::vector<Cloud> cloud_list; // This houses the clouds for the menu
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
     for (int i = 0; i < num; i++) {
-        Animated_Ant ant_right(1,0.2,std::vector<int> {13+i,11});
-        Animated_Ant ant_left(2,0.2,std::vector<int> {-1-i,9});
+        Animated_Ant ant_right(1,0.2,std::vector<int> {14+i,11});
+        Animated_Ant ant_left(2,0.2,std::vector<int> {-2-i,9});
         ant_list.push_back(ant_right);
         ant_list.push_back(ant_left);
     }
@@ -42,7 +42,7 @@ void play_game(AnimationWindow& win) {
     win.add(quit_button); // This adds the button, naturally
 
     // Here are the animated ants added
-    make_menu_ants(ant_list, 13);
+    make_menu_ants(ant_list, 16);
 
     // Here are the clouds added
     make_menu_clouds(cloud_list);
