@@ -5,6 +5,7 @@
 #include "game.h"
 #include "ant.h"
 
+
 //------------------------------------------------------------------------------'
 
 // C++ programs start by executing the function main
@@ -17,6 +18,7 @@ int main() {
 
     // This lets the operating system (Windows, Mac, Linux, etc.) know that the program
     // did not encounter any errors
+
     return 0;
 }
 
