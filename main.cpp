@@ -15,7 +15,6 @@ int main() {
     AnimationWindow win{400, 25, 832, 832, "Ant"}; // Makes the game window
     play_game(win); // Starts the game function 
 
-
     // This lets the operating system (Windows, Mac, Linux, etc.) know that the program
     // did not encounter any errors
     return 0;
