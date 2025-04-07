@@ -225,11 +225,11 @@ Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector
 void Animated_Ant::check_for_teleport() {
     if (direction == 1) {
          if (true_pos.at(0) < 0) {
-            true_pos.at(0) = start_true_pos;
+            true_pos.at(0) = 13;
          }
     } else {
         if (true_pos.at(0) > 13) {
-            true_pos.at(0) = start_true_pos;
+            true_pos.at(0) = -1;
         }
     }
 }
@@ -250,11 +250,18 @@ TDT4102::Image cloud_image("Images/cloud.png");
 Cloud::Cloud (int input_direction, double input_speed, std::vector<int> grid_position) : Animated_Ant(input_direction, input_speed, grid_position) {
     start_true_pos_x = grid_position.at(0);
     start_true_pos_y = grid_position.at(1);
+    image = cloud_image;
 }
 
 // Cloud functions
 void Cloud::update(TDT4102::AnimationWindow& window) {
     update_position();
     check_for_teleport();
-    window.draw_image(drawn_pos, image, size, size);
+    window.draw_image(drawn_pos, image, size*2*(speed + 0.8), size*(speed + 0.8)); // Multiplies with speed to get a 3D effect (+ 0.8 to not make the change too drastic)
 }
+
+void Cloud::update_animation() {
+    // This needs to do nothing in order to not use the ant's version of this function
+}
+
+

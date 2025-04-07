@@ -4,6 +4,8 @@
 std::string game_screen = "menu";// setts which state the game is in
 
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
+std::vector<Cloud> cloud_list; // This houses the clouds for the menu
+
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
     for (int i = 0; i < num; i++) {
@@ -13,6 +15,18 @@ void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
         ant_list.push_back(ant_left);
     }
 }
+// This function generates the clouds for the main menu
+void make_menu_clouds(std::vector<Cloud>& cloud_list) {
+    Cloud cloud0(1,0.1,std::vector<int> {13,2}); // The grid position is the input (0-12,0-12)
+    cloud_list.push_back(cloud0);
+    Cloud cloud1(1,0.2,std::vector<int> {4,6});
+    cloud_list.push_back(cloud1);
+    Cloud cloud2(1,0.15,std::vector<int> {7,4});
+    cloud_list.push_back(cloud2);
+    Cloud cloud3(1,0.05,std::vector<int> {11,5});
+    cloud_list.push_back(cloud3);
+}
+
 
 void play_game(AnimationWindow& win) {
     // The game
@@ -30,16 +44,27 @@ void play_game(AnimationWindow& win) {
     // Here are the animated ants added
     make_menu_ants(ant_list, 13);
 
+    // Here are the clouds added
+    make_menu_clouds(cloud_list);
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
         if(game_screen == "menu") { //This is the code that will be run while the game is in the menu.
-            menu_overall_background(832, 832, win);
+            // Drawing the sky first so it is on the bottom layer
+            win.draw_rectangle(TDT4102::Point{0,0}, 832, 832,  Color::deep_skyblue);
+
+            // update menu clouds (This is done before the rest of the background so the clouds are behind everything else)
+            for (int i = 0; i < cloud_list.size(); i++) {
+                cloud_list.at(i).update(win);
+            }
+
+            menu_overall_background(832, 832, win); // This code makes all of the background in the menu appear. (All that are not buttons)
 
             // update menu ants
             for (int i = 0; i < ant_list.size(); i++) {
                 ant_list.at(i).update(win);
             }
+            
 
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);

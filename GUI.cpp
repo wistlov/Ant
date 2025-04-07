@@ -95,7 +95,6 @@ void make_menu_clouds(std::vector<Cloud>& cloud_list, int num) {
 void menu_overall_background(int width, int height, AnimationWindow& window){
 
     //Background
-    window.draw_rectangle(TDT4102::Point{0,0}, width, height,  Color::deep_skyblue);
     window.draw_rectangle(TDT4102::Point{0,636}, width, height, Color::sandy_brown);
     window.draw_rectangle(TDT4102::Point{0,700}, width, 60, Color::saddle_brown);
     window.draw_rectangle(TDT4102::Point{0,626}, width, 20, Color::lawn_green);
@@ -103,17 +102,18 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
     window.draw_text(location, message, textColor, fontSize, fontFace); // Draws the message
 
     //clouds
+    /*
     cloud_movement = cloud_movement - 2;
     window.draw_image(TDT4102::Point{cloud_movement,50}, Cloud, 200, 100);
     window.draw_image(TDT4102::Point{(cloud_movement-400),20}, Cloud, 300, 100);
     window.draw_image(TDT4102::Point{cloud_movement,0}, Cloud, 200, 100);
     window.draw_image(TDT4102::Point{(cloud_movement-600),100}, Cloud, 200, 100);
-
+    */
     //Mountain background
     window.draw_image(TDT4102::Point{0,200}, Mountain, 832, 426);
     
 
-    //Ant stuff
+    //Ant stuff before Ant.cpp was implemented
     /*
     frame_step = frame_step + 1; //To change image
     ant_walkning_left = ant_walkning_left - ant_walking_speed; // Amounts of pixel the ants move each frame from the left

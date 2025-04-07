@@ -89,12 +89,13 @@ class Follower_Ant : public Ants {
 
 // This is a class for the clouds. Clouds are Ants, that should be obvious.
 class Cloud : public Animated_Ant {
-    public:
+    private:
         int start_true_pos_x;
         int start_true_pos_y;
-
+    public:
         Cloud(int input_direction, double input_speed, std::vector<int> grid_position);
         void update(TDT4102::AnimationWindow& window);
+        void update_animation();
 };
 
 // images
