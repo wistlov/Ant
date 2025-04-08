@@ -14,8 +14,13 @@ void highscore_menu(int width, int height, AnimationWindow& window){
     window.draw_text(TDT4102::Point{217,120}, "HIGHSCORE", TDT4102::Color::black, 70, TDT4102::Font::times_bold_italic);
 
     //Makes the table
-    window.draw_line(TDT4102::Point{220,140}, TDT4102::Point{220,140}, TDT4102::Color:: black);
+    //Vertical lines
+    window.draw_line(TDT4102::Point{610,200}, TDT4102::Point{610,700}, TDT4102::Color:: black);
+    window.draw_line(TDT4102::Point{220,200}, TDT4102::Point{220,700}, TDT4102::Color:: black);
 
-    window.draw_line(TDT4102::Point{220,140}, TDT4102::Point{220,340}, TDT4102::Color:: black);
+    //Horizontal lines
+    for(int i = 0; i < 17; i ++){
+        window.draw_line(TDT4102::Point{220,(i*30)+220}, TDT4102::Point{610,(i*30)+220}, TDT4102::Color:: black);
+    }
 
 }
