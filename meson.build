@@ -35,6 +35,7 @@ exe = executable(
 'game.cpp',
 'grid.cpp',
 'highscore.cpp',
+'images.cpp',
 'main.cpp',
 'music_and_sounds.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
