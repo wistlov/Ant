@@ -9,7 +9,6 @@
 #include "image.h"
 
 std::vector<int> generate_food_postion();
-int random_food();
 
 class Food {
 
@@ -18,7 +17,7 @@ class Food {
         std::vector<int> true_pos;
 
         // List of images
-        std::vector<TDT4102::Image> Images{Apple, Chees};
+        std::vector<TDT4102::Image> Images{Apple, Chees, Cookie, Dragonfruit, Strawberry, Sushi, Tomato, Watermellon};
         int food_num;
 
         // Position of the ant drawn on the screen
@@ -31,6 +30,7 @@ class Food {
         int size;
         
         void update(TDT4102::AnimationWindow& window); // This updates all variables that may change each frame.
+        void new_position(); // Changes postion after need
 
         Food();
 
@@ -39,6 +39,4 @@ class Food {
 
 
 };
-
-
 

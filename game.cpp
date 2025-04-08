@@ -29,9 +29,11 @@ void make_menu_clouds(std::vector<Cloud>& cloud_list) {
     Cloud cloud3(1,0.05,std::vector<int> {11,5});
     cloud_list.push_back(cloud3);
 }
+
 //This function generates the food for the main game
 void make_food(std::vector<Food>& food_list) {
     Food food;
+    srand(time(0));
     food_list.push_back(food);
 }
 
@@ -95,6 +97,9 @@ void play_game() {
             for (int i = 0; i < food_list.size(); i++) {
                 food_list.at(i).update(win);
             }
+
+ 
+          
 
             //--------------------------------------------
 
