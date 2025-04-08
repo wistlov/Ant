@@ -106,3 +106,32 @@ void quit() {
 }
 
 // The graphics window class
+void Ant_Window::make_grid() {
+    for (int i = 0; i < WIDTH; i+=square_size) {
+        for (int j = 0; j < HEIGHT; j+=square_size) {
+            Point cor1(i,j);
+            Point cor2(i+square_size,j);
+            Point cor3(i+square_size,j+square_size);
+            Point cor4(i,j+square_size);
+            std::vector<TDT4102::Point> square{cor1,cor2,cor3,cor4};
+            tiles.push_back(square);
+        }
+    }
+}
+
+void Ant_Window::draw_grid() {
+    for (int i = 0; i < board_width; i++) {
+        for (int j = 0; j < board_height; j++) {
+            if (i%2 == j%2) {
+                
+            } else {
+
+            }
+        }
+    }
+}
+
+// Constructor
+Ant_Window::Ant_Window() : AnimationWindow{window_start_x, window_start_y, WIDTH, HEIGHT, window_name} {
+
+}
