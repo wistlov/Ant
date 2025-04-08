@@ -1,3 +1,4 @@
+#pragma once
 
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h"
@@ -30,8 +31,10 @@ class Ant_Window : public TDT4102::AnimationWindow {
     private:
         // Constants for the board and window
         static constexpr int square_size = 64;
-        static constexpr int board_width = 832;
-        static constexpr int board_height = 832;
+        static constexpr int board_width = 13; // Number of squares
+        static constexpr int board_height = 13; // Number of squares
+        static constexpr int WIDTH = 832; // Width of the window 
+        static constexpr int HEIGHT = 832; // Height of the Window
         static constexpr int window_start_x = 400;
         static constexpr int window_start_y = 25;
         static constexpr std::string window_name = "Ant";
@@ -45,6 +48,14 @@ class Ant_Window : public TDT4102::AnimationWindow {
         static constexpr int fontSize = 120; 
         TDT4102::Font fontFace = TDT4102::Font::times_bold;
 
-        // Functions 
-        void draw_grid(); // Should have all constants in the class itself
+        // Other variables++
+        std::vector<std::vector<TDT4102::Point>> tiles{};
+
+        // Functions
+        void make_grid(); // Self explanatory 
+        void draw_grid(); // Should have all constants in the class itself, therefore not in need of inputs
+        
+    public:
+        // Constructor
+        Ant_Window();
 };
