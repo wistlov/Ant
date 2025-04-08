@@ -25,6 +25,7 @@ void play();
 void highscore(); 
 void quit();
 
+/*
 // The class for the graphics window
 class Ant_Window : public TDT4102::AnimationWindow {
     private:
@@ -48,3 +49,4 @@ class Ant_Window : public TDT4102::AnimationWindow {
         // Functions 
         void draw_grid(); // Should have all constants in the class itself
 };
+*/

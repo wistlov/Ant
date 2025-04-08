@@ -5,6 +5,7 @@ std::string game_screen = "menu";// sets which state the game is in
 
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
 std::vector<Cloud> cloud_list; // This houses the clouds for the menu
+std::vector<Food> food_list; // This houses the food for the game
 
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
@@ -26,6 +27,11 @@ void make_menu_clouds(std::vector<Cloud>& cloud_list) {
     Cloud cloud3(1,0.05,std::vector<int> {11,5});
     cloud_list.push_back(cloud3);
 }
+//This function generates the food for the main game
+void make_food(std::vector<Food>& food_list) {
+    Food food;
+    food_list.push_back(food);
+}
 
 
 void play_game(AnimationWindow& win) {
@@ -46,6 +52,9 @@ void play_game(AnimationWindow& win) {
 
     // Here are the clouds added
     make_menu_clouds(cloud_list);
+
+    //Here the food is added
+    make_food(food_list);
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -77,6 +86,11 @@ void play_game(AnimationWindow& win) {
             win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
 
             Grid(13, 13, 832, 832, win);
+            
+            // update food
+            for (int i = 0; i < food_list.size(); i++) {
+                food_list.at(i).update(win);
+            }
 
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
