@@ -1,13 +1,11 @@
 #include "game.h"
 
-// Global variables
-std::string game_screen = "menu";// sets which state the game is in
-bool ants_moving = false; // While this is true, the player and follower ants should move. Otherwise, they should not.
 // ants_moving is necessary for the game to only start when the player wants it to.
 
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
 std::vector<Cloud> cloud_list; // This houses the clouds for the menu
 std::vector<Food> food_list; // This houses the food for the game
+std::vector<Player_Ant> player_ant_list; // This houses the player ant(s?)
 
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
@@ -36,7 +34,11 @@ void make_food(std::vector<Food>& food_list) {
     srand(time(0));
     food_list.push_back(food);
 }
-
+// This function makes the player ant
+void make_player_ant(std::vector<Player_Ant>& player_ant_list) {
+    Player_Ant player(1,player_ant_speed,std::vector<int> {6,6});
+    player_ant_list.push_back(player);
+}
 
 void play_game() {
     // The game
@@ -59,8 +61,11 @@ void play_game() {
     // Here are the clouds added
     make_menu_clouds(cloud_list);
 
-    //Here the food is added
+    // Here the food is added
     make_food(food_list);
+
+    // Here the player is added
+    make_player_ant(player_ant_list);
     
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -80,7 +85,7 @@ void play_game() {
                 ant_list.at(i).update(win);
             }
             
-
+            
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);
             quit_button.setVisible(true);
@@ -88,10 +93,9 @@ void play_game() {
 
         // This is what runs when the play button has been clicked. In theory.
         else if (game_screen == "game") { 
-            // This clears the screen. 
-            win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
 
             win.draw_grid();
+            win.check_input(); // Checks for button inputs
             
             // update food
             for (int i = 0; i < food_list.size(); i++) {
@@ -103,10 +107,9 @@ void play_game() {
 
             //--------------------------------------------
 
-            
-
-
-
+            for (int i = 0; i < player_ant_list.size(); i++) {
+                player_ant_list.at(i).update(win);
+            }
 
 
 

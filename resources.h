@@ -3,6 +3,12 @@
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h"
 
+// global variables
+extern std::string game_screen;
+extern bool ants_moving;
+extern std::string button_input;
+extern double player_ant_speed;
+
 // ant images
 extern TDT4102::Image Left1;
 extern TDT4102::Image Left2;
@@ -31,3 +37,4 @@ extern TDT4102::Image Chees;
 extern TDT4102::Image Cookie;
 extern TDT4102::Image Sushi;
 extern TDT4102::Image Watermellon;
+

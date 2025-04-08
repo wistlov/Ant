@@ -3,6 +3,7 @@
 #include "GUI.h"
 #include "game.h"
 #include "ant.h"
+#include "resources.h"
 
 
 //------------------------------------------------------------------------------'

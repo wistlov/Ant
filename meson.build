@@ -33,9 +33,9 @@ exe = executable(
 'food.cpp',
 'game.cpp',
 'highscore.cpp',
-'images.cpp',
 'main.cpp',
 'music_and_sounds.cpp',
+'resources.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
   cpp_args : compiler_flags
 )

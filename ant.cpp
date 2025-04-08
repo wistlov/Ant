@@ -228,23 +228,81 @@ void Animated_Ant::update(TDT4102::AnimationWindow& window) {
 
 //-----------------------------------------------------------------------------------------------------------------------
 // Player Ant
+// Constructor
+Player_Ant::Player_Ant (int input_direction, double input_speed, std::vector<int> grid_position) : Ants(input_direction, input_speed, grid_position) {
+    // Hope all this is covered in Ants.
+}
 
 void Player_Ant::check_input() {
         // Left will be prioritized, then up, right and then down. In case multiple buttons are pressed at once.
-        /*
-        if (is_key_down(KeyboardKey::LEFT)) {
-            saved_direction = "left";
-        } else if (is_key_down(KeyboardKey::UP)) {
-            saved_direction = "up";
-        } else if (is_key_down(KeyboardKey::RIGHT)) {
-
-        } else if (is_key_down(KeyboardKey::DOWN)) {
-    
-        }
-        */
+        saved_direction = button_input; // button_input is from game.h and stores the arrow key inputs
 }
 
+void Player_Ant::update_position() {
 
+    if (direction == 1) { // Left
+    distance += speed;
+    drawn_pos.x = true_pos.at(0)*size - distance;
+    drawn_pos.y = true_pos.at(1)*size;
+    // The lines above updates the visualized position of the ant.
+
+    if (distance >= size) { // This happens when an ant reaches the center of a square.
+        true_pos.at(0) -= 1;
+        distance = 0;
+        drawn_pos.x = true_pos.at(0)*size;
+
+        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+    }
+
+} else if (direction == 2) { // Right
+    distance += speed;
+    drawn_pos.x = true_pos.at(0)*size + distance;
+    drawn_pos.y = true_pos.at(1)*size;
+
+    if (distance >= size) { // This happens when an ant reaches the center of a square.
+        true_pos.at(0) += 1;
+        distance = 0;
+        drawn_pos.x = true_pos.at(0)*size;
+
+        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+    }
+
+} else if (direction == 3 || direction == 4) { // Up
+    distance += speed;
+    drawn_pos.x = true_pos.at(0)*size;
+    drawn_pos.y = true_pos.at(1)*size - distance;
+    // The lines above updates the visualized position of the ant.
+
+    if (distance >= size) { // This happens when an ant reaches the center of a square.
+        true_pos.at(1) -= 1;
+        distance = 0;
+        drawn_pos.y = true_pos.at(1)*size;
+
+        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+    }
+    
+} else if (direction == 5 || direction == 6) { // Down
+    distance += speed;
+    drawn_pos.x = true_pos.at(0)*size;
+    drawn_pos.y = true_pos.at(1)*size + distance;
+    // The lines above updates the visualized position of the ant.
+
+    if (distance >= size) { // This happens when an ant reaches the center of a square.
+        true_pos.at(1) += 1;
+        distance = 0;
+        drawn_pos.y = true_pos.at(1)*size;
+
+        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+        }
+    } 
+}
+
+void Player_Ant::update(AnimationWindow& window) {
+    check_input(); // Updates saved_direction
+    update_position();
+    update_animation();
+    window.draw_image(drawn_pos, image, size, size);
+}
 
 //-----------------------------------------------------------------------------------------------------------------------
 
