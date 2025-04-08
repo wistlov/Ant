@@ -120,18 +120,20 @@ void Ant_Window::make_grid() {
 }
 
 void Ant_Window::draw_grid() {
+    counter = 0;
     for (int i = 0; i < board_width; i++) {
         for (int j = 0; j < board_height; j++) {
             if (i%2 == j%2) {
-                
+                draw_quad(tiles[counter][0], tiles[counter][1], tiles[counter][2], tiles[counter][3], Color::lawn_green);
             } else {
-
+                draw_quad(tiles[counter][0], tiles[counter][1], tiles[counter][2], tiles[counter][3], Color::lime_green);
             }
+        counter++;
         }
     }
 }
 
 // Constructor
 Ant_Window::Ant_Window() : AnimationWindow{window_start_x, window_start_y, WIDTH, HEIGHT, window_name} {
-
+    make_grid();
 }

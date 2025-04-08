@@ -51,12 +51,16 @@ class Ant_Window : public TDT4102::AnimationWindow {
 
         // Other variables++
         std::vector<std::vector<TDT4102::Point>> tiles{};
+        int counter;
 
         // Functions
         void make_grid(); // Self explanatory 
-        void draw_grid(); // Should have all constants in the class itself, therefore not in need of inputs
+        
         
     public:
         // Constructor
         Ant_Window();
+
+        // Public functions
+        void draw_grid(); // Should have all constants in the class itself, therefore not in need of inputs
 };

@@ -34,8 +34,10 @@ void make_food(std::vector<Food>& food_list) {
 }
 
 
-void play_game(AnimationWindow& win) {
+void play_game() {
     // The game
+    // This will make the GUI elements
+    Ant_Window win;
 
     // The stuff before the while loop is what is initiated before the game begins.
     Button play_button = make_play_button(266, 150, 300, 100, win);
@@ -55,6 +57,10 @@ void play_game(AnimationWindow& win) {
 
     //Here the food is added
     make_food(food_list);
+
+
+    
+
 
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -85,7 +91,7 @@ void play_game(AnimationWindow& win) {
             // This clears the screen. 
             win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
 
-            Grid(13, 13, 832, 832, win);
+            win.draw_grid();
             
             // update food
             for (int i = 0; i < food_list.size(); i++) {
