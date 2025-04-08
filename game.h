@@ -7,10 +7,7 @@
 #include "highscore.h"
 #include "music_and_sounds.h"
 #include "food.h"
-
-// Making a global variable
-extern std::string game_screen;
-extern bool ants_moving;
+#include "resources.h"
 
 void play_game();
 

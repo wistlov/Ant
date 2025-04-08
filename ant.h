@@ -2,7 +2,7 @@
 
 #include "std_lib_facilities.h"
 #include "AnimationWindow.h"
-#include "images.h"
+#include "resources.h"
 
 // Here are all the variations of ants
 
@@ -81,8 +81,10 @@ class Animated_Ant : public Ants {
 // This is the ant class for the main ant that the player controlls
 class Player_Ant : public Ants {
     public:
+        Player_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
         void update_position(); 
         void check_input();
+        void update(AnimationWindow& window);
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 
