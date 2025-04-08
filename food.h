@@ -9,7 +9,6 @@
 #include "image.h"
 
 std::vector<int> generate_food_postion();
-int food_on_board(int food);
 int random_food();
 
 class Food {

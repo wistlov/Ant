@@ -30,4 +30,6 @@ void highscore_menu(int width, int height, AnimationWindow& window){
         window.draw_line(TDT4102::Point{220,(i*30)+220}, TDT4102::Point{610,(i*30)+220}, TDT4102::Color:: black);
     }
 
+    
+
 }
