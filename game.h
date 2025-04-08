@@ -10,6 +10,7 @@
 
 // Making a global variable
 extern std::string game_screen;
+extern bool ants_moving;
 
 void play_game();
 

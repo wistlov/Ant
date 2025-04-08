@@ -80,7 +80,9 @@ class Animated_Ant : public Ants {
 
 // This is the ant class for the main ant that the player controlls
 class Player_Ant : public Ants {
-    void update_position(); 
+    public:
+        void update_position(); 
+        void check_input();
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 

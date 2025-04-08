@@ -2,6 +2,8 @@
 
 // Global variables
 std::string game_screen = "menu";// sets which state the game is in
+bool ants_moving = false; // While this is true, the player and follower ants should move. Otherwise, they should not.
+// ants_moving is necessary for the game to only start when the player wants it to.
 
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
 std::vector<Cloud> cloud_list; // This houses the clouds for the menu
@@ -57,11 +59,7 @@ void play_game() {
 
     //Here the food is added
     make_food(food_list);
-
-
     
-
-
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
         if(game_screen == "menu") { //This is the code that will be run while the game is in the menu.
@@ -98,6 +96,16 @@ void play_game() {
                 food_list.at(i).update(win);
             }
 
+            //--------------------------------------------
+
+            
+
+
+
+
+
+
+            //--------------------------------------------
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);

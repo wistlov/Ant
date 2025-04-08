@@ -55,7 +55,7 @@ class Ant_Window : public TDT4102::AnimationWindow {
 
         // Functions
         void make_grid(); // Self explanatory 
-        
+
         
     public:
         // Constructor
@@ -63,4 +63,6 @@ class Ant_Window : public TDT4102::AnimationWindow {
 
         // Public functions
         void draw_grid(); // Should have all constants in the class itself, therefore not in need of inputs
+
+        void check_input(); // Checks to see if any relevant buttons has been pressed. If so, it acts upon it.
 };

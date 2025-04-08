@@ -137,3 +137,16 @@ void Ant_Window::draw_grid() {
 Ant_Window::Ant_Window() : AnimationWindow{window_start_x, window_start_y, WIDTH, HEIGHT, window_name} {
     make_grid();
 }
+
+void Ant_Window::check_input() {
+    // Left will be prioritized, then up, right and then down. In case multiple buttons are pressed at once.
+    if (is_key_down(KeyboardKey::LEFT)) {
+        
+    } else if (is_key_down(KeyboardKey::UP)) {
+
+    } else if (is_key_down(KeyboardKey::RIGHT)) {
+        
+    } else if (is_key_down(KeyboardKey::DOWN)) {
+
+    }
+}

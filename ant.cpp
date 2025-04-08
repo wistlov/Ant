@@ -227,6 +227,26 @@ void Animated_Ant::update(TDT4102::AnimationWindow& window) {
 }
 
 //-----------------------------------------------------------------------------------------------------------------------
+// Player Ant
+
+void Player_Ant::check_input() {
+        // Left will be prioritized, then up, right and then down. In case multiple buttons are pressed at once.
+        /*
+        if (is_key_down(KeyboardKey::LEFT)) {
+            saved_direction = "left";
+        } else if (is_key_down(KeyboardKey::UP)) {
+            saved_direction = "up";
+        } else if (is_key_down(KeyboardKey::RIGHT)) {
+
+        } else if (is_key_down(KeyboardKey::DOWN)) {
+    
+        }
+        */
+}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------
 
 // Constructor for Cloud
 Cloud::Cloud (int input_direction, double input_speed, std::vector<int> grid_position) : Animated_Ant(input_direction, input_speed, grid_position) {
