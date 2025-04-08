@@ -5,6 +5,8 @@
 #include "AnimationWindow.h"
 #include "random"
 #include <cstdlib>
+#include "ant.h"
+#include "image.h"
 
 std::vector<int> generate_food_postion();
 int food_on_board(int food);
@@ -16,7 +18,9 @@ class Food {
         // Position on the grid
         std::vector<int> true_pos;
 
-        std::vector<TDT4102::Image> Images;
+        // List of images
+        std::vector<TDT4102::Image> Images{Apple, Chees};
+        int food_num;
 
         // Position of the ant drawn on the screen
         TDT4102::Point drawn_pos;
@@ -31,14 +35,11 @@ class Food {
 
         Food();
 
+        int random_food();
+
+
+
 };
 
-//Food images
-extern TDT4102::Image Dragonfruit;
-extern TDT4102::Image Strawberry;
-extern TDT4102::Image Apple;
-extern TDT4102::Image Tomato;
-extern TDT4102::Image Chees;
-extern TDT4102::Image Cookie;
-extern TDT4102::Image Sushi;
-extern TDT4102::Image Watermellon;
+
+
