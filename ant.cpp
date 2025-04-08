@@ -235,8 +235,10 @@ Player_Ant::Player_Ant (int input_direction, double input_speed, std::vector<int
 
 void Player_Ant::check_input() {
         // Left will be prioritized, then up, right and then down. In case multiple buttons are pressed at once.
-        saved_direction = button_input; // button_input is from game.h and stores the arrow key inputs
-}
+        if (saved_direction != button_input) { // This if makes the control feel slightly better
+            saved_direction = button_input; // button_input is from game.h and stores the arrow key inputs
+        }
+}       
 
 void Player_Ant::update_position() {
 

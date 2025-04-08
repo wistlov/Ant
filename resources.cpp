@@ -4,7 +4,7 @@
 std::string game_screen = "menu";// sets which state the game is in
 bool ants_moving = false; // While this is true, the player and follower ants should move. Otherwise, they should not.
 extern std::string button_input = "none"; // This is here to share button inputs the GUI picks up to the player ant.
-extern double player_ant_speed = 0.8; // Speed of the player ant, duh
+extern double player_ant_speed = 1.0; // Speed of the player ant, duh
 
 // Ant images
 TDT4102::Image Left1("Images/cute_ant.gif");
