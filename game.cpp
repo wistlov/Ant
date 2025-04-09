@@ -55,6 +55,15 @@ void play_game() {
     Button quit_button = make_quit_button(266, 400, 300, 100, win);
     win.add(quit_button); // This adds the button, naturally
 
+    Button easy_play_button = make_easy_play_button(60, 300, 200, 100, win);
+    win.add(easy_play_button); // This adds the button, naturally
+
+    Button normal_play_button = make_normal_play_button(325, 300, 200, 100, win);
+    win.add(normal_play_button); // This adds the button, naturally
+
+    Button hard_play_button = make_hard_play_button(590, 300, 200, 100, win);
+    win.add(hard_play_button); // This adds the button, naturally
+
     // Here are the animated ants added
     make_menu_ants(ant_list, 16);
 
@@ -89,6 +98,23 @@ void play_game() {
             play_button.setVisible(true); // Shows the button while the menu is active
             highscore_button.setVisible(true);
             quit_button.setVisible(true);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+        }
+
+
+        else if(game_screen == "difficulty"){
+            difficulty_menu(832, 832, win);
+            win.wait_for(0.2);
+
+            play_button.setVisible(false); // Hides the button while the game is running
+            highscore_button.setVisible(false);
+            quit_button.setVisible(false);
+            easy_play_button.setVisible(true);
+            normal_play_button.setVisible(true);
+            hard_play_button.setVisible(true);
+            Escape_menu(win);
         }
 
         // This is what runs when the play button has been clicked. In theory.
@@ -102,8 +128,6 @@ void play_game() {
                 food_list.at(i).update(win);
             }
 
- 
-          
 
             //--------------------------------------------
 
@@ -117,7 +141,22 @@ void play_game() {
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
-            Esacpe_menu(win);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+            Escape_pause_menu(win);
+        }
+
+        else if(game_screen == "paused"){
+            win.draw_grid();
+            paused_menu(832, 832, win);
+            
+            play_button.setVisible(false); // Hides the button while the game is running
+            highscore_button.setVisible(false);
+            quit_button.setVisible(false);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
         }
 
         //This is what runs if the highscore button has been hit
@@ -128,7 +167,10 @@ void play_game() {
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
-            Esacpe_menu(win);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+            Escape_menu(win);
         }
 
         else if (game_screen == "quit"){
@@ -137,7 +179,10 @@ void play_game() {
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
-            Esacpe_menu(win);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+            Escape_menu(win);
         }
 
         win.next_frame(); // Continues to the next frame

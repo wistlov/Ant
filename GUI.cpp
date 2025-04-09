@@ -53,6 +53,52 @@ Button make_quit_button(int posx, int posy, int width, int height, AnimationWind
     return quit_button;
 }
 
+//Difficulty buttons
+
+Button make_easy_play_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Easy";
+    TDT4102::Button easy_play_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    easy_play_button.setButtonColor(TDT4102::Color::green);
+    easy_play_button.setButtonColorHover(TDT4102::Color::lime_green);
+    easy_play_button.setButtonColorActive(TDT4102::Color::dark_green);
+    easy_play_button.setLabelColor(TDT4102::Color::white);
+    easy_play_button.setCallback(easy); //This is what happens when the button is clicked.
+    return easy_play_button;
+}
+
+Button make_normal_play_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Normal";
+    TDT4102::Button normal_play_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    normal_play_button.setButtonColor(TDT4102::Color::royal_blue);
+    normal_play_button.setButtonColorHover(TDT4102::Color::sky_blue);
+    normal_play_button.setButtonColorActive(TDT4102::Color::slate_blue);
+    normal_play_button.setLabelColor(TDT4102::Color::white);
+    normal_play_button.setCallback(normal); //This is what happens when the button is clicked.
+    return normal_play_button;
+}
+
+Button make_hard_play_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Hard";
+    TDT4102::Button hard_play_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    hard_play_button.setButtonColor(TDT4102::Color::red);
+    hard_play_button.setButtonColorHover(TDT4102::Color::orange_red);
+    hard_play_button.setButtonColorActive(TDT4102::Color::dark_red);
+    hard_play_button.setLabelColor(TDT4102::Color::white);
+    hard_play_button.setCallback(hard); //This is what happens when the button is clicked.
+    return hard_play_button;
+}
+
+
+
 // Makes the ANT text
 TDT4102::Point location {295, 0}; //Start point of the text
 std::string message = "ANT"; // what the text is
@@ -78,10 +124,16 @@ void menu_overall_background(int width, int height, AnimationWindow& window){
 
 
 //Escape to main menu
-void Esacpe_menu(AnimationWindow& window) {
+void Escape_menu(AnimationWindow& window) {
     bool Esc_key_is_pressed = window.is_key_down(KeyboardKey::ESCAPE);
     if(Esc_key_is_pressed) {
         game_screen = "menu";
+    }}
+
+void Escape_pause_menu(AnimationWindow& window) {
+    bool Esc_key_is_pressed = window.is_key_down(KeyboardKey::ESCAPE);
+    if(Esc_key_is_pressed) {
+        game_screen = "paused";
     }}
 
 void quit_menu(){
@@ -92,12 +144,28 @@ void quit_menu(){
 void play() {
     // Whatever happens when play is called
     std::cout << "Play" << std::endl;
-    game_screen = "game";
+    game_screen = "difficulty";
 }
 
 void highscore() {
     std::cout << "Highscore" << std::endl;
     game_screen = "highscore";
+}
+
+void easy() {
+    std::cout << "difficulty" << std::endl;
+    player_ant_speed = 1.0;
+    game_screen = "game";
+}
+void normal() {
+    std::cout << "difficulty" << std::endl;
+    player_ant_speed = 1.5;
+    game_screen = "game";
+}
+void hard() {
+    std::cout << "difficulty" << std::endl;
+    player_ant_speed = 2.0;
+    game_screen = "game";
 }
 
 void quit() {

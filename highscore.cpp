@@ -29,7 +29,14 @@ void highscore_menu(int width, int height, AnimationWindow& window){
     for(int i = 0; i < 17; i ++){
         window.draw_line(TDT4102::Point{220,(i*30)+220}, TDT4102::Point{610,(i*30)+220}, TDT4102::Color:: black);
     }
+}
 
+void difficulty_menu(int width, int height, AnimationWindow& window){
+    window.draw_rectangle(TDT4102::Point{0,0}, width, height, TDT4102:: Color::burly_wood);
+    window.draw_text(TDT4102::Point{210,120}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::times_bold_italic);
+}
+
+void paused_menu(int width, int height, AnimationWindow& window){
+    window.draw_text(TDT4102::Point{247,120}, "Paused", TDT4102::Color::black, 120, TDT4102::Font::times_bold_italic);
     
-
 }
