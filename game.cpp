@@ -40,7 +40,7 @@ void make_player_ant(std::vector<Player_Ant>& player_ant_list) {
     player_ant_list.push_back(player);
 }
 void make_follower_ant(std::vector<Follower_Ant>& follower_ant_list) {
-    Follower_Ant ant(1,player_ant_speed,std::vector<int> {5,6},0);
+    Follower_Ant ant(1,player_ant_speed,std::vector<int> {7,6},0);
     follower_ant_list.push_back(ant);
 }
 
@@ -139,9 +139,15 @@ void play_game() {
             //--------------------------------------------
 
             for (int i = 0; i < player_ant_list.size(); i++) {
-                player_ant_list.at(i).update(win, 0);
+                player_ant_list.at(i).update(win);
+                follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
             }
-
+            for (int i = 0; i < follower_ant_list.size(); i++) {
+                follower_ant_list.at(i).update(win);
+                if (i > 0) {
+                    follower_ant_list.at(i).set_destination(follower_ant_list.at(i-1).true_pos);
+                }
+            }
 
             //--------------------------------------------
             play_button.setVisible(false); // Hides the button while the game is running

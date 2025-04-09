@@ -87,7 +87,7 @@ class Player_Ant : public Ants {
         Player_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
         void update_position(); 
         void check_input();
-        void update(AnimationWindow& window, int next_ant);
+        void update(AnimationWindow& window);
         // Function to try to give a follower ant a new destination
         void give_destination(int next_ant);
 };

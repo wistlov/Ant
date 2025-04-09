@@ -303,26 +303,10 @@ if (direction == 1) { // Left
     } 
 }
 
-void Player_Ant::give_destination(int next_ant) {
-    try {
-        // This will try to give the ant following this one a new destination. It wont work if there are no ants following it.
-        if (follower_ant_list.size() <= next_ant) {
-            follower_ant_list.at(next_ant).set_destination(true_pos);
-        }
-
-    } catch (const std::out_of_range& e) {
-        // This catches the potential out of range error so the program still compiles even if it happens
-        std::cerr << "Out of range error: " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Idk what happened, lets hope that doesnt cause any issues" << std::endl;
-    }
-}
-
-void Player_Ant::update(AnimationWindow& window, int next_ant) {
+void Player_Ant::update(AnimationWindow& window) {
     check_input(); // Updates saved_direction
     update_position();
     update_animation();
-    give_destination(next_ant);
     window.draw_image(drawn_pos, image, size, size);
 }
 
@@ -346,15 +330,14 @@ void Follower_Ant::set_destination(std::vector<int>& pos) {
         // If the destination is reached
         move = false;
     }
-    // Thise will give the next ant in line its destination
-    give_destination(ant_id+1);
 }
 
 
 void Follower_Ant::update(AnimationWindow& window) {
     update_position();
     update_animation();
-    give_destination(ant_id+1);
+    std::cout<<true_pos.at(0)<<","<<true_pos.at(1)<<std::endl;
+    window.draw_circle(drawn_pos,size/8,TDT4102::Color::blue_violet);
     window.draw_image(drawn_pos, image, size, size);
 }
 //-----------------------------------------------------------------------------------------------------------------------
