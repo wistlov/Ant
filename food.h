@@ -17,7 +17,7 @@ class Food {
         std::vector<int> true_pos;
 
         // List of images
-        std::vector<TDT4102::Image> Images{Apple, Chees, Cookie, Dragonfruit, Strawberry, Sushi, Tomato, Watermellon};
+        std::vector<TDT4102::Image> Images{Hamburger, Bowl, Spagheti};
         int food_num;
 
         // Position of the ant drawn on the screen
