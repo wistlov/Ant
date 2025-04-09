@@ -97,6 +97,33 @@ Button make_hard_play_button(int posx, int posy, int width, int height, Animatio
     return hard_play_button;
 }
 
+Button make_resume_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Resume";
+    TDT4102::Button resume_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    resume_button.setButtonColor(TDT4102::Color::red);
+    resume_button.setButtonColorHover(TDT4102::Color::orange_red);
+    resume_button.setButtonColorActive(TDT4102::Color::dark_red);
+    resume_button.setLabelColor(TDT4102::Color::white);
+    resume_button.setCallback(resume); //This is what happens when the button is clicked.
+    return resume_button;
+}
+
+Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Main Menu";
+    TDT4102::Button main_menu_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    main_menu_button.setButtonColor(TDT4102::Color::red);
+    main_menu_button.setButtonColorHover(TDT4102::Color::orange_red);
+    main_menu_button.setButtonColorActive(TDT4102::Color::dark_red);
+    main_menu_button.setLabelColor(TDT4102::Color::white);
+    main_menu_button.setCallback(main_menu); //This is what happens when the button is clicked.
+    return main_menu_button;
+}
 
 
 // Makes the ANT text
@@ -167,7 +194,14 @@ void hard() {
     player_ant_speed = 2.0;
     game_screen = "game";
 }
-
+void resume() {
+    std::cout << "resume" << std::endl;
+    game_screen = "game";
+}
+void main_menu() {
+    std::cout << "main_menu" << std::endl;
+    game_screen = "menu";
+}
 void quit() {
     std::cout << "Quit" << std::endl;
     game_screen = "quit";

@@ -29,15 +29,10 @@ TDT4102::Image Down2_Right("Images/cute_ant_down2_right.gif");
 TDT4102::Image cloud_image("Images/cloud.png");
 
 // Food images
-TDT4102::Image Dragonfruit("Images/Dragonfruit.png");
-TDT4102::Image Strawberry("Images/Strawberry.png");
-TDT4102::Image Apple("Images/Apple.png");
-TDT4102::Image Tomato("Images/Tomato.png");
-TDT4102::Image Chees("Images/Chees.png");
-TDT4102::Image Cookie("Images/Cookie.png");
-TDT4102::Image Sushi("Images/Sushi.png");
-TDT4102::Image Watermellon("Images/Watermellon.png");
-
 TDT4102::Image Hamburger("Images/Hamburger.png");
 TDT4102::Image Bowl("Images/bowl.png");
 TDT4102::Image Spagheti("Images/Spagheti.png");
+
+//Background images
+TDT4102::Image MC_background("Images/mc_background.jpg");
+TDT4102::Image MC_ramme("Images/mc_ramme.jpg");

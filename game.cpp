@@ -60,14 +60,20 @@ void play_game() {
     Button quit_button = make_quit_button(266, 400, 300, 100, win);
     win.add(quit_button); // This adds the button, naturally
 
-    Button easy_play_button = make_easy_play_button(60, 300, 200, 100, win);
+    Button easy_play_button = make_easy_play_button(60, 500, 200, 100, win);
     win.add(easy_play_button); // This adds the button, naturally
 
-    Button normal_play_button = make_normal_play_button(325, 300, 200, 100, win);
+    Button normal_play_button = make_normal_play_button(325, 500, 200, 100, win);
     win.add(normal_play_button); // This adds the button, naturally
 
-    Button hard_play_button = make_hard_play_button(590, 300, 200, 100, win);
+    Button hard_play_button = make_hard_play_button(590, 500, 200, 100, win);
     win.add(hard_play_button); // This adds the button, naturally
+
+    Button resume_button = make_resume_button(194, 280, 200, 100, win);
+    win.add(resume_button); // This adds the button, naturally
+
+    Button main_menu_button = make_main_menu_button(448, 280, 200, 100, win);
+    win.add(main_menu_button); // This adds the button, naturally
 
     // Here are the animated ants added
     make_menu_ants(ant_list, 16);
@@ -108,6 +114,8 @@ void play_game() {
             easy_play_button.setVisible(false);
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            main_menu_button.setVisible(false);
         }
 
 
@@ -121,6 +129,8 @@ void play_game() {
             easy_play_button.setVisible(true);
             normal_play_button.setVisible(true);
             hard_play_button.setVisible(true);
+            resume_button.setVisible(false);
+            main_menu_button.setVisible(false);
             Escape_menu(win);
         }
 
@@ -156,6 +166,8 @@ void play_game() {
             easy_play_button.setVisible(false);
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            main_menu_button.setVisible(false);
             Escape_pause_menu(win);
         }
 
@@ -169,6 +181,8 @@ void play_game() {
             easy_play_button.setVisible(false);
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
+            resume_button.setVisible(true);
+            main_menu_button.setVisible(true);
         }
 
         //This is what runs if the highscore button has been hit
@@ -182,6 +196,8 @@ void play_game() {
             easy_play_button.setVisible(false);
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            main_menu_button.setVisible(false);
             Escape_menu(win);
         }
 
@@ -194,6 +210,8 @@ void play_game() {
             easy_play_button.setVisible(false);
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            main_menu_button.setVisible(false);
             Escape_menu(win);
         }
 

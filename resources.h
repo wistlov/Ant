@@ -33,3 +33,7 @@ extern TDT4102::Image cloud_image;
 extern TDT4102::Image Hamburger;
 extern TDT4102::Image Bowl;
 extern TDT4102::Image Spagheti;
+
+//Background images
+extern TDT4102::Image MC_background;
+extern TDT4102::Image MC_ramme;

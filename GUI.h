@@ -17,6 +17,8 @@ Button make_quit_button(int posx, int posy, int width, int height, AnimationWind
 Button make_easy_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_normal_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_hard_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
+Button make_resume_button(int posx, int posy, int width, int height, AnimationWindow& window);
+Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window);
 
 
 // Menu "Base"/Background
@@ -34,6 +36,9 @@ void quit();
 void easy();
 void normal();
 void hard();
+void resume();
+void main_menu();
+
 
 
 // The class for the graphics window

@@ -4,9 +4,7 @@
 void highscore_menu(int width, int height, AnimationWindow& window){
     //Makes the background for the highscore menu
     window.draw_rectangle(TDT4102::Point{0,0}, width, height, TDT4102:: Color::sandy_brown); 
-    window.draw_rectangle(TDT4102::Point{0,200}, width, 60, Color::saddle_brown);
-    window.draw_rectangle(TDT4102::Point{0,400}, width, 60, Color::saddle_brown);
-    window.draw_rectangle(TDT4102::Point{0,600}, width, 60, Color::saddle_brown);
+    window.draw_image(TDT4102::Point{0,0}, MC_ramme, 832, 832);
 
     //Draws the Highscore text at the top
     window.draw_rectangle(TDT4102::Point{200,100}, 432, 632, TDT4102:: Color:: light_grey);
@@ -32,8 +30,8 @@ void highscore_menu(int width, int height, AnimationWindow& window){
 }
 
 void difficulty_menu(int width, int height, AnimationWindow& window){
-    window.draw_rectangle(TDT4102::Point{0,0}, width, height, TDT4102:: Color::burly_wood);
-    window.draw_text(TDT4102::Point{210,120}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::times_bold_italic);
+    window.draw_image(TDT4102::Point{0,0}, MC_background, 832, 832);
+    window.draw_text(TDT4102::Point{110,360}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::courier_bold);
 }
 
 void paused_menu(int width, int height, AnimationWindow& window){
