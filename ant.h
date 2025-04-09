@@ -4,6 +4,9 @@
 #include "AnimationWindow.h"
 #include "resources.h"
 
+class Follower_Ant; // forward declaration so that Player_Ant and the list below knows about it for its functions
+extern std::vector<Follower_Ant> follower_ant_list; // This houses the follower ants
+
 // Here are all the variations of ants
 
 // The main ant class. All other ants inherits from this one.
@@ -84,12 +87,26 @@ class Player_Ant : public Ants {
         Player_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
         void update_position(); 
         void check_input();
-        void update(AnimationWindow& window);
+        void update(AnimationWindow& window, int next_ant);
+        // Function to try to give a follower ant a new destination
+        void give_destination(int next_ant);
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 
-class Follower_Ant : public Ants {
+class Follower_Ant : public Player_Ant {
+    private:
+        int ant_id;
+    public:
+        Follower_Ant(int input_direction, double input_speed, std::vector<int> grid_position, int input_id);
+        
+        // To make sure the follower ant doesnt start moving until its supposed to
+        bool move = false;
 
+        // Function for setting a new destination
+        void set_destination(std::vector<int>& pos);
+
+        // The update function needs to be changed as well so it doesnt take in button inputs
+        void update(AnimationWindow& window);
 };
 
 // This is a class for the clouds. Clouds are Ants, that should be obvious.

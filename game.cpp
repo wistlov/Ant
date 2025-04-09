@@ -1,11 +1,12 @@
 #include "game.h"
 
-// ants_moving is necessary for the game to only start when the player wants it to.
-
+// Some global lists
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
 std::vector<Cloud> cloud_list; // This houses the clouds for the menu
 std::vector<Food> food_list; // This houses the food for the game
 std::vector<Player_Ant> player_ant_list; // This houses the player ant(s?)
+
+// Functions to make global lists -------------------------------------------------------
 
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
@@ -27,7 +28,6 @@ void make_menu_clouds(std::vector<Cloud>& cloud_list) {
     Cloud cloud3(1,0.05,std::vector<int> {11,5});
     cloud_list.push_back(cloud3);
 }
-
 //This function generates the food for the main game
 void make_food(std::vector<Food>& food_list) {
     Food food;
@@ -39,6 +39,11 @@ void make_player_ant(std::vector<Player_Ant>& player_ant_list) {
     Player_Ant player(1,player_ant_speed,std::vector<int> {6,6});
     player_ant_list.push_back(player);
 }
+void make_follower_ant(std::vector<Follower_Ant>& follower_ant_list) {
+    Follower_Ant ant(1,player_ant_speed,std::vector<int> {5,6},0);
+    follower_ant_list.push_back(ant);
+}
+
 
 void play_game() {
     // The game
@@ -60,12 +65,14 @@ void play_game() {
 
     // Here are the clouds added
     make_menu_clouds(cloud_list);
-
     // Here the food is added
     make_food(food_list);
 
     // Here the player is added
     make_player_ant(player_ant_list);
+
+    // Here the follower ants are added
+    make_follower_ant(follower_ant_list);
     
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -97,20 +104,17 @@ void play_game() {
             win.draw_grid();
             win.check_input(); // Checks for button inputs
             
+
             // update food
             for (int i = 0; i < food_list.size(); i++) {
                 food_list.at(i).update(win);
             }
-
- 
           
-
             //--------------------------------------------
 
             for (int i = 0; i < player_ant_list.size(); i++) {
-                player_ant_list.at(i).update(win);
+                player_ant_list.at(i).update(win, 0);
             }
-
 
 
             //--------------------------------------------

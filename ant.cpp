@@ -1,5 +1,9 @@
 #include "ant.h"
 
+
+std::vector<Follower_Ant> follower_ant_list; // This houses the follower ants
+
+
 //--------------------------------------------------------------------------------//
 // Constructor for Ants
 Ants::Ants (int input_direction, double input_speed, std::vector<int> grid_position) {
@@ -242,7 +246,7 @@ void Player_Ant::check_input() {
 
 void Player_Ant::update_position() {
 
-    if (direction == 1) { // Left
+if (direction == 1) { // Left
     distance += speed;
     drawn_pos.x = true_pos.at(0)*size - distance;
     drawn_pos.y = true_pos.at(1)*size;
@@ -299,13 +303,60 @@ void Player_Ant::update_position() {
     } 
 }
 
-void Player_Ant::update(AnimationWindow& window) {
+void Player_Ant::give_destination(int next_ant) {
+    try {
+        // This will try to give the ant following this one a new destination. It wont work if there are no ants following it.
+        if (follower_ant_list.size() <= next_ant) {
+            follower_ant_list.at(next_ant).set_destination(true_pos);
+        }
+
+    } catch (const std::out_of_range& e) {
+        // This catches the potential out of range error so the program still compiles even if it happens
+        std::cerr << "Out of range error: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Idk what happened, lets hope that doesnt cause any issues" << std::endl;
+    }
+}
+
+void Player_Ant::update(AnimationWindow& window, int next_ant) {
     check_input(); // Updates saved_direction
     update_position();
     update_animation();
+    give_destination(next_ant);
     window.draw_image(drawn_pos, image, size, size);
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// Constructor for Follower Ant
+Follower_Ant::Follower_Ant (int input_direction, double input_speed, std::vector<int> grid_position, int input_id) : Player_Ant(input_direction, input_speed, grid_position) {
+    ant_id = input_id;
+}
+
+void Follower_Ant::set_destination(std::vector<int>& pos) {
+    move = true; // This allows the follower to move
+    if (pos.at(0) > true_pos.at(0)) {
+        change_direction("right");
+    } else if (pos.at(0) < true_pos.at(0)) {
+        change_direction("left");
+    } else if (pos.at(1) > true_pos.at(1)) {
+        change_direction("down");
+    } else if (pos.at(1) < true_pos.at(1)) {
+        change_direction("up");
+    } else {
+        // If the destination is reached
+        move = false;
+    }
+    // Thise will give the next ant in line its destination
+    give_destination(ant_id+1);
+}
+
+
+void Follower_Ant::update(AnimationWindow& window) {
+    update_position();
+    update_animation();
+    give_destination(ant_id+1);
+    window.draw_image(drawn_pos, image, size, size);
+}
 //-----------------------------------------------------------------------------------------------------------------------
 
 // Constructor for Cloud
