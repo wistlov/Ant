@@ -7,3 +7,5 @@
 #include <iostream>
 
 void highscore_menu(int width, int height, AnimationWindow& window);
+void difficulty_menu(int width, int height, AnimationWindow& window);
+void paused_menu(int width, int height, AnimationWindow& window);

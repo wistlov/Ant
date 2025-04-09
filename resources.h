@@ -29,12 +29,7 @@ extern TDT4102::Image Down2_Right;
 extern TDT4102::Image cloud_image;
 
 //Food images
-extern TDT4102::Image Dragonfruit;
-extern TDT4102::Image Strawberry;
-extern TDT4102::Image Apple;
-extern TDT4102::Image Tomato;
-extern TDT4102::Image Chees;
-extern TDT4102::Image Cookie;
-extern TDT4102::Image Sushi;
-extern TDT4102::Image Watermellon;
 
+extern TDT4102::Image Hamburger;
+extern TDT4102::Image Bowl;
+extern TDT4102::Image Spagheti;
