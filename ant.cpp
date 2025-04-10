@@ -279,6 +279,15 @@ if (distance >= size) { // This happens when an ant reaches the center of a squa
     }
 }
 
+// This functions allows the ant to eat
+bool Player_Ant::check_for_food(std::vector<int> food_pos) {
+    if (true_pos.at(0) == food_pos.at(0) && true_pos.at(1) == food_pos.at(1)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void Player_Ant::update(AnimationWindow& window) {
     check_input(); // Updates saved_direction
     update_position();
@@ -316,7 +325,7 @@ void Follower_Ant::update(AnimationWindow& window) {
 }
 
 void Follower_Ant::update_position() {
-
+if (move) {
     if (direction == 1) { // Left
         distance += speed;
         drawn_pos.x = true_pos.at(0)*size - distance;
@@ -347,6 +356,7 @@ void Follower_Ant::update_position() {
         distance = 0;
         }
     }
+}
 //-----------------------------------------------------------------------------------------------------------------------
 
 // Constructor for Cloud

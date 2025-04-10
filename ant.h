@@ -88,8 +88,9 @@ class Player_Ant : public Ants {
         void update_position(); 
         void check_input();
         void update(AnimationWindow& window);
-        // Function to try to give a follower ant a new destination
-        void give_destination(int next_ant);
+
+        // Returns true if it is on food
+        bool check_for_food(std::vector<int> food_pos);
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 

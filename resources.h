@@ -8,6 +8,7 @@ extern std::string game_screen;
 extern bool ants_moving;
 extern std::string button_input;
 extern double player_ant_speed;
+extern int score;
 
 // ant images
 extern TDT4102::Image Left1;
