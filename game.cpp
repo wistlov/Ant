@@ -91,7 +91,7 @@ void play_game() {
     make_player_ant(player_ant_list);
 
     // Here the follower ants are added
-    make_follower_ant(follower_ant_list, std::vector<int> {7,6}, 1);
+    //make_follower_ant(follower_ant_list, std::vector<int> {7,6}, 1);
     
     while (!win.should_close()) {  //Makes it so the game stops when the window closes
         
@@ -156,12 +156,18 @@ void play_game() {
             for (int i = 0; i < player_ant_list.size(); i++) {
                 player_ant_list.at(i).update(win);
                 player_ant_list.at(i).speed = player_ant_speed;
-                follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
+                if (!follower_ant_list.empty()) {
+                    follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
+                }
 
                 if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
                     food_list.erase(food_list.begin());
                     score += 1;
-                    make_follower_ant(follower_ant_list,follower_ant_list.back().true_pos,follower_ant_list.back().direction);
+                    if (!follower_ant_list.empty()) {
+                        make_follower_ant(follower_ant_list,follower_ant_list.back().true_pos,follower_ant_list.back().direction);
+                    } else {
+                        make_follower_ant(follower_ant_list,player_ant_list.back().true_pos,player_ant_list.back().direction);
+                    }
                     make_food(food_list);
                 }
             }
