@@ -25,19 +25,20 @@ int Ants::get_direction() { return direction; }
 int Ants::get_speed() { return speed; }
 double Ants::get_internal_time() { return internal_time; }
 
-void Ants::change_direction(std::string direction_change) {
+
+void Ants::change_direction(TurnDirection dir) {
     if (direction == 1) {
-        if (direction_change == "up") direction = 3;
-        else if (direction_change == "down") direction = 5;
+        if (dir == TurnDirection::Up) direction = 3;
+        else if (dir == TurnDirection::Down) direction = 5;
     } else if (direction == 2) {
-        if (direction_change == "up") direction = 4;
-        else if (direction_change == "down") direction = 6;
+        if (dir == TurnDirection::Up) direction = 4;
+        else if (dir == TurnDirection::Down) direction = 6;
     } else if (direction == 3 || direction == 4) {
-        if (direction_change == "left") direction = 1;
-        else if (direction_change == "right") direction = 2;
+        if (dir == TurnDirection::Left) direction = 1;
+        else if (dir == TurnDirection::Right) direction = 2;
     } else if (direction == 5 || direction == 6) {
-        if (direction_change == "left") direction = 1;
-        else if (direction_change == "right") direction = 2;
+        if (dir == TurnDirection::Left) direction = 1;
+        else if (dir == TurnDirection::Right) direction = 2;
     }
 }
 
@@ -88,9 +89,9 @@ void Ants::update_position() {
 }
 
 void Ants::update_animation() {
-    internal_time += 1 * speed;
+    internal_time += speed;
     if (internal_time >= 12) {
-        internal_time = 0;
+        internal_time -= 12;
         animation_frame = 1 - animation_frame;
         switch (direction) {
             case 1: image = (animation_frame == 0 ? Left1 : Left2); 
@@ -136,7 +137,9 @@ Player_Ant::Player_Ant(int input_direction, double input_speed, GridPos grid_pos
     : Ants(input_direction, input_speed, grid_position) {}
 
 void Player_Ant::check_input() {
-    if (saved_direction != button_input) saved_direction = button_input;
+    if (saved_direction != direction_from_input(button_input)) {
+        saved_direction = direction_from_input(button_input);
+    }
 }
 
 void Player_Ant::update_position() {
@@ -192,13 +195,22 @@ Follower_Ant::Follower_Ant(int input_direction, double input_speed, GridPos grid
 }
 
 void Follower_Ant::set_destination(const GridPos& pos) {
+    if (has_target && pos.x == last_target.x && pos.y == last_target.y) {
+        // This makes it so the function quits here instead of calling change_direction when its not needed
+        return;
+    }
+
+    last_target = pos;
+    has_target = true;
     move = true;
-    if (pos.x > true_pos.x) change_direction("right");
-    else if (pos.x < true_pos.x) change_direction("left");
-    else if (pos.y > true_pos.y) change_direction("down");
-    else if (pos.y < true_pos.y) change_direction("up");
+
+    if (pos.x > true_pos.x) change_direction(TurnDirection::Right);
+    else if (pos.x < true_pos.x) change_direction(TurnDirection::Left);
+    else if (pos.y > true_pos.y) change_direction(TurnDirection::Down);
+    else if (pos.y < true_pos.y) change_direction(TurnDirection::Up);
     else move = false;
 }
+
 
 void Follower_Ant::update(TDT4102::AnimationWindow& window) {
     update_position();
@@ -229,6 +241,8 @@ void Follower_Ant::update_position() {
             true_pos.x += (drawn_pos.x - true_pos.x * size) / size;
             true_pos.y += (drawn_pos.y - true_pos.y * size) / size;
             distance = 0;
+
+            has_target = false;
         }
     }
 }
