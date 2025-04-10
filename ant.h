@@ -107,6 +107,9 @@ class Follower_Ant : public Player_Ant {
 
         // The update function needs to be changed as well so it doesnt take in button inputs
         void update(AnimationWindow& window);
+
+        // It has a modified update position function so it doesnt change direction when its not supposed to
+        void update_position();
 };
 
 // This is a class for the clouds. Clouds are Ants, that should be obvious.

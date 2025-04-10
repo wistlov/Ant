@@ -252,40 +252,16 @@ if (direction == 1) { // Left
     drawn_pos.y = true_pos.at(1)*size;
     // The lines above updates the visualized position of the ant.
 
-    if (distance >= size) { // This happens when an ant reaches the center of a square.
-        true_pos.at(0) -= 1;
-        distance = 0;
-        drawn_pos.x = true_pos.at(0)*size;
-
-        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
-    }
-
 } else if (direction == 2) { // Right
     distance += speed;
     drawn_pos.x = true_pos.at(0)*size + distance;
     drawn_pos.y = true_pos.at(1)*size;
-
-    if (distance >= size) { // This happens when an ant reaches the center of a square.
-        true_pos.at(0) += 1;
-        distance = 0;
-        drawn_pos.x = true_pos.at(0)*size;
-
-        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
-    }
 
 } else if (direction == 3 || direction == 4) { // Up
     distance += speed;
     drawn_pos.x = true_pos.at(0)*size;
     drawn_pos.y = true_pos.at(1)*size - distance;
     // The lines above updates the visualized position of the ant.
-
-    if (distance >= size) { // This happens when an ant reaches the center of a square.
-        true_pos.at(1) -= 1;
-        distance = 0;
-        drawn_pos.y = true_pos.at(1)*size;
-
-        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
-    }
     
 } else if (direction == 5 || direction == 6) { // Down
     distance += speed;
@@ -293,14 +269,14 @@ if (direction == 1) { // Left
     drawn_pos.y = true_pos.at(1)*size + distance;
     // The lines above updates the visualized position of the ant.
 
-    if (distance >= size) { // This happens when an ant reaches the center of a square.
-        true_pos.at(1) += 1;
-        distance = 0;
-        drawn_pos.y = true_pos.at(1)*size;
-
-        change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
-        }
     } 
+if (distance >= size) { // This happens when an ant reaches the center of a square.
+    true_pos.at(0) += (drawn_pos.x-true_pos.at(0)*size)/size;
+    true_pos.at(1) += (drawn_pos.y-true_pos.at(1)*size)/size;
+    distance = 0;
+
+    change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+    }
 }
 
 void Player_Ant::update(AnimationWindow& window) {
@@ -338,6 +314,39 @@ void Follower_Ant::update(AnimationWindow& window) {
     update_animation();
     window.draw_image(drawn_pos, image, size, size);
 }
+
+void Follower_Ant::update_position() {
+
+    if (direction == 1) { // Left
+        distance += speed;
+        drawn_pos.x = true_pos.at(0)*size - distance;
+        drawn_pos.y = true_pos.at(1)*size;
+        // The lines above updates the visualized position of the ant.
+    
+    } else if (direction == 2) { // Right
+        distance += speed;
+        drawn_pos.x = true_pos.at(0)*size + distance;
+        drawn_pos.y = true_pos.at(1)*size;
+    
+    } else if (direction == 3 || direction == 4) { // Up
+        distance += speed;
+        drawn_pos.x = true_pos.at(0)*size;
+        drawn_pos.y = true_pos.at(1)*size - distance;
+        // The lines above updates the visualized position of the ant.
+        
+    } else if (direction == 5 || direction == 6) { // Down
+        distance += speed;
+        drawn_pos.x = true_pos.at(0)*size;
+        drawn_pos.y = true_pos.at(1)*size + distance;
+        // The lines above updates the visualized position of the ant.
+    
+        } 
+    if (distance >= size) { // This happens when an ant reaches the center of a square.
+        true_pos.at(0) += (drawn_pos.x-true_pos.at(0)*size)/size;
+        true_pos.at(1) += (drawn_pos.y-true_pos.at(1)*size)/size;
+        distance = 0;
+        }
+    }
 //-----------------------------------------------------------------------------------------------------------------------
 
 // Constructor for Cloud
