@@ -214,6 +214,7 @@ void resume() {
 }
 void restart() {
     std::cout << "restart" << std::endl;
+    score = 1;
     game_screen = "game";
 }
 void main_menu() {

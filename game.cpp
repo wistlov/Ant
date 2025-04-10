@@ -180,6 +180,9 @@ void play_game() {
             }
 
             //--------------------------------------------
+            
+
+            //--------------------------------------------
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
