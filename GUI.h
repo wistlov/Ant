@@ -18,6 +18,7 @@ Button make_easy_play_button(int posx, int posy, int width, int height, Animatio
 Button make_normal_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_hard_play_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_resume_button(int posx, int posy, int width, int height, AnimationWindow& window);
+Button make_restart_button(int posx, int posy, int width, int height, AnimationWindow& window) ;
 Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window);
 
 
@@ -37,6 +38,7 @@ void easy();
 void normal();
 void hard();
 void resume();
+void restart();
 void main_menu();
 
 
