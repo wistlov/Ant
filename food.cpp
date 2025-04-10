@@ -31,15 +31,12 @@ void Food::update(TDT4102::AnimationWindow& window) {
     window.draw_image(drawn_pos, image, size*food_puls, size*food_puls);
 
     //Makes the food anmation, the pulsing
-    if(food_control < 500 ) {
-        food_puls -= 0.0005;
+    if(food_control <= 100 ) {
+        food_puls -= 0.0025;
         food_control += 1;
-        
     }
-    else if (food_control < 1000) {
-        food_puls += 0.0005;
-        //true_pos.x -= 0.0005;
-        //true_pos.y -= 0.0005;
+    else if (food_control <= 200) {
+        food_puls += 0.0025;
         food_control += 1;
     }
     else {
