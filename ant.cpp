@@ -13,12 +13,12 @@ Ants::Ants(int input_direction, double input_speed, GridPos grid_position) {
     distance = 0.0;
     animation_frame = 0;
 
-    if (direction == 1) image = Left1;
-    else if (direction == 2) image = Right1;
-    else if (direction == 3) image = Up1_Left;
-    else if (direction == 4) image = Up1_Right;
-    else if (direction == 5) image = Down1_Left;
-    else if (direction == 6) image = Down1_Right;
+    if (direction == 1) image = &Left1;
+    else if (direction == 2) image = &Right1;
+    else if (direction == 3) image = &Up1_Left;
+    else if (direction == 4) image = &Up1_Right;
+    else if (direction == 5) image = &Down1_Left;
+    else if (direction == 6) image = &Down1_Right;
 }
 
 int Ants::get_direction() { return direction; }
@@ -94,17 +94,17 @@ void Ants::update_animation() {
         internal_time -= 12;
         animation_frame = 1 - animation_frame;
         switch (direction) {
-            case 1: image = (animation_frame == 0 ? Left1 : Left2); 
+            case 1: image = (animation_frame == 0 ? &Left1 : &Left2); 
                 break;
-            case 2: image = (animation_frame == 0 ? Right1 : Right2); 
+            case 2: image = (animation_frame == 0 ? &Right1 : &Right2); 
                 break;
-            case 3: image = (animation_frame == 0 ? Up1_Left : Up2_Left); 
+            case 3: image = (animation_frame == 0 ? &Up1_Left : &Up2_Left); 
                 break;
-            case 4: image = (animation_frame == 0 ? Up1_Right : Up2_Right); 
+            case 4: image = (animation_frame == 0 ? &Up1_Right : &Up2_Right); 
                 break;
-            case 5: image = (animation_frame == 0 ? Down1_Left : Down2_Left); 
+            case 5: image = (animation_frame == 0 ? &Down1_Left : &Down2_Left); 
                 break;
-            case 6: image = (animation_frame == 0 ? Down1_Right : Down2_Right); 
+            case 6: image = (animation_frame == 0 ? &Down1_Right : &Down2_Right); 
                 break;
         }
     }
@@ -113,7 +113,7 @@ void Ants::update_animation() {
 void Ants::update(TDT4102::AnimationWindow& window) {
     update_position();
     update_animation();
-    window.draw_image(drawn_pos, image, size, size);
+    window.draw_image(drawn_pos, const_cast<TDT4102::Image&>(*image), size, size); // Hehe, const_cast finally saves the day
 }
 
 Animated_Ant::Animated_Ant(int input_direction, double input_speed, GridPos grid_position)
@@ -130,17 +130,26 @@ void Animated_Ant::update(TDT4102::AnimationWindow& window) {
     update_position();
     check_for_teleport();
     update_animation();
-    window.draw_image(drawn_pos, image, size, size);
+    window.draw_image(drawn_pos, const_cast<TDT4102::Image&>(*image), size, size);
 }
 
 Player_Ant::Player_Ant(int input_direction, double input_speed, GridPos grid_position)
     : Ants(input_direction, input_speed, grid_position) {}
 
-void Player_Ant::check_input() {
-    if (saved_direction != direction_from_input(button_input)) {
-        saved_direction = direction_from_input(button_input);
+    void Player_Ant::check_input() { // This bad boy has been the cause of many headaches. At least a good place for error catching.
+        if (button_input == "none") {
+            std::cout << "This causes the game to crash unless we just exit check_input here. So thats what we do";
+            return;
+        }
+        try {
+            TurnDirection new_dir = direction_from_input(button_input);
+            if (saved_direction != new_dir) {
+                saved_direction = new_dir;
+            }
+        } catch (const std::invalid_argument& e) {
+            std::cerr << "Invalid direction input: '" << button_input << "'\n";
+        }
     }
-}
 
 void Player_Ant::update_position() {
     if (direction == 1) {
@@ -181,10 +190,14 @@ bool Player_Ant::check_for_food(GridPos food_pos) {
 }
 
 void Player_Ant::update(TDT4102::AnimationWindow& window) {
+    if (!image) {
+        std::cerr << "There was no image";
+        return;
+    }
     check_input();
     update_position();
     update_animation();
-    window.draw_image(drawn_pos, image, size, size);
+    window.draw_image(drawn_pos, const_cast<TDT4102::Image&>(*image), size, size);
 }
 
 Follower_Ant::Follower_Ant(int input_direction, double input_speed, GridPos grid_position, int input_id)
@@ -215,7 +228,7 @@ void Follower_Ant::set_destination(const GridPos& pos) {
 void Follower_Ant::update(TDT4102::AnimationWindow& window) {
     update_position();
     update_animation();
-    window.draw_image(drawn_pos, image, size, size);
+    window.draw_image(drawn_pos, const_cast<TDT4102::Image&>(*image), size, size);
 }
 
 void Follower_Ant::update_position() {
@@ -251,13 +264,13 @@ Cloud::Cloud(int input_direction, double input_speed, GridPos grid_position)
     : Animated_Ant(input_direction, input_speed, grid_position) {
     start_true_pos_x = grid_position.x;
     start_true_pos_y = grid_position.y;
-    image = cloud_image;
+    image = &cloud_image;
 }
 
 void Cloud::update(TDT4102::AnimationWindow& window) {
     update_position();
     check_for_teleport();
-    window.draw_image(drawn_pos, image, size * 2 * (speed + 0.8), size * (speed + 0.8));
+    window.draw_image(drawn_pos, const_cast<TDT4102::Image&>(*image), size * 2 * (speed + 0.8), size * (speed + 0.8));
 }
 
 void Cloud::update_animation() {

@@ -6,7 +6,7 @@
 #include "random"
 #include <cstdlib>
 #include "ant.h"
-#include "image.h"
+#include "resources.h"
 
 // This now returns a GridPos instead of std::vector<int>
 GridPos generate_food_postion();

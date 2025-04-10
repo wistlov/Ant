@@ -148,14 +148,11 @@ void play_game() {
         }
 
         else if (game_screen == "game") {
-
             win.draw_grid();
             win.check_input();
-
             for (int i = 0; i < food_list.size(); i++) {
                 food_list.at(i).update(win);
             }
-
             for (int i = 0; i < player_ant_list.size(); i++) {
                 player_ant_list.at(i).update(win);
                 player_ant_list.at(i).speed = player_ant_speed;
@@ -190,9 +187,8 @@ void play_game() {
                     get_name_and_score(saved_scores_and_names);
                 }
             }
-
             //------------Draws a cute ant and the score to the right of it, in the top left cornor
-            win.draw_image(TDT4102::Point{0,0}, Cute_ant, 32, 32);
+            win.draw_image(TDT4102::Point{0,0}, const_cast<TDT4102::Image&>(Cute_ant), 32, 32);
             win.draw_text(TDT4102::Point{32,0}, std::to_string(score), TDT4102::Color::black, 24, TDT4102::Font::courier_bold_italic);
 
             //--------------------------------------------
@@ -206,8 +202,9 @@ void play_game() {
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
             Escape_pause_menu(win);
-        }
 
+        }
+        
         else if(game_screen == "paused"){
             win.draw_grid();
             paused_menu(832, 832, win);

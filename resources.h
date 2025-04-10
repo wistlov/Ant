@@ -11,25 +11,25 @@ extern double player_ant_speed;
 extern int score;
 
 // ant images
-extern TDT4102::Image Cute_ant;
+extern const TDT4102::Image Cute_ant;
 
-extern TDT4102::Image Left1;
-extern TDT4102::Image Left2;
+extern const TDT4102::Image Left1;
+extern const TDT4102::Image Left2;
 
-extern TDT4102::Image Right1;
-extern TDT4102::Image Right2;
+extern const TDT4102::Image Right1;
+extern const TDT4102::Image Right2;
 
-extern TDT4102::Image Up1_Left;
-extern TDT4102::Image Up2_Left;
-extern TDT4102::Image Up1_Right;
-extern TDT4102::Image Up2_Right;
+extern const TDT4102::Image Up1_Left;
+extern const TDT4102::Image Up2_Left;
+extern const TDT4102::Image Up1_Right;
+extern const TDT4102::Image Up2_Right;
 
-extern TDT4102::Image Down1_Left;
-extern TDT4102::Image Down2_Left;
-extern TDT4102::Image Down1_Right;
-extern TDT4102::Image Down2_Right;
+extern const TDT4102::Image Down1_Left;
+extern const TDT4102::Image Down2_Left;
+extern const TDT4102::Image Down1_Right;
+extern const TDT4102::Image Down2_Right;
 
-extern TDT4102::Image cloud_image;
+extern const TDT4102::Image cloud_image;
 
 //Food images
 
