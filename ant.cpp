@@ -165,6 +165,14 @@ void Player_Ant::update_position() {
     }
 }
 
+bool Player_Ant::check_wall_collision() {
+    if (true_pos.x < 0 || true_pos.x > 12 || true_pos.y < 0 || true_pos.y > 12) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 bool Player_Ant::check_for_food(GridPos food_pos) {
     return (true_pos.x == food_pos.x && true_pos.y == food_pos.y);
 }

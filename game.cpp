@@ -145,6 +145,10 @@ void play_game() {
                 if (!follower_ant_list.empty()) {
                     follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
                 }
+                if (player_ant_list.at(i).check_wall_collision()) {
+                    game_over();
+                    win.close(); //-----------------NB!-------------TEMPORARY SOLUTION-----------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<
+                }
 
                 if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
                     food_list.erase(food_list.begin());
@@ -163,6 +167,10 @@ void play_game() {
                 if (i > 0) {
                     follower_ant_list.at(i).set_destination(follower_ant_list.at(i-1).true_pos);
                     follower_ant_list.at(i).speed = player_ant_speed;
+                }
+                if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 0) {
+                    game_over();
+                    win.close(); //-----------------NB!-------------TEMPORARY SOLUTION-----------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<
                 }
             }
 

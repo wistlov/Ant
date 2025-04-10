@@ -93,8 +93,12 @@ class Player_Ant : public Ants {
         void check_input();
         void update(AnimationWindow& window);
 
+        // Returns true if the player has hit the edge, False otherwise.
+        bool check_wall_collision();
+
         // Returns true if it is on food
         bool check_for_food(GridPos food_pos);
+
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 

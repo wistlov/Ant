@@ -226,6 +226,12 @@ void quit() {
     game_screen = "quit";
 }
 
+//Function for when its game over
+void game_over() {
+    std::cout << "Game over" << std::endl;
+    game_screen == "highscore";
+}
+
 // The graphics window class
 void Ant_Window::make_grid() {
     for (int i = 0; i < WIDTH; i+=square_size) {
