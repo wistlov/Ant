@@ -11,6 +11,8 @@ int score = 1;
 
 
 // Ant images
+TDT4102::Image Cute_ant("Images/cute_ant.gif");
+
 TDT4102::Image Left1("Images/cute_ant.gif");
 TDT4102::Image Left2("Images/cute_ant_move2.gif");
 
