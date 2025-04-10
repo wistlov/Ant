@@ -26,8 +26,10 @@ class Food {
         // The current image the ant is supposed to be drawn as
         TDT4102::Image image;
 
-        // Size of the image as well as each square
+        // Size of the image as well as each square + food animation 
         int size;
+        double food_puls;
+        int food_control;
         
         void update(TDT4102::AnimationWindow& window); // This updates all variables that may change each frame.
         void new_position(); // Changes postion after need

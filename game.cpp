@@ -180,8 +180,9 @@ void play_game() {
                 }
             }
 
-            //--------------------------------------------
-            
+            //------------Draws a cute ant and the score to the right of it, in the top left cornor
+            win.draw_image(TDT4102::Point{0,0}, Cute_ant, 32, 32);
+            win.draw_text(TDT4102::Point{32, 0}, std::to_string(score), TDT4102::Color::black, 24, TDT4102::Font::courier_bold_italic);
 
             //--------------------------------------------
             play_button.setVisible(false); // Hides the button while the game is running

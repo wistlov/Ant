@@ -11,6 +11,8 @@ extern double player_ant_speed;
 extern int score;
 
 // ant images
+extern TDT4102::Image Cute_ant;
+
 extern TDT4102::Image Left1;
 extern TDT4102::Image Left2;
 
