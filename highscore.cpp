@@ -36,15 +36,27 @@ void highscore_menu(int width, int height, AnimationWindow& window, std::vector<
     for(int i = 0; i < 17; i ++){
         window.draw_line(TDT4102::Point{220,(i*30)+220}, TDT4102::Point{610,(i*30)+220}, TDT4102::Color:: black);
     }
+    window.draw_text(TDT4102::Point{0,0}, "Press Esc: to go back", TDT4102::Color::black, 16, TDT4102::Font::courier_bold);
 }
 
 void difficulty_menu(int width, int height, AnimationWindow& window){
     window.draw_image(TDT4102::Point{0,0}, MC_background, 832, 832);
-    window.draw_text(TDT4102::Point{110,360}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{0,0}, "Press Esc: to go back", TDT4102::Color::black, 16, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{110,300}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::courier_bold);
 }
 
 void control_menu(int width, int height, AnimationWindow& window){
-    //window.draw_image(TDT4102::Point{0,0}, MC_controls, 832, 832);
+    window.draw_image(TDT4102::Point{0,0}, MC_controls, 832, 832);
+    window.draw_image(TDT4102::Point{450,400}, Arrows, 360, 200);
+    window.draw_text(TDT4102::Point{60,450}, "Movement:", TDT4102::Color::white, 80, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{160,160}, "Controls", TDT4102::Color::white, 120, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{85,260}, "Press the arrowkeys to move the ant ", TDT4102::Color::white, 34, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{160,290}, "and to proceed to the game", TDT4102::Color::white, 34, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{110,320}, "Pressing the Escape button will ", TDT4102::Color::white, 34, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{80,350}, "pause the game, and give you options", TDT4102::Color::white, 34, TDT4102::Font::courier_bold);
+    if(window.is_key_down(KeyboardKey::RIGHT) | window.is_key_down(KeyboardKey::LEFT) | window.is_key_down(KeyboardKey::DOWN) | window.is_key_down(KeyboardKey::UP) | window.is_key_down(KeyboardKey::ESCAPE)){
+        game_screen = "game";
+    }
 }
 
 void paused_menu(int width, int height, AnimationWindow& window){

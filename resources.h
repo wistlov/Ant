@@ -41,3 +41,4 @@ extern TDT4102::Image Spagheti;
 extern TDT4102::Image MC_background;
 extern TDT4102::Image MC_controls;
 extern TDT4102::Image MC_ramme;
+extern TDT4102::Image Arrows;

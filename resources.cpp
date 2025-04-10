@@ -41,3 +41,4 @@ TDT4102::Image Spagheti("Images/Spagheti.png");
 TDT4102::Image MC_background("Images/mc_background.jpg");
 TDT4102::Image MC_controls("Images/controls_background.jpg");
 TDT4102::Image MC_ramme("Images/mc_ramme.jpg");
+TDT4102::Image Arrows("Images/arrows.png");

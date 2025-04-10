@@ -177,8 +177,8 @@ void Escape_pause_menu(AnimationWindow& window) {
         game_screen = "paused";
     }}
 
-void quit_menu(){
-
+void quit_menu(AnimationWindow& window){
+    window.draw_text(TDT4102::Point{0,0}, "Press Esc: to go back", TDT4102::Color::black, 16, TDT4102::Font::courier_bold);
 }
 
 // Callbacks
@@ -196,17 +196,17 @@ void highscore() {
 void easy() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 1.0;
-    game_screen = "controls";
+    game_screen = "control";
 }
 void normal() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 1.5;
-    game_screen = "controls";
+    game_screen = "control";
 }
 void hard() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 2.0;
-    game_screen = "controls";
+    game_screen = "control";
 }
 void resume() {
     std::cout << "resume" << std::endl;

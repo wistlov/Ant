@@ -131,10 +131,8 @@ void play_game() {
             Escape_menu(win);
         }
 
-        else if(game_screen == "controls"){
+        else if(game_screen == "control"){
             control_menu(832, 832, win);
-
-
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
@@ -236,6 +234,7 @@ void play_game() {
         }
 
         else if (game_screen == "quit"){
+            quit_menu(win);
             win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
             win.draw_text(TDT4102::Point{0,200}, "ARE YOU SURE?", TDT4102::Color::black, 100, TDT4102::Font::times_bold);
             play_button.setVisible(false);
