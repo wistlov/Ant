@@ -13,6 +13,7 @@ struct GridPos {
     int y;
 };
 
+
 // Here are all the variations of ants
 
 // The main ant class. All other ants inherits from this one.
@@ -36,7 +37,23 @@ class Ants {
         int direction;
 
         // This will save the last button the player pressed to change the direction of the ant. 
-        std::string saved_direction;
+        enum class TurnDirection { Up, Down, Left, Right }; // Made this to stop a memory leak.
+        TurnDirection saved_direction;
+        // To convert from string to the enum class
+        TurnDirection direction_from_input(const std::string& input) {
+            if (input == "up") {
+                return TurnDirection::Up;
+            }
+            else if (input == "down") {
+                return TurnDirection::Down;
+            }
+            else if (input == "left") {
+                return TurnDirection::Left;
+            }
+            else if (input == "right") {
+                return TurnDirection::Right;
+            } else throw std::invalid_argument("Invalid direction input string");
+        }
 
         // An internal clock for each ant that can be used to know the time since an event for the specific ant. Counted in frames, where 60 is one second.
         // This will be used for the animation
@@ -59,7 +76,7 @@ class Ants {
         int get_speed();
         double get_internal_time();
 
-        void change_direction(std::string direction_change); // This changes the direction the ant is walking
+        void change_direction(TurnDirection dir); // This changes the direction the ant is walking
 
         void update(TDT4102::AnimationWindow& window); // This updates all variables that may change each frame.
 
@@ -68,7 +85,7 @@ class Ants {
         // When this change happens, the direction of the ant can be changed.
         // --- The update_position function is currently based on the Player_Ant. Can be modified to work for Follower_Ant as well.
 
-        void update_animation(); // This will check to see if the ant should change it sprite in order to animate it. 
+        void update_animation(); // This will check to see if the ant should change it sprite in order to animate it.
         // The ant will change its image every 6 units (pixels) walked.
 };
 
@@ -119,6 +136,9 @@ class Follower_Ant : public Player_Ant {
 
         // It has a modified update position function so it doesnt change direction when its not supposed to
         void update_position();
+
+        GridPos last_target;
+        bool has_target = false;
 };
 
 // This is a class for the clouds. Clouds are Ants, that should be obvious.
