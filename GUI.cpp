@@ -111,6 +111,20 @@ Button make_resume_button(int posx, int posy, int width, int height, AnimationWi
     return resume_button;
 }
 
+Button make_restart_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "Restart";
+    TDT4102::Button restart_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    restart_button.setButtonColor(TDT4102::Color::red);
+    restart_button.setButtonColorHover(TDT4102::Color::orange_red);
+    restart_button.setButtonColorActive(TDT4102::Color::dark_red);
+    restart_button.setLabelColor(TDT4102::Color::white);
+    restart_button.setCallback(restart); //This is what happens when the button is clicked.
+    return restart_button;
+}
+
 Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window) {
     const TDT4102::Point buttonPosition {posx, posy};
     const unsigned int buttonWidth = width;
@@ -196,6 +210,10 @@ void hard() {
 }
 void resume() {
     std::cout << "resume" << std::endl;
+    game_screen = "game";
+}
+void restart() {
+    std::cout << "restart" << std::endl;
     game_screen = "game";
 }
 void main_menu() {

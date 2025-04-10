@@ -69,10 +69,14 @@ void play_game() {
     Button hard_play_button = make_hard_play_button(590, 500, 200, 100, win);
     win.add(hard_play_button); // This adds the button, naturally
 
-    Button resume_button = make_resume_button(194, 280, 200, 100, win);
+    Button resume_button = make_resume_button(66, 280, 200, 100, win);
     win.add(resume_button); // This adds the button, naturally
 
-    Button main_menu_button = make_main_menu_button(448, 280, 200, 100, win);
+    Button restart_button = make_restart_button(320, 280, 200, 100, win);
+    win.add(restart_button); // This adds the button, naturally
+
+
+    Button main_menu_button = make_main_menu_button(576, 280, 200, 100, win);
     win.add(main_menu_button); // This adds the button, naturally
 
     // Here are the animated ants added
@@ -115,13 +119,14 @@ void play_game() {
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
             resume_button.setVisible(false);
+            restart_button.setVisible(false);
             main_menu_button.setVisible(false);
         }
 
 
         else if(game_screen == "difficulty"){
             difficulty_menu(832, 832, win);
-
+            
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
@@ -129,6 +134,7 @@ void play_game() {
             normal_play_button.setVisible(true);
             hard_play_button.setVisible(true);
             resume_button.setVisible(false);
+            restart_button.setVisible(false);
             main_menu_button.setVisible(false);
             Escape_menu(win);
         }
@@ -168,6 +174,7 @@ void play_game() {
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
             resume_button.setVisible(false);
+            restart_button.setVisible(false);
             main_menu_button.setVisible(false);
             Escape_pause_menu(win);
         }
@@ -183,6 +190,7 @@ void play_game() {
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
             resume_button.setVisible(true);
+            restart_button.setVisible(true);
             main_menu_button.setVisible(true);
         }
 
@@ -198,6 +206,7 @@ void play_game() {
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
             resume_button.setVisible(false);
+            restart_button.setVisible(false);
             main_menu_button.setVisible(false);
             Escape_menu(win);
         }
@@ -212,6 +221,7 @@ void play_game() {
             normal_play_button.setVisible(false);
             hard_play_button.setVisible(false);
             resume_button.setVisible(false);
+            restart_button.setVisible(false);
             main_menu_button.setVisible(false);
             Escape_menu(win);
         }
