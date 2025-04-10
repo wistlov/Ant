@@ -5,7 +5,9 @@
 #include "widgets/Button.h"
 #include "ant.h"
 #include <iostream>
+#include "save_and_load.h"
 
-void highscore_menu(int width, int height, AnimationWindow& window);
+
+void highscore_menu(int width, int height, AnimationWindow& window,std::vector<std::string> scores);
 void difficulty_menu(int width, int height, AnimationWindow& window);
 void paused_menu(int width, int height, AnimationWindow& window);

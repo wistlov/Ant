@@ -229,6 +229,7 @@ void quit() {
 //Function for when its game over
 void game_over() {
     std::cout << "Game over" << std::endl;
+    std::cout << "Score: "<< score << std::endl;
     game_screen == "highscore";
 }
 

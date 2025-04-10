@@ -48,6 +48,11 @@ void play_game() {
     // This will make the GUI elements
     Ant_Window win;
 
+    win.draw_text(TDT4102::Point{1,400}, "Write your name in the terminal", TDT4102::Color::black, 60, TDT4102::Font::times_bold);
+    win.next_frame();
+    save_score(); // This is to test highscores----------------------------------------------------------------------------------------------------
+    std::cout<<"Go back to the screen and you should be in the game!"<<std::endl;
+
     // The stuff before the while loop is what is initiated before the game begins.
     Button play_button = make_play_button(266, 150, 300, 100, win);
     win.add(play_button); // This adds the button, naturally
@@ -87,8 +92,9 @@ void play_game() {
     // Here the player is added
     make_player_ant(player_ant_list);
 
-    // Here the follower ants are added
-    //make_follower_ant(follower_ant_list, GridPos{7, 6}, 1);
+    // Makes the vector for the scores
+    std::vector<std::string> saved_scores_and_names;
+    get_name_and_score(saved_scores_and_names);
 
     while (!win.should_close()) {
 
@@ -176,7 +182,7 @@ void play_game() {
 
             //------------Draws a cute ant and the score to the right of it, in the top left cornor
             win.draw_image(TDT4102::Point{0,0}, Cute_ant, 32, 32);
-            win.draw_text(TDT4102::Point{32, 0}, std::to_string(score), TDT4102::Color::black, 24, TDT4102::Font::courier_bold_italic);
+            win.draw_text(TDT4102::Point{32,0}, std::to_string(score), TDT4102::Color::black, 24, TDT4102::Font::courier_bold_italic);
 
             //--------------------------------------------
             play_button.setVisible(false); // Hides the button while the game is running
@@ -206,7 +212,7 @@ void play_game() {
         }
 
         else if (game_screen == "highscore"){
-            highscore_menu(832, 832, win);
+            highscore_menu(832, 832, win, saved_scores_and_names);
             background_music();
 
             play_button.setVisible(false);

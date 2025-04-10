@@ -1,7 +1,7 @@
 #include "highscore.h"
 
 
-void highscore_menu(int width, int height, AnimationWindow& window){
+void highscore_menu(int width, int height, AnimationWindow& window, std::vector<std::string> scores){
     //Makes the background for the highscore menu
     window.draw_rectangle(TDT4102::Point{0,0}, width, height, TDT4102:: Color::sandy_brown); 
     window.draw_image(TDT4102::Point{0,0}, MC_ramme, 832, 832);
@@ -14,6 +14,11 @@ void highscore_menu(int width, int height, AnimationWindow& window){
     window.draw_text(TDT4102::Point{290,200}, "Name", TDT4102::Color::black, 14, TDT4102::Font::times_bold_italic);
     window.draw_text(TDT4102::Point{440,200}, "Score", TDT4102::Color::black, 14, TDT4102::Font::times_bold_italic);
     window.draw_text(TDT4102::Point{540,200}, "Quit-time", TDT4102::Color::black, 14, TDT4102::Font::times_bold_italic);
+
+    // Here are the names and scores printed
+    for (int i = 0; i<scores.size(); i++) {
+        window.draw_text(TDT4102::Point{290,230 + i*30}, scores.at(i), TDT4102::Color::black, 14, TDT4102::Font::times_bold_italic);
+    }
 
     //Makes the table
     //Vertical lines
