@@ -131,6 +131,22 @@ void play_game() {
             Escape_menu(win);
         }
 
+        else if(game_screen == "controls"){
+            control_menu(832, 832, win);
+
+
+            play_button.setVisible(false);
+            highscore_button.setVisible(false);
+            quit_button.setVisible(false);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            restart_button.setVisible(false);
+            main_menu_button.setVisible(false);
+            Escape_menu(win);
+        }
+
         else if (game_screen == "game") {
 
             win.draw_grid();

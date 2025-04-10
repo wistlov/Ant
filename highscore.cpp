@@ -43,6 +43,10 @@ void difficulty_menu(int width, int height, AnimationWindow& window){
     window.draw_text(TDT4102::Point{110,360}, "Difficulty", TDT4102::Color::black, 120, TDT4102::Font::courier_bold);
 }
 
+void control_menu(int width, int height, AnimationWindow& window){
+    //window.draw_image(TDT4102::Point{0,0}, MC_controls, 832, 832);
+}
+
 void paused_menu(int width, int height, AnimationWindow& window){
     window.draw_text(TDT4102::Point{247,120}, "Paused", TDT4102::Color::black, 120, TDT4102::Font::times_bold_italic);
     

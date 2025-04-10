@@ -196,17 +196,17 @@ void highscore() {
 void easy() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 1.0;
-    game_screen = "game";
+    game_screen = "controls";
 }
 void normal() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 1.5;
-    game_screen = "game";
+    game_screen = "controls";
 }
 void hard() {
     std::cout << "difficulty" << std::endl;
     player_ant_speed = 2.0;
-    game_screen = "game";
+    game_screen = "controls";
 }
 void resume() {
     std::cout << "resume" << std::endl;
