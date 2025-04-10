@@ -231,7 +231,10 @@ void game_over(AnimationWindow& win) {
     std::cout << "Game over" << std::endl;
     std::cout << "Score: "<< score << std::endl;
     game_screen = "highscore";
-    win.draw_text(TDT4102::Point{1,400}, "Write your name in the terminal", TDT4102::Color::black, 60, TDT4102::Font::times_bold);
+    win.draw_text(TDT4102::Point{248,200}, "GAME OVER", TDT4102::Color::yellow, 60, TDT4102::Font::times_bold);
+    win.draw_text(TDT4102::Point{250,200}, "GAME OVER", TDT4102::Color::black, 60, TDT4102::Font::times_bold);
+    win.draw_text(TDT4102::Point{50,300}, "Write your name in the terminal", TDT4102::Color::yellow, 60, TDT4102::Font::times_bold);
+    win.draw_text(TDT4102::Point{52,300}, "Write your name in the terminal", TDT4102::Color::black, 60, TDT4102::Font::times_bold);
     win.next_frame();
     save_score(); // This is to test highscores----------------------------------------------------------------------------------------------------
     std::cout<<"Go back to the screen to see your score in the leaderboard"<<std::endl;

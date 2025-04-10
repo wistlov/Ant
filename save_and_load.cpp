@@ -22,7 +22,7 @@ void save_score() {
     }
 }
 
-void get_name_and_score(std::vector<std::string>& score_list) {
+void get_name_and_score(std::vector<std::pair<std::string, int>>& score_list) {
 
     std::ifstream file(save_path);
 
@@ -32,7 +32,8 @@ void get_name_and_score(std::vector<std::string>& score_list) {
 
         // Read each line from the file
         while (file >> name >> score) {
-            score_list.push_back(name+" - "+std::to_string(score));
+            //score_list.push_back(name+" - "+std::to_string(score));
+            score_list.push_back({name, score});
         }
 
         file.close();

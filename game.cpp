@@ -88,7 +88,7 @@ void play_game() {
     make_player_ant(player_ant_list);
 
     // Makes the vector for the scores
-    std::vector<std::string> saved_scores_and_names;
+    std::vector<std::pair<std::string, int>> saved_scores_and_names;
     get_name_and_score(saved_scores_and_names);
 
     while (!win.should_close()) {
