@@ -31,16 +31,6 @@ public:
         int size;
         double food_puls;
         int food_control;
-        
-        void update(TDT4102::AnimationWindow& window); // This updates all variables that may change each frame.
-        void new_position(); // Changes postion after need
-
-        Food();
-
-        int random_food();
-
-    // Size of the image as well as each square
-    int size;
 
     // Constructor
     Food();
