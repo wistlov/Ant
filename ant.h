@@ -63,7 +63,7 @@ class Ants {
         int animation_frame;
 
         // The current image the ant is supposed to be drawn as
-        TDT4102::Image image;
+        const TDT4102::Image* image = &Left1;
 
         // Size of the image as well as each square
         int size;
