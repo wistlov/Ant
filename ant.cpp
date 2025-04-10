@@ -93,12 +93,18 @@ void Ants::update_animation() {
         internal_time = 0;
         animation_frame = 1 - animation_frame;
         switch (direction) {
-            case 1: image = (animation_frame == 0 ? Left1 : Left2); break;
-            case 2: image = (animation_frame == 0 ? Right1 : Right2); break;
-            case 3: image = (animation_frame == 0 ? Up1_Left : Up2_Left); break;
-            case 4: image = (animation_frame == 0 ? Up1_Right : Up2_Right); break;
-            case 5: image = (animation_frame == 0 ? Down1_Left : Down2_Left); break;
-            case 6: image = (animation_frame == 0 ? Down1_Right : Down2_Right); break;
+            case 1: image = (animation_frame == 0 ? Left1 : Left2); 
+                break;
+            case 2: image = (animation_frame == 0 ? Right1 : Right2); 
+                break;
+            case 3: image = (animation_frame == 0 ? Up1_Left : Up2_Left); 
+                break;
+            case 4: image = (animation_frame == 0 ? Up1_Right : Up2_Right); 
+                break;
+            case 5: image = (animation_frame == 0 ? Down1_Left : Down2_Left); 
+                break;
+            case 6: image = (animation_frame == 0 ? Down1_Right : Down2_Right); 
+                break;
         }
     }
 }
