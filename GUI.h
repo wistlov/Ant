@@ -40,7 +40,7 @@ void hard();
 void resume();
 void restart();
 void main_menu();
-void game_over();
+void game_over(AnimationWindow& win);
 
 
 // The class for the graphics window

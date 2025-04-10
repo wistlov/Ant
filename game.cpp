@@ -48,11 +48,6 @@ void play_game() {
     // This will make the GUI elements
     Ant_Window win;
 
-    win.draw_text(TDT4102::Point{1,400}, "Write your name in the terminal", TDT4102::Color::black, 60, TDT4102::Font::times_bold);
-    win.next_frame();
-    save_score(); // This is to test highscores----------------------------------------------------------------------------------------------------
-    std::cout<<"Go back to the screen and you should be in the game!"<<std::endl;
-
     // The stuff before the while loop is what is initiated before the game begins.
     Button play_button = make_play_button(266, 150, 300, 100, win);
     win.add(play_button); // This adds the button, naturally
@@ -152,8 +147,8 @@ void play_game() {
                     follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
                 }
                 if (player_ant_list.at(i).check_wall_collision()) {
-                    game_over();
-                    win.close(); //-----------------NB!-------------TEMPORARY SOLUTION-----------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<
+                    game_over(win);
+                    get_name_and_score(saved_scores_and_names);
                 }
 
                 if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
@@ -175,8 +170,8 @@ void play_game() {
                     follower_ant_list.at(i).speed = player_ant_speed;
                 }
                 if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 0) {
-                    game_over();
-                    win.close(); //-----------------NB!-------------TEMPORARY SOLUTION-----------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<
+                    game_over(win);
+                    get_name_and_score(saved_scores_and_names);
                 }
             }
 

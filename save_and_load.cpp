@@ -12,12 +12,12 @@ void save_score() {
     std::cout << "Enter a name: ";
     std::getline(std::cin, name);
 
-    // checks if it works. Maybe put error handling here??
-    if (file.is_open()) {
+    // Error handling 1! :D
+    try {
         file << name << " " << score << std::endl;
         file.close();
-    } else {
-        std::cerr << "Unable to open file." << std::endl;
+    } catch(const std::ofstream::failure& e) {
+        std::cerr << "Unable to open file, I think" << std::endl;
         // This is where error handling could be
     }
 }
@@ -26,7 +26,7 @@ void get_name_and_score(std::vector<std::string>& score_list) {
 
     std::ifstream file(save_path);
 
-    if (file.is_open()) {
+    try {
         std::string name;
         int score;
 
@@ -36,8 +36,8 @@ void get_name_and_score(std::vector<std::string>& score_list) {
         }
 
         file.close();
-    } else {
-        std::cerr << "Unable to open file.\n";
-        // Second error handling??
+    } catch(const std::ofstream::failure& e) {
+        // Second error handling! :D
+        std::cerr << "Unable to open file." << std::endl;;
     }
 }
