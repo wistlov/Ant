@@ -121,8 +121,7 @@ void play_game() {
 
         else if(game_screen == "difficulty"){
             difficulty_menu(832, 832, win);
-            win.wait_for(0.2);
-
+            
             play_button.setVisible(false); // Hides the button while the game is running
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
