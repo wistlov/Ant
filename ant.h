@@ -104,7 +104,7 @@ class Follower_Ant : public Player_Ant {
         bool move = false;
 
         // Function for setting a new destination
-        void set_destination(std::vector<int>& pos);
+        void set_destination(const std::vector<int>& pos);
 
         // The update function needs to be changed as well so it doesnt take in button inputs
         void update(AnimationWindow& window);
