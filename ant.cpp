@@ -286,13 +286,14 @@ void Player_Ant::update(AnimationWindow& window) {
     window.draw_image(drawn_pos, image, size, size);
 }
 
+
 //----------------------------------------------------------------------------------------------------------------------
 // Constructor for Follower Ant
 Follower_Ant::Follower_Ant (int input_direction, double input_speed, std::vector<int> grid_position, int input_id) : Player_Ant(input_direction, input_speed, grid_position) {
     ant_id = input_id;
 }
 
-void Follower_Ant::set_destination(std::vector<int>& pos) {
+void Follower_Ant::set_destination(const std::vector<int>& pos) {
     move = true; // This allows the follower to move
     if (pos.at(0) > true_pos.at(0)) {
         change_direction("right");
