@@ -149,12 +149,14 @@ void play_game() {
 
             for (int i = 0; i < player_ant_list.size(); i++) {
                 player_ant_list.at(i).update(win);
+                player_ant_list.at(i).speed = player_ant_speed;
                 follower_ant_list.at(0).set_destination(player_ant_list.at(i).true_pos);
             }
             for (int i = 0; i < follower_ant_list.size(); i++) {
                 follower_ant_list.at(i).update(win);
                 if (i > 0) {
                     follower_ant_list.at(i).set_destination(follower_ant_list.at(i-1).true_pos);
+                    follower_ant_list.at(i).speed = player_ant_speed;
                 }
             }
 

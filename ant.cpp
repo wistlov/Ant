@@ -336,8 +336,6 @@ void Follower_Ant::set_destination(std::vector<int>& pos) {
 void Follower_Ant::update(AnimationWindow& window) {
     update_position();
     update_animation();
-    std::cout<<true_pos.at(0)<<","<<true_pos.at(1)<<std::endl;
-    window.draw_circle(drawn_pos,size/8,TDT4102::Color::blue_violet);
     window.draw_image(drawn_pos, image, size, size);
 }
 //-----------------------------------------------------------------------------------------------------------------------
