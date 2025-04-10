@@ -1,228 +1,124 @@
 #include "ant.h"
 
-
 std::vector<Follower_Ant> follower_ant_list; // This houses the follower ants
-
 
 //--------------------------------------------------------------------------------//
 // Constructor for Ants
-Ants::Ants (int input_direction, double input_speed, std::vector<int> grid_position) {
-    // Decides which image to be used in the animation given a direction
-   int frame_step = 0;
+Ants::Ants(int input_direction, double input_speed, GridPos grid_position) {
+    int frame_step = 0;
+    size = 64;
+    direction = input_direction;
+    speed = input_speed;
+    true_pos = grid_position;
+    distance = 0.0;
+    animation_frame = 0;
 
-   // Variables
-   size = 64; // Ant size (x*x), where x is the size. This is also the size of a grid square. If that is not the case, the code will not work.
-   direction = input_direction; // Sets the direction of the Ant
-   speed = input_speed; // Sets the starting speed of the Ant
-   true_pos = grid_position; // Sets the starting grid position
-   distance = 0.0; // Sets the distance for the true_pos the ant is.
-   animation_frame = 0; // Sets which fram the ant's animation starts at
-   // The drawn_pos does not need to be given a number as this should be calculated based on its true_pos, distance and speed.
-
-   // Set initial image
-   if (direction == 1) image = Left1;
-   else if (direction == 2) image = Right1;
-   else if (direction == 3) image = Up1_Left;
-   else if (direction == 4) image = Up1_Right;
-   else if (direction == 5) image = Down1_Left;
-   else if (direction == 6) image = Down1_Right;   
+    if (direction == 1) image = Left1;
+    else if (direction == 2) image = Right1;
+    else if (direction == 3) image = Up1_Left;
+    else if (direction == 4) image = Up1_Right;
+    else if (direction == 5) image = Down1_Left;
+    else if (direction == 6) image = Down1_Right;
 }
 
-// Functions for Ants
-// Get functions
-int Ants::get_direction() {
-    return direction;
-}
+int Ants::get_direction() { return direction; }
+int Ants::get_speed() { return speed; }
+double Ants::get_internal_time() { return internal_time; }
 
-int Ants::get_speed() {
-    return speed;
-}
-
-double Ants::get_internal_time() {
-    return internal_time;
-}
-
-// direction: Left(1), Right(2), Up_Left(3), Up_Right(4), Down_Left(5), Down_Right(6)
-// direction_change: left, right, up, down
 void Ants::change_direction(std::string direction_change) {
     if (direction == 1) {
-        if (direction_change == "up") {
-            direction = 3;
-        } else if (direction_change == "down") {
-            direction = 5;
-        }
+        if (direction_change == "up") direction = 3;
+        else if (direction_change == "down") direction = 5;
     } else if (direction == 2) {
-        if (direction_change == "up") {
-            direction = 4;
-        } else if (direction_change == "down") {
-            direction = 6;
-        }
+        if (direction_change == "up") direction = 4;
+        else if (direction_change == "down") direction = 6;
     } else if (direction == 3 || direction == 4) {
-        if (direction_change == "left") {
-            direction = 1;
-        } else if (direction_change == "right") {
-            direction = 2;
-        }
+        if (direction_change == "left") direction = 1;
+        else if (direction_change == "right") direction = 2;
     } else if (direction == 5 || direction == 6) {
-        if (direction_change == "left") {
-            direction = 1;
-        } else if (direction_change == "right") {
-            direction = 2;
-        }
-    } 
+        if (direction_change == "left") direction = 1;
+        else if (direction_change == "right") direction = 2;
+    }
 }
-
 
 void Ants::update_position() {
-    if (direction == 1) { // Left
+    if (direction == 1) {
         drawn_pos.x -= speed;
         distance += speed;
-        drawn_pos.x = true_pos.at(0)*size - distance;
-        drawn_pos.y = true_pos.at(1)*size;
-        // The lines above updates the visualized position of the ant.
-
-        if (distance >= size) { // This happens when an ant reaches the center of a square.
-            true_pos.at(0) -= 1;
+        drawn_pos.x = true_pos.x * size - distance;
+        drawn_pos.y = true_pos.y * size;
+        if (distance >= size) {
+            true_pos.x -= 1;
             distance = 0;
-            drawn_pos.x = true_pos.at(0)*size;
-
-            change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+            drawn_pos.x = true_pos.x * size;
+            change_direction(saved_direction);
         }
-
-    } else if (direction == 2) { // Right
+    } else if (direction == 2) {
         drawn_pos.x += speed;
         distance += speed;
-        drawn_pos.x = true_pos.at(0)*size + distance;
-        drawn_pos.y = true_pos.at(1)*size;
-
-        if (distance >= size) { // This happens when an ant reaches the center of a square.
-            true_pos.at(0) += 1;
+        drawn_pos.x = true_pos.x * size + distance;
+        drawn_pos.y = true_pos.y * size;
+        if (distance >= size) {
+            true_pos.x += 1;
             distance = 0;
-            drawn_pos.x = true_pos.at(0)*size;
-
-            change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+            drawn_pos.x = true_pos.x * size;
+            change_direction(saved_direction);
         }
-
-    } else if (direction == 3 || direction == 4) { // Up
+    } else if (direction == 3 || direction == 4) {
         drawn_pos.y -= speed;
         distance += speed;
-        drawn_pos.y = true_pos.at(1)*size - distance;
-        drawn_pos.y = true_pos.at(1)*size;
-        // The lines above updates the visualized position of the ant.
-
-        if (distance >= size) { // This happens when an ant reaches the center of a square.
-            true_pos.at(1) -= 1;
+        drawn_pos.y = true_pos.y * size;
+        if (distance >= size) {
+            true_pos.y -= 1;
             distance = 0;
-            drawn_pos.y = true_pos.at(1)*size;
-
-            change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+            drawn_pos.y = true_pos.y * size;
+            change_direction(saved_direction);
         }
-        
-    } else if (direction == 5 || direction == 6) { // Down
+    } else if (direction == 5 || direction == 6) {
         drawn_pos.y += speed;
         distance += speed;
-        drawn_pos.y = true_pos.at(1)*size + distance;
-        drawn_pos.y = true_pos.at(1)*size;
-        // The lines above updates the visualized position of the ant.
-
-        if (distance >= size) { // This happens when an ant reaches the center of a square.
-            true_pos.at(1) += 1;
+        drawn_pos.y = true_pos.y * size;
+        if (distance >= size) {
+            true_pos.y += 1;
             distance = 0;
-            drawn_pos.y = true_pos.at(1)*size;
-
-            change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
-        }
-    } 
-}
-
-
-// This functions animates the ant
-void Ants::update_animation() {
-    internal_time += 1*speed;
-    if (internal_time >= 12) {
-        internal_time = 0;
-        if (direction == 1) { // Left
-            if (animation_frame == 0) {
-                image = Left2;
-                animation_frame = 1;
-            } else {
-                image = Left1;
-                animation_frame = 0;
-            }
-        } else if (direction == 2) { // Right
-            if (animation_frame == 0) {
-                image = Right2;
-                animation_frame = 1;
-            } else {
-                image = Right1;
-                animation_frame = 0;
-            }
-        } else if (direction == 3) { // Up Left
-            if (animation_frame == 0) {
-                image = Up2_Left;
-                animation_frame = 1;
-            } else {
-                image = Up1_Left;
-                animation_frame = 0;
-            }
-        } else if (direction == 4) { // Up Right
-            if (animation_frame == 0) {
-                image = Up2_Right;
-                animation_frame = 1;
-            } else {
-                image = Up1_Right;
-                animation_frame = 0;
-            }
-        } else if (direction == 5) { // Down Left
-            if (animation_frame == 0) {
-                image = Down2_Left;
-                animation_frame = 1;
-            } else {
-                image = Down1_Left;
-                animation_frame = 0;
-            }
-        } else if (direction == 6) { // Down Right
-            if (animation_frame == 0) {
-                image = Down2_Right;
-                animation_frame = 1;
-            } else {
-                image = Down1_Right;
-                animation_frame = 0;
-            }
+            drawn_pos.y = true_pos.y * size;
+            change_direction(saved_direction);
         }
     }
 }
 
-// This function is the one called on for all Ants. It decides what happens to the ant each frame.
+void Ants::update_animation() {
+    internal_time += 1 * speed;
+    if (internal_time >= 12) {
+        internal_time = 0;
+        animation_frame = 1 - animation_frame;
+        switch (direction) {
+            case 1: image = (animation_frame == 0 ? Left1 : Left2); break;
+            case 2: image = (animation_frame == 0 ? Right1 : Right2); break;
+            case 3: image = (animation_frame == 0 ? Up1_Left : Up2_Left); break;
+            case 4: image = (animation_frame == 0 ? Up1_Right : Up2_Right); break;
+            case 5: image = (animation_frame == 0 ? Down1_Left : Down2_Left); break;
+            case 6: image = (animation_frame == 0 ? Down1_Right : Down2_Right); break;
+        }
+    }
+}
+
 void Ants::update(TDT4102::AnimationWindow& window) {
     update_position();
     update_animation();
     window.draw_image(drawn_pos, image, size, size);
 }
 
-//----------------------------------------------------------------------------------------------------//
-
-// Animated_ant
-// Constructor for Animated_Ant
-Animated_Ant::Animated_Ant (int input_direction, double input_speed, std::vector<int> grid_position) : Ants(input_direction, input_speed, grid_position) {
-    // Hope all this is covered in Ants. 
-    start_true_pos = grid_position.at(0); // This stores where the ant started for use later
+Animated_Ant::Animated_Ant(int input_direction, double input_speed, GridPos grid_position)
+    : Ants(input_direction, input_speed, grid_position) {
+    start_true_pos = grid_position.x;
 }
-
 
 void Animated_Ant::check_for_teleport() {
-    if (direction == 1) {
-         if (true_pos.at(0) < -1) {
-            true_pos.at(0) = 14;
-         }
-    } else {
-        if (true_pos.at(0) > 14) {
-            true_pos.at(0) = -1;
-        }
-    }
+    if (direction == 1 && true_pos.x < -1) true_pos.x = 14;
+    else if (direction != 1 && true_pos.x > 14) true_pos.x = -1;
 }
 
-// Animated Ant overrides the update function of Ants for its own purposes
 void Animated_Ant::update(TDT4102::AnimationWindow& window) {
     update_position();
     check_for_teleport();
@@ -230,154 +126,112 @@ void Animated_Ant::update(TDT4102::AnimationWindow& window) {
     window.draw_image(drawn_pos, image, size, size);
 }
 
-//-----------------------------------------------------------------------------------------------------------------------
-// Player Ant
-// Constructor
-Player_Ant::Player_Ant (int input_direction, double input_speed, std::vector<int> grid_position) : Ants(input_direction, input_speed, grid_position) {
-    // Hope all this is covered in Ants.
-}
+Player_Ant::Player_Ant(int input_direction, double input_speed, GridPos grid_position)
+    : Ants(input_direction, input_speed, grid_position) {}
 
 void Player_Ant::check_input() {
-        // Left will be prioritized, then up, right and then down. In case multiple buttons are pressed at once.
-        if (saved_direction != button_input) { // This if makes the control feel slightly better
-            saved_direction = button_input; // button_input is from game.h and stores the arrow key inputs
-        }
-}       
+    if (saved_direction != button_input) saved_direction = button_input;
+}
 
 void Player_Ant::update_position() {
-
-if (direction == 1) { // Left
-    distance += speed;
-    drawn_pos.x = true_pos.at(0)*size - distance;
-    drawn_pos.y = true_pos.at(1)*size;
-    // The lines above updates the visualized position of the ant.
-
-} else if (direction == 2) { // Right
-    distance += speed;
-    drawn_pos.x = true_pos.at(0)*size + distance;
-    drawn_pos.y = true_pos.at(1)*size;
-
-} else if (direction == 3 || direction == 4) { // Up
-    distance += speed;
-    drawn_pos.x = true_pos.at(0)*size;
-    drawn_pos.y = true_pos.at(1)*size - distance;
-    // The lines above updates the visualized position of the ant.
-    
-} else if (direction == 5 || direction == 6) { // Down
-    distance += speed;
-    drawn_pos.x = true_pos.at(0)*size;
-    drawn_pos.y = true_pos.at(1)*size + distance;
-    // The lines above updates the visualized position of the ant.
-
-    } 
-if (distance >= size) { // This happens when an ant reaches the center of a square.
-    true_pos.at(0) += (drawn_pos.x-true_pos.at(0)*size)/size;
-    true_pos.at(1) += (drawn_pos.y-true_pos.at(1)*size)/size;
-    distance = 0;
-
-    change_direction(saved_direction); // The ant is only allowed to change direction when at the center of a square
+    if (direction == 1) {
+        distance += speed;
+        drawn_pos.x = true_pos.x * size - distance;
+        drawn_pos.y = true_pos.y * size;
+    } else if (direction == 2) {
+        distance += speed;
+        drawn_pos.x = true_pos.x * size + distance;
+        drawn_pos.y = true_pos.y * size;
+    } else if (direction == 3 || direction == 4) {
+        distance += speed;
+        drawn_pos.x = true_pos.x * size;
+        drawn_pos.y = true_pos.y * size - distance;
+    } else if (direction == 5 || direction == 6) {
+        distance += speed;
+        drawn_pos.x = true_pos.x * size;
+        drawn_pos.y = true_pos.y * size + distance;
+    }
+    if (distance >= size) {
+        true_pos.x += (drawn_pos.x - true_pos.x * size) / size;
+        true_pos.y += (drawn_pos.y - true_pos.y * size) / size;
+        distance = 0;
+        change_direction(saved_direction);
     }
 }
 
-// This functions allows the ant to eat
-bool Player_Ant::check_for_food(std::vector<int> food_pos) {
-    if (true_pos.at(0) == food_pos.at(0) && true_pos.at(1) == food_pos.at(1)) {
-        return true;
-    } else {
-        return false;
-    }
+bool Player_Ant::check_for_food(GridPos food_pos) {
+    return (true_pos.x == food_pos.x && true_pos.y == food_pos.y);
 }
 
-void Player_Ant::update(AnimationWindow& window) {
-    check_input(); // Updates saved_direction
+void Player_Ant::update(TDT4102::AnimationWindow& window) {
+    check_input();
     update_position();
     update_animation();
     window.draw_image(drawn_pos, image, size, size);
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------
-// Constructor for Follower Ant
-Follower_Ant::Follower_Ant (int input_direction, double input_speed, std::vector<int> grid_position, int input_id) : Player_Ant(input_direction, input_speed, grid_position) {
+Follower_Ant::Follower_Ant(int input_direction, double input_speed, GridPos grid_position, int input_id)
+    : Player_Ant(input_direction, input_speed, grid_position) {
     ant_id = input_id;
-    drawn_pos.x = true_pos.at(0)*size;
-    drawn_pos.y = true_pos.at(1)*size;
+    drawn_pos.x = true_pos.x * size;
+    drawn_pos.y = true_pos.y * size;
 }
 
-void Follower_Ant::set_destination(const std::vector<int>& pos) {
-    move = true; // This allows the follower to move
-    if (pos.at(0) > true_pos.at(0)) {
-        change_direction("right");
-    } else if (pos.at(0) < true_pos.at(0)) {
-        change_direction("left");
-    } else if (pos.at(1) > true_pos.at(1)) {
-        change_direction("down");
-    } else if (pos.at(1) < true_pos.at(1)) {
-        change_direction("up");
-    } else {
-        // If the destination is reached
-        move = false;
-    }
+void Follower_Ant::set_destination(const GridPos& pos) {
+    move = true;
+    if (pos.x > true_pos.x) change_direction("right");
+    else if (pos.x < true_pos.x) change_direction("left");
+    else if (pos.y > true_pos.y) change_direction("down");
+    else if (pos.y < true_pos.y) change_direction("up");
+    else move = false;
 }
 
-
-void Follower_Ant::update(AnimationWindow& window) {
+void Follower_Ant::update(TDT4102::AnimationWindow& window) {
     update_position();
     update_animation();
     window.draw_image(drawn_pos, image, size, size);
 }
 
 void Follower_Ant::update_position() {
-if (move) {
-    if (direction == 1) { // Left
-        distance += speed;
-        drawn_pos.x = true_pos.at(0)*size - distance;
-        drawn_pos.y = true_pos.at(1)*size;
-        // The lines above updates the visualized position of the ant.
-    
-    } else if (direction == 2) { // Right
-        distance += speed;
-        drawn_pos.x = true_pos.at(0)*size + distance;
-        drawn_pos.y = true_pos.at(1)*size;
-    
-    } else if (direction == 3 || direction == 4) { // Up
-        distance += speed;
-        drawn_pos.x = true_pos.at(0)*size;
-        drawn_pos.y = true_pos.at(1)*size - distance;
-        // The lines above updates the visualized position of the ant.
-        
-    } else if (direction == 5 || direction == 6) { // Down
-        distance += speed;
-        drawn_pos.x = true_pos.at(0)*size;
-        drawn_pos.y = true_pos.at(1)*size + distance;
-        // The lines above updates the visualized position of the ant.
-    
-        } 
-    if (distance >= size) { // This happens when an ant reaches the center of a square.
-        true_pos.at(0) += (drawn_pos.x-true_pos.at(0)*size)/size;
-        true_pos.at(1) += (drawn_pos.y-true_pos.at(1)*size)/size;
-        distance = 0;
+    if (move) {
+        if (direction == 1) {
+            distance += speed;
+            drawn_pos.x = true_pos.x * size - distance;
+            drawn_pos.y = true_pos.y * size;
+        } else if (direction == 2) {
+            distance += speed;
+            drawn_pos.x = true_pos.x * size + distance;
+            drawn_pos.y = true_pos.y * size;
+        } else if (direction == 3 || direction == 4) {
+            distance += speed;
+            drawn_pos.x = true_pos.x * size;
+            drawn_pos.y = true_pos.y * size - distance;
+        } else if (direction == 5 || direction == 6) {
+            distance += speed;
+            drawn_pos.x = true_pos.x * size;
+            drawn_pos.y = true_pos.y * size + distance;
+        }
+        if (distance >= size) {
+            true_pos.x += (drawn_pos.x - true_pos.x * size) / size;
+            true_pos.y += (drawn_pos.y - true_pos.y * size) / size;
+            distance = 0;
         }
     }
 }
-//-----------------------------------------------------------------------------------------------------------------------
 
-// Constructor for Cloud
-Cloud::Cloud (int input_direction, double input_speed, std::vector<int> grid_position) : Animated_Ant(input_direction, input_speed, grid_position) {
-    start_true_pos_x = grid_position.at(0);
-    start_true_pos_y = grid_position.at(1);
+Cloud::Cloud(int input_direction, double input_speed, GridPos grid_position)
+    : Animated_Ant(input_direction, input_speed, grid_position) {
+    start_true_pos_x = grid_position.x;
+    start_true_pos_y = grid_position.y;
     image = cloud_image;
 }
 
-// Cloud functions
 void Cloud::update(TDT4102::AnimationWindow& window) {
     update_position();
     check_for_teleport();
-    window.draw_image(drawn_pos, image, size*2*(speed + 0.8), size*(speed + 0.8)); // Multiplies with speed to get a 3D effect (+ 0.8 to not make the change too drastic)
+    window.draw_image(drawn_pos, image, size * 2 * (speed + 0.8), size * (speed + 0.8));
 }
 
 void Cloud::update_animation() {
     // This needs to do nothing in order to not use the ant's version of this function
 }
-
-

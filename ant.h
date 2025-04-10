@@ -7,6 +7,12 @@
 class Follower_Ant; // forward declaration so that Player_Ant and the list below knows about it for its functions
 extern std::vector<Follower_Ant> follower_ant_list; // This houses the follower ants
 
+// Struct for grid position
+struct GridPos {
+    int x;
+    int y;
+};
+
 // Here are all the variations of ants
 
 // The main ant class. All other ants inherits from this one.
@@ -14,7 +20,7 @@ class Ants {
 
     public:
         // Position on the grid
-        std::vector<int> true_pos;
+        GridPos true_pos;
 
         // Position of the ant drawn on the screen
         TDT4102::Point drawn_pos;
@@ -45,10 +51,9 @@ class Ants {
         // Size of the image as well as each square
         int size;
         
-    
         // Constructor
-        Ants(int input_direction, double input_speed, std::vector<int> grid_position);
-     
+        Ants(int input_direction, double input_speed, GridPos grid_position);
+    
         // Functions
         int get_direction(); 
         int get_speed();
@@ -65,7 +70,6 @@ class Ants {
 
         void update_animation(); // This will check to see if the ant should change it sprite in order to animate it. 
         // The ant will change its image every 6 units (pixels) walked.
-
 };
 
 // This is the ant class for the ants that are simply animated (Will be used for clouds as well)
@@ -73,7 +77,7 @@ class Animated_Ant : public Ants {
     private:
         int start_true_pos; // Where the ant starts
     public:
-        Animated_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
+        Animated_Ant(int input_direction, double input_speed, GridPos grid_position);
         void update(TDT4102::AnimationWindow& window); // This function will override the Ants update function so this does what its supposed to instead
 
         // A function to teleport the ant back to its starting position when it exceeds a certain length.
@@ -84,13 +88,13 @@ class Animated_Ant : public Ants {
 // This is the ant class for the main ant that the player controlls
 class Player_Ant : public Ants {
     public:
-        Player_Ant(int input_direction, double input_speed, std::vector<int> grid_position);
+        Player_Ant(int input_direction, double input_speed, GridPos grid_position);
         void update_position(); 
         void check_input();
         void update(AnimationWindow& window);
 
         // Returns true if it is on food
-        bool check_for_food(std::vector<int> food_pos);
+        bool check_for_food(GridPos food_pos);
 };
 
 // This is the ant class for the ants that follow the Player_Ant. They act as the "body" in Snake. 
@@ -98,13 +102,13 @@ class Follower_Ant : public Player_Ant {
     private:
         int ant_id;
     public:
-        Follower_Ant(int input_direction, double input_speed, std::vector<int> grid_position, int input_id);
+        Follower_Ant(int input_direction, double input_speed, GridPos grid_position, int input_id);
         
         // To make sure the follower ant doesnt start moving until its supposed to
         bool move = false;
 
         // Function for setting a new destination
-        void set_destination(const std::vector<int>& pos);
+        void set_destination(const GridPos& pos);
 
         // The update function needs to be changed as well so it doesnt take in button inputs
         void update(AnimationWindow& window);
@@ -119,7 +123,8 @@ class Cloud : public Animated_Ant {
         int start_true_pos_x;
         int start_true_pos_y;
     public:
-        Cloud(int input_direction, double input_speed, std::vector<int> grid_position);
+        Cloud(int input_direction, double input_speed, GridPos grid_position);
         void update(TDT4102::AnimationWindow& window);
         void update_animation();
 };
+

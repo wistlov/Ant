@@ -11,37 +11,35 @@ std::vector<Player_Ant> player_ant_list; // This houses the player ant(s?)
 // This function generates the ants for the main menu
 void make_menu_ants(std::vector<Animated_Ant>& ant_list, int num) {
     for (int i = 0; i < num; i++) {
-        Animated_Ant ant_right(1,0.2,std::vector<int> {14+i,11});
-        Animated_Ant ant_left(2,0.2,std::vector<int> {-2-i,9});
+        Animated_Ant ant_right(1, 0.2, GridPos{14+i, 11});
+        Animated_Ant ant_left(2, 0.2, GridPos{-2-i, 9});
         ant_list.push_back(ant_right);
         ant_list.push_back(ant_left);
     }
 }
+
 // This function generates the clouds for the main menu
 void make_menu_clouds(std::vector<Cloud>& cloud_list) {
-    Cloud cloud0(1,0.1,std::vector<int> {13,2}); // The grid position is the input (0-12,0-12)
-    cloud_list.push_back(cloud0);
-    Cloud cloud1(1,0.2,std::vector<int> {4,6});
-    cloud_list.push_back(cloud1);
-    Cloud cloud2(1,0.15,std::vector<int> {7,4});
-    cloud_list.push_back(cloud2);
-    Cloud cloud3(1,0.05,std::vector<int> {11,5});
-    cloud_list.push_back(cloud3);
+    cloud_list.push_back(Cloud(1, 0.1, GridPos{13, 2}));
+    cloud_list.push_back(Cloud(1, 0.2, GridPos{4, 6}));
+    cloud_list.push_back(Cloud(1, 0.15, GridPos{7, 4}));
+    cloud_list.push_back(Cloud(1, 0.05, GridPos{11, 5}));
 }
-//This function generates the food for the main game
+
+// This function generates the food for the main game
 void make_food(std::vector<Food>& food_list) {
     Food food;
     srand(time(0));
     food_list.push_back(food);
 }
+
 // This function makes the player ant
 void make_player_ant(std::vector<Player_Ant>& player_ant_list) {
-    Player_Ant player(1,player_ant_speed,std::vector<int> {6,6});
-    player_ant_list.push_back(player);
+    player_ant_list.push_back(Player_Ant(1, player_ant_speed, GridPos{6, 6}));
 }
-void make_follower_ant(std::vector<Follower_Ant>& follower_ant_list, std::vector<int> pos, int direction) {
-    Follower_Ant ant(direction,player_ant_speed,pos,0);
-    follower_ant_list.push_back(ant);
+
+void make_follower_ant(std::vector<Follower_Ant>& follower_ant_list, GridPos pos, int direction) {
+    follower_ant_list.push_back(Follower_Ant(direction, player_ant_speed, pos, 0));
 }
 
 
@@ -75,7 +73,6 @@ void play_game() {
     Button restart_button = make_restart_button(320, 280, 200, 100, win);
     win.add(restart_button); // This adds the button, naturally
 
-
     Button main_menu_button = make_main_menu_button(576, 280, 200, 100, win);
     win.add(main_menu_button); // This adds the button, naturally
 
@@ -91,28 +88,24 @@ void play_game() {
     make_player_ant(player_ant_list);
 
     // Here the follower ants are added
-    //make_follower_ant(follower_ant_list, std::vector<int> {7,6}, 1);
-    
-    while (!win.should_close()) {  //Makes it so the game stops when the window closes
-        
-        if(game_screen == "menu") { //This is the code that will be run while the game is in the menu.
-            // Drawing the sky first so it is on the bottom layer
+    //make_follower_ant(follower_ant_list, GridPos{7, 6}, 1);
+
+    while (!win.should_close()) {
+
+        if(game_screen == "menu") {
             win.draw_rectangle(TDT4102::Point{0,0}, 832, 832,  Color::deep_skyblue);
 
-            // update menu clouds (This is done before the rest of the background so the clouds are behind everything else)
             for (int i = 0; i < cloud_list.size(); i++) {
                 cloud_list.at(i).update(win);
             }
 
-            menu_overall_background(832, 832, win); // This code makes all of the background in the menu appear. (All that are not buttons)
+            menu_overall_background(832, 832, win);
 
-            // update menu ants
             for (int i = 0; i < ant_list.size(); i++) {
                 ant_list.at(i).update(win);
             }
-            
-            
-            play_button.setVisible(true); // Shows the button while the menu is active
+
+            play_button.setVisible(true);
             highscore_button.setVisible(true);
             quit_button.setVisible(true);
             easy_play_button.setVisible(false);
@@ -123,11 +116,9 @@ void play_game() {
             main_menu_button.setVisible(false);
         }
 
-
         else if(game_screen == "difficulty"){
             difficulty_menu(832, 832, win);
-            
-            play_button.setVisible(false); // Hides the button while the game is running
+            play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
             easy_play_button.setVisible(true);
@@ -139,19 +130,14 @@ void play_game() {
             Escape_menu(win);
         }
 
-        // This is what runs when the play button has been clicked. In theory.
-        else if (game_screen == "game") { 
+        else if (game_screen == "game") {
 
             win.draw_grid();
-            win.check_input(); // Checks for button inputs
-            
+            win.check_input();
 
-            // update food
             for (int i = 0; i < food_list.size(); i++) {
                 food_list.at(i).update(win);
             }
-          
-            //--------------------------------------------
 
             for (int i = 0; i < player_ant_list.size(); i++) {
                 player_ant_list.at(i).update(win);
@@ -164,9 +150,9 @@ void play_game() {
                     food_list.erase(food_list.begin());
                     score += 1;
                     if (!follower_ant_list.empty()) {
-                        make_follower_ant(follower_ant_list,follower_ant_list.back().true_pos,follower_ant_list.back().direction);
+                        make_follower_ant(follower_ant_list, follower_ant_list.back().true_pos, follower_ant_list.back().direction);
                     } else {
-                        make_follower_ant(follower_ant_list,player_ant_list.back().true_pos,player_ant_list.back().direction);
+                        make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
                     }
                     make_food(food_list);
                 }
@@ -180,8 +166,7 @@ void play_game() {
                 }
             }
 
-            //--------------------------------------------
-            play_button.setVisible(false); // Hides the button while the game is running
+            play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
             easy_play_button.setVisible(false);
@@ -196,8 +181,7 @@ void play_game() {
         else if(game_screen == "paused"){
             win.draw_grid();
             paused_menu(832, 832, win);
-            
-            play_button.setVisible(false); // Hides the button while the game is running
+            play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
             easy_play_button.setVisible(false);
@@ -208,7 +192,6 @@ void play_game() {
             main_menu_button.setVisible(true);
         }
 
-        //This is what runs if the highscore button has been hit
         else if (game_screen == "highscore"){
             highscore_menu(832, 832, win);
             background_music();
@@ -240,6 +223,6 @@ void play_game() {
             Escape_menu(win);
         }
 
-        win.next_frame(); // Continues to the next frame
+        win.next_frame();
     }
 }
