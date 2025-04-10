@@ -173,6 +173,7 @@ void play_game() {
             }
             for (int i = 0; i < follower_ant_list.size(); i++) {
                 follower_ant_list.at(i).update(win);
+                follower_ant_list.at(i).speed = player_ant_speed;
                 if (i > 0) {
                     follower_ant_list.at(i).set_destination(follower_ant_list.at(i-1).true_pos);
                     follower_ant_list.at(i).speed = player_ant_speed;

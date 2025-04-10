@@ -300,6 +300,8 @@ void Player_Ant::update(AnimationWindow& window) {
 // Constructor for Follower Ant
 Follower_Ant::Follower_Ant (int input_direction, double input_speed, std::vector<int> grid_position, int input_id) : Player_Ant(input_direction, input_speed, grid_position) {
     ant_id = input_id;
+    drawn_pos.x = true_pos.at(0)*size;
+    drawn_pos.y = true_pos.at(1)*size;
 }
 
 void Follower_Ant::set_destination(const std::vector<int>& pos) {
