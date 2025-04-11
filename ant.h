@@ -72,9 +72,6 @@ class Ants {
         Ants(int input_direction, double input_speed, GridPos grid_position);
     
         // Functions
-        int get_direction(); 
-        int get_speed();
-        double get_internal_time();
 
         void change_direction(TurnDirection dir); // This changes the direction the ant is walking
 

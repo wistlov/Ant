@@ -21,24 +21,36 @@ Ants::Ants(int input_direction, double input_speed, GridPos grid_position) {
     else if (direction == 6) image = &Down1_Right;
 }
 
-int Ants::get_direction() { return direction; }
-int Ants::get_speed() { return speed; }
-double Ants::get_internal_time() { return internal_time; }
-
 
 void Ants::change_direction(TurnDirection dir) {
     if (direction == 1) {
-        if (dir == TurnDirection::Up) direction = 3;
-        else if (dir == TurnDirection::Down) direction = 5;
+        if (dir == TurnDirection::Up) {
+            direction = 3;
+        }
+        else if (dir == TurnDirection::Down) {
+            direction = 5;
+        }
     } else if (direction == 2) {
-        if (dir == TurnDirection::Up) direction = 4;
-        else if (dir == TurnDirection::Down) direction = 6;
+        if (dir == TurnDirection::Up) {
+            direction = 4;
+        }
+        else if (dir == TurnDirection::Down) {
+            direction = 6;
+        }
     } else if (direction == 3 || direction == 4) {
-        if (dir == TurnDirection::Left) direction = 1;
-        else if (dir == TurnDirection::Right) direction = 2;
+        if (dir == TurnDirection::Left) {
+            direction = 1;
+        }
+        else if (dir == TurnDirection::Right) {
+            direction = 2;
+        }
     } else if (direction == 5 || direction == 6) {
-        if (dir == TurnDirection::Left) direction = 1;
-        else if (dir == TurnDirection::Right) direction = 2;
+        if (dir == TurnDirection::Left) {
+            direction = 1;
+        }
+        else if (dir == TurnDirection::Right) {
+            direction = 2;
+        }
     }
 }
 
@@ -138,7 +150,7 @@ Player_Ant::Player_Ant(int input_direction, double input_speed, GridPos grid_pos
 
     void Player_Ant::check_input() { // This bad boy has been the cause of many headaches. At least a good place for error catching.
         if (button_input == "none") {
-            std::cout << "This causes the game to crash unless we just exit check_input here. So thats what we do";
+            std::cout << "This causes the game to crash unless we just exit check_input here."<<std::endl;
             return;
         }
         try {

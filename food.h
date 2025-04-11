@@ -18,7 +18,7 @@ public:
     GridPos true_pos;
 
     // List of images
-    std::vector<TDT4102::Image> Images{Hamburger, Bowl, Spagheti};
+    std::vector<TDT4102::Image> Images{Spagheti, Bowl, Hamburger};
     int food_num;
 
     // Position of the ant drawn on the screen
@@ -39,4 +39,10 @@ public:
     int random_food();
     void update(TDT4102::AnimationWindow& window); // This updates all variables that may change each frame.
     void new_position(); // Changes position when needed
+
+    // Type of food, aka worth
+    // Hamburger = 3
+    // Bowl = 2
+    // Spagetti = 1
+    int food_type;
 };

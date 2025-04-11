@@ -147,16 +147,21 @@ void play_game() {
                     game_over(win);
                     get_name_and_score(saved_scores_and_names);
                 }
-
-                if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
-                    food_list.erase(food_list.begin());
-                    score += 1;
-                    if (!follower_ant_list.empty()) {
-                        make_follower_ant(follower_ant_list, follower_ant_list.back().true_pos, follower_ant_list.back().direction);
-                    } else {
-                        make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
+                if (!food_list.empty()) {
+                    if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
+                        for (int i = 0; i<food_list.at(0).food_type; i++) {
+                            if (!follower_ant_list.empty()) {
+                            
+                                make_follower_ant(follower_ant_list, follower_ant_list.back().true_pos, follower_ant_list.back().direction);
+                                score += 1;
+                            
+                            } else {
+                                make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
+                            }  
+                        } 
+                        food_list.erase(food_list.begin());
+                        make_food(food_list);
                     }
-                    make_food(food_list);
                 }
             }
             for (int i = 0; i < follower_ant_list.size(); i++) {
@@ -166,7 +171,7 @@ void play_game() {
                     follower_ant_list.at(i).set_destination(follower_ant_list.at(i-1).true_pos);
                     follower_ant_list.at(i).speed = player_ant_speed;
                 }
-                if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 0) {
+                if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 3) { // So that the initial spawning ants dont cause a loss
                     game_over(win);
                     get_name_and_score(saved_scores_and_names);
                 }

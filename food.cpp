@@ -23,6 +23,7 @@ Food::Food() {
     food_num = random_food();
     image = Images.at(food_num);
     drawn_pos = {true_pos.x * size, true_pos.y * size};
+    food_type = food_num + 1;
 }
 
 void Food::update(TDT4102::AnimationWindow& window) {
