@@ -126,6 +126,7 @@ Button make_restart_button(int posx, int posy, int width, int height, AnimationW
 }
 
 Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+
     const TDT4102::Point buttonPosition {posx, posy};
     const unsigned int buttonWidth = width;
     const unsigned int buttonHeight = height;
@@ -137,6 +138,34 @@ Button make_main_menu_button(int posx, int posy, int width, int height, Animatio
     main_menu_button.setLabelColor(TDT4102::Color::white);
     main_menu_button.setCallback(main_menu); //This is what happens when the button is clicked.
     return main_menu_button;
+}
+
+Button make_quit_yes_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "YES";
+    TDT4102::Button quit_yes_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    quit_yes_button.setButtonColor(TDT4102::Color::red);
+    quit_yes_button.setButtonColorHover(TDT4102::Color::orange_red);
+    quit_yes_button.setButtonColorActive(TDT4102::Color::dark_red);
+    quit_yes_button.setLabelColor(TDT4102::Color::white);
+    quit_yes_button.setCallback(YES); //This is what happens when the button is clicked.
+    return quit_yes_button;
+}
+
+Button make_quit_no_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "No, take me back";
+    TDT4102::Button quit_no_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    quit_no_button.setButtonColor(TDT4102::Color::red);
+    quit_no_button.setButtonColorHover(TDT4102::Color::orange_red);
+    quit_no_button.setButtonColorActive(TDT4102::Color::dark_red);
+    quit_no_button.setLabelColor(TDT4102::Color::white);
+    quit_no_button.setCallback(NO); //This is what happens when the button is clicked.
+    return quit_no_button;
 }
 
 
@@ -179,6 +208,9 @@ void Escape_pause_menu(AnimationWindow& window) {
 
 void quit_menu(AnimationWindow& window){
     window.draw_text(TDT4102::Point{0,0}, "Press Esc: to go back", TDT4102::Color::black, 16, TDT4102::Font::courier_bold);
+    window.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
+    window.draw_text(TDT4102::Point{50,200}, "ARE YOU SURE?", TDT4102::Color::black, 100, TDT4102::Font::times_bold);
+
 }
 
 // Callbacks
@@ -224,6 +256,14 @@ void main_menu() {
 void quit() {
     std::cout << "Quit" << std::endl;
     game_screen = "quit";
+}
+void YES() {
+    std::cout << "YES" << std::endl;
+    game_screen = "highscore";
+}
+void NO() {
+    std::cout << "NO" << std::endl;
+    game_screen = "menu";
 }
 
 //Function for when its game over
