@@ -76,17 +76,11 @@ void play_game() {
     Button main_menu_button = make_main_menu_button(576, 280, 200, 100, win);
     win.add(main_menu_button); // This adds the button, naturally
 
-    Button quit_no_button = make_quit_no_button(55, 380, 200, 100, win);
+    Button quit_no_button = make_quit_no_button(376, 280, 200, 100, win);
     win.add(quit_no_button); // This adds the button, naturally
 
-    Button quit_yes_button = make_quit_yes_button(575, 380, 200, 100, win);
+    Button quit_yes_button = make_quit_yes_button(376, 480, 200, 100, win);
     win.add(quit_yes_button); // This adds the button, naturally
-
-    Button quit_no2_button = make_quit_no2_button(260, 380, 300, 100, win);
-    win.add(quit_no2_button); // This adds the button, naturally
-
-    Button quit_no3_button = make_quit_no3_button(216, 680, 400, 100, win);
-    win.add(quit_no3_button); // This adds the button, naturally
 
     // Here are the animated ants added
     make_menu_ants(ant_list, 16);
@@ -102,7 +96,6 @@ void play_game() {
     // Makes the vector for the scores
     std::vector<std::pair<std::string, int>> saved_scores_and_names;
     get_name_and_score(saved_scores_and_names);
-
 
     while (!win.should_close()) {
 
@@ -130,8 +123,6 @@ void play_game() {
             main_menu_button.setVisible(false);
             quit_yes_button.setVisible(false);
             quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(false);
-            quit_no3_button.setVisible(false);
 
         }
 
@@ -274,7 +265,7 @@ void play_game() {
         }
 
         else if (game_screen == "quit2"){
-            quit_menu2(win);
+            quit_menu(win);
             
             play_button.setVisible(false);
             highscore_button.setVisible(false);
@@ -285,28 +276,8 @@ void play_game() {
             resume_button.setVisible(false);
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
-            quit_yes_button.setVisible(false);
-            quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(true);
-            Escape_menu(win);
-        }
-
-        else if (game_screen == "quit3"){
-            quit_menu3(win);
-            
-            play_button.setVisible(false);
-            highscore_button.setVisible(false);
-            quit_button.setVisible(false);
-            easy_play_button.setVisible(false);
-            normal_play_button.setVisible(false);
-            hard_play_button.setVisible(false);
-            resume_button.setVisible(false);
-            restart_button.setVisible(false);
-            main_menu_button.setVisible(false);
-            quit_yes_button.setVisible(false);
-            quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(false);
-            quit_no3_button.setVisible(true);
+            quit_yes_button.setVisible(true);
+            quit_no_button.setVisible(true);
             Escape_menu(win);
         }
 

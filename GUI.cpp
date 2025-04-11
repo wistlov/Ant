@@ -168,34 +168,6 @@ Button make_quit_no_button(int posx, int posy, int width, int height, AnimationW
     return quit_no_button;
 }
 
-Button make_quit_no2_button(int posx, int posy, int width, int height, AnimationWindow& window) {
-    const TDT4102::Point buttonPosition {posx, posy};
-    const unsigned int buttonWidth = width;
-    const unsigned int buttonHeight = height;
-    const string buttonLabel = "No, I'm not afraid";
-    TDT4102::Button quit_no2_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
-    quit_no2_button.setButtonColor(TDT4102::Color::red);
-    quit_no2_button.setButtonColorHover(TDT4102::Color::orange_red);
-    quit_no2_button.setButtonColorActive(TDT4102::Color::dark_red);
-    quit_no2_button.setLabelColor(TDT4102::Color::white);
-    quit_no2_button.setCallback(NO2); //This is what happens when the button is clicked.
-    return quit_no2_button;
-}
-
-Button make_quit_no3_button(int posx, int posy, int width, int height, AnimationWindow& window) {
-    const TDT4102::Point buttonPosition {posx, posy};
-    const unsigned int buttonWidth = width;
-    const unsigned int buttonHeight = height;
-    const string buttonLabel = "QUIT, you... you... potato eating seagull";
-    TDT4102::Button quit_no3_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
-    quit_no3_button.setButtonColor(TDT4102::Color::black);
-    quit_no3_button.setButtonColorHover(TDT4102::Color::orange_red);
-    quit_no3_button.setButtonColorActive(TDT4102::Color::dark_red);
-    quit_no3_button.setLabelColor(TDT4102::Color::black);
-    quit_no3_button.setCallback(NO3); //This is what happens when the button is clicked.
-    return quit_no3_button;
-}
-
 
 // Makes the ANT text
 TDT4102::Point location {295, 0}; //Start point of the text
@@ -239,18 +211,6 @@ void quit_menu(AnimationWindow& window){
     window.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
     window.draw_text(TDT4102::Point{50,200}, "ARE YOU SURE?", TDT4102::Color::black, 100, TDT4102::Font::times_bold);
 
-}
-
-void quit_menu2(AnimationWindow& window){
-    window.draw_text(TDT4102::Point{0,0}, "Press Esc: to go back", TDT4102::Color::black, 16, TDT4102::Font::courier_bold);
-    window.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
-    window.draw_text(TDT4102::Point{40,200}, "I have a gun and I'm not afraid to use it", TDT4102::Color::black, 50, TDT4102::Font::times_bold);
-    window.draw_text(TDT4102::Point{60,300}, "Press Esc right now young man/ lady", TDT4102::Color::black, 50, TDT4102::Font::times_bold);
-}
-void quit_menu3(AnimationWindow& window){
-    window.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::black);
-    window.draw_text(TDT4102::Point{80,200}, "Fine, I see how it is, you don't wanna play", TDT4102::Color::white, 40, TDT4102::Font::times_bold);
-    window.draw_text(TDT4102::Point{75,300}, "Press Esc, leave me, alone, sad and suicidal", TDT4102::Color::white, 40, TDT4102::Font::times_bold);
 }
 
 // Callbacks
@@ -299,20 +259,13 @@ void quit() {
 }
 void YES() {
     std::cout << "YES" << std::endl;
-    game_screen = "quit2";
+    game_screen = "highscore";
 }
 void NO() {
     std::cout << "NO" << std::endl;
     game_screen = "menu";
 }
-void NO2() {
-    std::cout << "NO2" << std::endl;
-    game_screen = "quit3";
-}
-void NO3() {
-    std::cout << "THERE IS NO ESCAPE" << std::endl;
-    
-}
+
 //Function for when its game over
 void game_over(AnimationWindow& win) {
     std::cout << "Game over" << std::endl;

@@ -22,8 +22,6 @@ Button make_restart_button(int posx, int posy, int width, int height, AnimationW
 Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_quit_no_button(int posx, int posy, int width, int height, AnimationWindow& window); 
 Button make_quit_yes_button(int posx, int posy, int width, int height, AnimationWindow& window); 
-Button make_quit_no2_button(int posx, int posy, int width, int height, AnimationWindow& window);
-Button make_quit_no3_button(int posx, int posy, int width, int height, AnimationWindow& window);
 
 
 // Menu "Base"/Background
@@ -33,8 +31,6 @@ void menu_overall_background(int width, int height, AnimationWindow& window);
 void Escape_menu(AnimationWindow& window);
 void Escape_pause_menu(AnimationWindow& window);
 void quit_menu(AnimationWindow& window);
-void quit_menu2(AnimationWindow& window);
-void quit_menu3(AnimationWindow& window);
 
 // Callbacks
 // (These are functions that buttons can make happen when clicked)
@@ -49,8 +45,6 @@ void restart();
 void main_menu();
 void game_over(AnimationWindow& win);
 void NO();
-void NO2();
-void NO3();
 void YES(); 
 
 
