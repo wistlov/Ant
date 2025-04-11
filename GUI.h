@@ -20,6 +20,8 @@ Button make_hard_play_button(int posx, int posy, int width, int height, Animatio
 Button make_resume_button(int posx, int posy, int width, int height, AnimationWindow& window);
 Button make_restart_button(int posx, int posy, int width, int height, AnimationWindow& window) ;
 Button make_main_menu_button(int posx, int posy, int width, int height, AnimationWindow& window);
+Button make_quit_no_button(int posx, int posy, int width, int height, AnimationWindow& window); 
+Button make_quit_yes_button(int posx, int posy, int width, int height, AnimationWindow& window); 
 
 
 // Menu "Base"/Background
@@ -42,6 +44,8 @@ void resume();
 void restart();
 void main_menu();
 void game_over(AnimationWindow& win);
+void NO();
+void YES(); 
 
 
 // The class for the graphics window

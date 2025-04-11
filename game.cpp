@@ -76,6 +76,12 @@ void play_game() {
     Button main_menu_button = make_main_menu_button(576, 280, 200, 100, win);
     win.add(main_menu_button); // This adds the button, naturally
 
+    Button quit_no_button = make_quit_no_button(376, 280, 200, 100, win);
+    win.add(quit_no_button); // This adds the button, naturally
+
+    Button quit_yes_button = make_quit_yes_button(376, 480, 200, 100, win);
+    win.add(quit_yes_button); // This adds the button, naturally
+
     // Here are the animated ants added
     make_menu_ants(ant_list, 16);
 
@@ -115,6 +121,9 @@ void play_game() {
             resume_button.setVisible(false);
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
+            quit_yes_button.setVisible(false);
+            quit_no_button.setVisible(false);
+
         }
 
         else if(game_screen == "difficulty"){
@@ -235,13 +244,14 @@ void play_game() {
             resume_button.setVisible(false);
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
+            quit_yes_button.setVisible(false);
+            quit_no_button.setVisible(false);
             Escape_menu(win);
         }
 
         else if (game_screen == "quit"){
             quit_menu(win);
-            win.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::white);
-            win.draw_text(TDT4102::Point{0,200}, "ARE YOU SURE?", TDT4102::Color::black, 100, TDT4102::Font::times_bold);
+ 
             play_button.setVisible(false);
             highscore_button.setVisible(false);
             quit_button.setVisible(false);
@@ -251,6 +261,25 @@ void play_game() {
             resume_button.setVisible(false);
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
+            quit_yes_button.setVisible(true);
+            quit_no_button.setVisible(true);
+            Escape_menu(win);
+        }
+
+        else if (game_screen == "quit2"){
+            quit_menu(win);
+            
+            play_button.setVisible(false);
+            highscore_button.setVisible(false);
+            quit_button.setVisible(false);
+            easy_play_button.setVisible(false);
+            normal_play_button.setVisible(false);
+            hard_play_button.setVisible(false);
+            resume_button.setVisible(false);
+            restart_button.setVisible(false);
+            main_menu_button.setVisible(false);
+            quit_yes_button.setVisible(true);
+            quit_no_button.setVisible(true);
             Escape_menu(win);
         }
 

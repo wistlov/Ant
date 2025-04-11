@@ -46,8 +46,17 @@ void difficulty_menu(int width, int height, AnimationWindow& window){
 }
 
 void control_menu(int width, int height, AnimationWindow& window){
-    window.draw_image(TDT4102::Point{0,0}, MC_controls, 832, 832);
-    window.draw_image(TDT4102::Point{450,400}, Arrows, 360, 200);
+    window.draw_image(TDT4102::Point{0,0}, MC_controls, 832, 832); // Background fro the controll screen
+    window.draw_image(TDT4102::Point{450,400}, Arrows, 360, 200); // Draws the arrows to indecate the movement
+    window.draw_image(TDT4102::Point{220,600}, Spagheti, 100, 100);
+    window.draw_image(TDT4102::Point{420,600}, Bowl, 100, 100);
+    window.draw_image(TDT4102::Point{620,600}, Hamburger, 100, 100);    
+
+    window.draw_text(TDT4102::Point{320,600}, ":1", TDT4102::Color::white, 80, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{520,600}, ":2", TDT4102::Color::white, 80, TDT4102::Font::courier_bold);
+    window.draw_text(TDT4102::Point{720,600}, ":3", TDT4102::Color::white, 80, TDT4102::Font::courier_bold);
+
+    window.draw_text(TDT4102::Point{30,610}, "Score:", TDT4102::Color::white, 60, TDT4102::Font::courier_bold);
     window.draw_text(TDT4102::Point{60,450}, "Movement:", TDT4102::Color::white, 80, TDT4102::Font::courier_bold);
     window.draw_text(TDT4102::Point{160,160}, "Controls", TDT4102::Color::white, 120, TDT4102::Font::courier_bold);
     window.draw_text(TDT4102::Point{85,260}, "Press the arrowkeys to move the ant ", TDT4102::Color::white, 34, TDT4102::Font::courier_bold);
