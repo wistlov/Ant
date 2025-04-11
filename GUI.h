@@ -28,6 +28,7 @@ void menu_overall_background(int width, int height, AnimationWindow& window);
 //Escape to main menu
 void Escape_menu(AnimationWindow& window);
 void Escape_pause_menu(AnimationWindow& window);
+void quit_menu(AnimationWindow& window);
 
 // Callbacks
 // (These are functions that buttons can make happen when clicked)

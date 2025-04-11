@@ -10,4 +10,5 @@
 
 void highscore_menu(int width, int height, AnimationWindow& window,std::vector<std::pair<std::string, int>> scores);
 void difficulty_menu(int width, int height, AnimationWindow& window);
+void control_menu(int width, int height, AnimationWindow& window);
 void paused_menu(int width, int height, AnimationWindow& window);
