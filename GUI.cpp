@@ -250,7 +250,7 @@ void quit_menu2(AnimationWindow& window){
 void quit_menu3(AnimationWindow& window){
     window.draw_rectangle(TDT4102::Point{0, 0}, 832, 832, TDT4102::Color::black);
     window.draw_text(TDT4102::Point{80,200}, "Fine, I see how it is, you don't wanna play", TDT4102::Color::white, 40, TDT4102::Font::times_bold);
-    window.draw_text(TDT4102::Point{75,300}, "Press Esc, leave me, alone, sad and suicidal", TDT4102::Color::white, 40, TDT4102::Font::times_bold);
+    window.draw_text(TDT4102::Point{75,300}, "Press Esc, leave me, alone, sad and lonely", TDT4102::Color::white, 40, TDT4102::Font::times_bold);
 }
 
 // Callbacks
