@@ -21,7 +21,7 @@ public:
     std::vector<TDT4102::Image> Images{Spagheti, Bowl, Hamburger};
     int food_num;
 
-    // Position of the ant drawn on the screen
+    // Position of the food drawn on the screen
     TDT4102::Point drawn_pos;
 
         // The current image the ant is supposed to be drawn as

@@ -174,13 +174,11 @@ void play_game() {
                     if (player_ant_list.at(i).check_for_food(food_list.at(0).true_pos)) {
                         for (int i = 0; i<food_list.at(0).food_type; i++) {
                             if (!follower_ant_list.empty()) {
-                            
                                 make_follower_ant(follower_ant_list, follower_ant_list.back().true_pos, follower_ant_list.back().direction);
-                                score += 1;
-                            
                             } else {
                                 make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
-                            }  
+                            } 
+                            score += 1;
                         } 
                         food_list.erase(food_list.begin());
                         make_food(food_list);
