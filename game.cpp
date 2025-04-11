@@ -82,7 +82,7 @@ void play_game() {
     Button quit_yes_button = make_quit_yes_button(176, 480, 200, 100, win);
     win.add(quit_yes_button); // This adds the button, naturally
 
-    Button quit_no2_button = make_quit_no2_button(276, 480, 300, 100, win);
+    Button quit_no2_button = make_quit_no2_button(276, 380, 300, 100, win);
     win.add(quit_no2_button); // This adds the button, naturally
 
     Button quit_no3_button = make_quit_no3_button(216, 680, 400, 100, win);
