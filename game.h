@@ -5,7 +5,6 @@
 #include "GUI.h"
 #include "ant.h"
 #include "highscore.h"
-#include "music_and_sounds.h"
 #include "food.h"
 #include "resources.h"
 
