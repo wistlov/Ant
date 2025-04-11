@@ -76,7 +76,6 @@ class Ant_Window : public TDT4102::AnimationWindow {
 
         // Functions
         void make_grid(); // Self explanatory 
-
         
     public:
         // Constructor

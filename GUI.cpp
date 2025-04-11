@@ -282,8 +282,8 @@ void game_over(AnimationWindow& win) {
     follower_ant_list = {};
     food_list = {};
 
-    make_player_ant(player_ant_list);
     make_food(food_list);
+    make_player_ant(player_ant_list);
     score = 1;
 
     std::cout<<"Go back to the screen to see your score in the leaderboard"<<std::endl;
