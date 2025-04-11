@@ -1,6 +1,8 @@
 #include "food.h"
 #include <algorithm>
 
+
+
 // Picks a random food from the food_array
 int Food::random_food() {
     srand(time(0));
