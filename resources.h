@@ -37,6 +37,10 @@ extern TDT4102::Image Hamburger;
 extern TDT4102::Image Bowl;
 extern TDT4102::Image Spagheti;
 
+extern TDT4102::Image Hamburger1;
+extern TDT4102::Image Bowl1;
+extern TDT4102::Image Spagheti1;
+
 //Background images
 extern TDT4102::Image MC_background;
 extern TDT4102::Image MC_controls;

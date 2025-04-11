@@ -37,6 +37,11 @@ TDT4102::Image Hamburger("Images/Hamburger.png");
 TDT4102::Image Bowl("Images/bowl.png");
 TDT4102::Image Spagheti("Images/Spagheti.png");
 
+TDT4102::Image Hamburger1("Images/Hamburger.png");
+TDT4102::Image Bowl1("Images/bowl.png");
+TDT4102::Image Spagheti1("Images/Spagheti.png");
+
+
 //Background images
 TDT4102::Image MC_background("Images/mc_background.jpg");
 TDT4102::Image MC_controls("Images/controls_background.jpg");
