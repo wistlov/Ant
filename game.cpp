@@ -244,7 +244,6 @@ void play_game() {
 
         else if (game_screen == "highscore"){
             highscore_menu(832, 832, win, saved_scores_and_names);
-            background_music();
 
             play_button.setVisible(false);
             highscore_button.setVisible(false);
