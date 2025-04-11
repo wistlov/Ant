@@ -1,5 +1,4 @@
 #include "game.h"
-#include <signal.h>
 
 // Some global lists
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
@@ -77,17 +76,11 @@ void play_game() {
     Button main_menu_button = make_main_menu_button(576, 280, 200, 100, win);
     win.add(main_menu_button); // This adds the button, naturally
 
-    Button quit_no_button = make_quit_no_button(55, 380, 200, 100, win);
+    Button quit_no_button = make_quit_no_button(376, 280, 200, 100, win);
     win.add(quit_no_button); // This adds the button, naturally
 
-    Button quit_yes_button = make_quit_yes_button(575, 380, 200, 100, win);
+    Button quit_yes_button = make_quit_yes_button(376, 480, 200, 100, win);
     win.add(quit_yes_button); // This adds the button, naturally
-
-    Button quit_no2_button = make_quit_no2_button(260, 380, 300, 100, win);
-    win.add(quit_no2_button); // This adds the button, naturally
-
-    Button quit_no3_button = make_quit_no3_button(216, 680, 400, 100, win);
-    win.add(quit_no3_button); // This adds the button, naturally
 
     // Here are the animated ants added
     make_menu_ants(ant_list, 16);
@@ -103,7 +96,6 @@ void play_game() {
     // Makes the vector for the scores
     std::vector<std::pair<std::string, int>> saved_scores_and_names;
     get_name_and_score(saved_scores_and_names);
-
 
     while (!win.should_close()) {
 
@@ -131,8 +123,6 @@ void play_game() {
             main_menu_button.setVisible(false);
             quit_yes_button.setVisible(false);
             quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(false);
-            quit_no3_button.setVisible(false);
 
         }
 
@@ -189,9 +179,7 @@ void play_game() {
                                 make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
                             } 
                             score += 1;
-                        }
-                        printf("Here, we eat!\n");
-                        //__asm__("int $3"); // This is for debugging
+                        } 
                         food_list.erase(food_list.begin());
                         make_food(food_list);
                     }
@@ -205,7 +193,6 @@ void play_game() {
                     follower_ant_list.at(i).speed = player_ant_speed;
                 }
                 if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 3) { // So that the initial spawning ants dont cause a loss
-                    printf("Here, we die!\n");
                     game_over(win);
                     get_name_and_score(saved_scores_and_names);
                 }
@@ -277,7 +264,7 @@ void play_game() {
         }
 
         else if (game_screen == "quit2"){
-            quit_menu2(win);
+            quit_menu(win);
             
             play_button.setVisible(false);
             highscore_button.setVisible(false);
@@ -288,28 +275,8 @@ void play_game() {
             resume_button.setVisible(false);
             restart_button.setVisible(false);
             main_menu_button.setVisible(false);
-            quit_yes_button.setVisible(false);
-            quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(true);
-            Escape_menu(win);
-        }
-
-        else if (game_screen == "quit3"){
-            quit_menu3(win);
-            
-            play_button.setVisible(false);
-            highscore_button.setVisible(false);
-            quit_button.setVisible(false);
-            easy_play_button.setVisible(false);
-            normal_play_button.setVisible(false);
-            hard_play_button.setVisible(false);
-            resume_button.setVisible(false);
-            restart_button.setVisible(false);
-            main_menu_button.setVisible(false);
-            quit_yes_button.setVisible(false);
-            quit_no_button.setVisible(false);
-            quit_no2_button.setVisible(false);
-            quit_no3_button.setVisible(true);
+            quit_yes_button.setVisible(true);
+            quit_no_button.setVisible(true);
             Escape_menu(win);
         }
 
