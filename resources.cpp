@@ -8,8 +8,6 @@ double player_ant_speed = 1.0; // Speed of the player ant, duh
 int score = 1;
 
 
-
-
 // Ant images
 const TDT4102::Image Cute_ant("Images/cute_ant.gif");
 
@@ -40,7 +38,6 @@ TDT4102::Image Spagheti("Images/Spagheti.png");
 TDT4102::Image Hamburger1("Images/Hamburger.png");
 TDT4102::Image Bowl1("Images/bowl.png");
 TDT4102::Image Spagheti1("Images/Spagheti.png");
-
 
 //Background images
 TDT4102::Image MC_background("Images/mc_background.jpg");

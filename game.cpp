@@ -1,4 +1,5 @@
 #include "game.h"
+#include <signal.h>
 
 // Some global lists
 std::vector<Animated_Ant> ant_list; // This houses the ants for the menu
@@ -188,7 +189,9 @@ void play_game() {
                                 make_follower_ant(follower_ant_list, player_ant_list.back().true_pos, player_ant_list.back().direction);
                             } 
                             score += 1;
-                        } 
+                        }
+                        printf("Here, we eat!\n");
+                        //__asm__("int $3"); // This is for debugging
                         food_list.erase(food_list.begin());
                         make_food(food_list);
                     }
@@ -202,6 +205,7 @@ void play_game() {
                     follower_ant_list.at(i).speed = player_ant_speed;
                 }
                 if ((follower_ant_list.at(i).true_pos.x == player_ant_list.at(0).true_pos.x) && (follower_ant_list.at(i).true_pos.y == player_ant_list.at(0).true_pos.y) && i > 3) { // So that the initial spawning ants dont cause a loss
+                    printf("Here, we die!\n");
                     game_over(win);
                     get_name_and_score(saved_scores_and_names);
                 }
