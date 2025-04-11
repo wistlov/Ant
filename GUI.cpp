@@ -168,6 +168,33 @@ Button make_quit_no_button(int posx, int posy, int width, int height, AnimationW
     return quit_no_button;
 }
 
+Button make_quit_no2_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "I'm not afraid of you";
+    TDT4102::Button quit_no2_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    quit_no2_button.setButtonColor(TDT4102::Color::red);
+    quit_no2_button.setButtonColorHover(TDT4102::Color::orange_red);
+    quit_no2_button.setButtonColorActive(TDT4102::Color::dark_red);
+    quit_no2_button.setLabelColor(TDT4102::Color::white);
+    quit_no2_button.setCallback(NO2); //This is what happens when the button is clicked.
+    return quit_no2_button;
+}
+
+Button make_quit_no3_button(int posx, int posy, int width, int height, AnimationWindow& window) {
+    const TDT4102::Point buttonPosition {posx, posy};
+    const unsigned int buttonWidth = width;
+    const unsigned int buttonHeight = height;
+    const string buttonLabel = "QUIT, you poato eating seagull";
+    TDT4102::Button quit_no3_button {buttonPosition, buttonWidth, buttonHeight, buttonLabel};
+    quit_no3_button.setButtonColor(TDT4102::Color::black);
+    quit_no3_button.setButtonColorHover(TDT4102::Color::orange_red);
+    quit_no3_button.setButtonColorActive(TDT4102::Color::dark_red);
+    quit_no3_button.setLabelColor(TDT4102::Color::black);
+    quit_no3_button.setCallback(NO3); //This is what happens when the button is clicked.
+    return quit_no3_button;
+}
 
 // Makes the ANT text
 TDT4102::Point location {295, 0}; //Start point of the text
@@ -271,11 +298,18 @@ void quit() {
 }
 void YES() {
     std::cout << "YES" << std::endl;
-    game_screen = "highscore";
+    game_screen = "quit2";
 }
 void NO() {
     std::cout << "NO" << std::endl;
     game_screen = "menu";
+}
+void NO2() {
+    std::cout << "NO" << std::endl;
+    game_screen = "quit3";
+}
+void NO3() {
+    std::cout << "THERE IS NO ESCAPE" << std::endl;
 }
 
 //Function for when its game over
