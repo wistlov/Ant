@@ -272,6 +272,7 @@ void Follower_Ant::update_position() {
     }
 }
 
+
 Cloud::Cloud(int input_direction, double input_speed, GridPos grid_position)
     : Animated_Ant(input_direction, input_speed, grid_position) {
     start_true_pos_x = grid_position.x;
