@@ -17,7 +17,7 @@ void save_score() {
         file << name << " " << score << std::endl;
         file.close();
     } catch(const std::ofstream::failure& e) {
-        std::cerr << "Unable to open file, I think" << std::endl;
+        std::cerr << "Unable to open file" << std::endl;
         // This is where error handling could be
     }
 }
